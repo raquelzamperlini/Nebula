@@ -15,9 +15,12 @@ public class Usuario {
 	private String us_username;
 	private String us_senha;
 	private String us_permissao;
+	private boolean us_status;
+	private Integer us_licencas;
 	
 	public Usuario(Integer us_id, String us_diretorio_raiz, String us_nome, String us_email, String us_cpf,
-			LocalDate us_nascimento, String us_username, String us_senha, String us_permissao) {
+			LocalDate us_nascimento, String us_username, String us_senha, String us_permissao,
+			boolean us_status, Integer us_licencas) {
 		super();
 		this.us_id = us_id;
 		this.us_diretorio_raiz = us_diretorio_raiz;
@@ -28,10 +31,13 @@ public class Usuario {
 		this.us_username = us_username;
 		this.us_senha = us_senha;
 		this.us_permissao = us_permissao;
+		this.us_status = us_status;
+		this.us_licencas = us_licencas;
 	}
 	
 	public Usuario(String us_diretorio_raiz, String us_nome, String us_email, String us_cpf,
-			LocalDate us_nascimento, String us_username, String us_senha, String us_permissao) {
+			LocalDate us_nascimento, String us_username, String us_senha, String us_permissao,
+			boolean us_status, Integer us_licencas) {
 		super();
 		this.us_diretorio_raiz = us_diretorio_raiz;
 		this.us_nome = us_nome;
@@ -41,6 +47,8 @@ public class Usuario {
 		this.us_username = us_username;
 		this.us_senha = us_senha;
 		this.us_permissao = us_permissao;
+		this.us_status = us_status;
+		this.us_licencas = us_licencas;
 	}
 	
 	public Usuario(String us_email, String us_senha) {
@@ -60,6 +68,8 @@ public class Usuario {
 		this.us_username = usuario.getUs_username();
 		this.us_senha = usuario.getUs_senha();
 		this.us_permissao = usuario.getUs_permissao();
+		this.us_status = usuario.isUs_status();
+		this.us_licencas = usuario.getUs_Licencas();
 	}
 	
 	public Usuario() {
@@ -138,5 +148,20 @@ public class Usuario {
 		this.us_permissao = us_permissao;
 	}
 	
-		
+	public boolean isUs_status() {
+		return us_status;
+	}
+
+	public void setUs_status(boolean us_status) {
+		this.us_status = us_status;
+	}
+
+	public Integer getUs_Licencas() {
+		return us_licencas;
+	}
+
+	public void setUs_Licencas(Integer us_licencas) {
+		this.us_licencas = us_licencas;
+	}
+	
 }
