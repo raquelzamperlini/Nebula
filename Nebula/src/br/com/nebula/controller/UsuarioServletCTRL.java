@@ -80,7 +80,7 @@ public class UsuarioServletCTRL extends HttpServlet {
 			
 			try {
 				
-				Usuario usuario = usuarioCTRL.pesquisarUsuario(us_id);
+				Usuario usuario = usuarioCTRL.pesquisarUsuarioId(us_id);
 				usuarioCTRL.remover(usuario);
 				
 			} catch (SQLException e) {
@@ -98,7 +98,7 @@ public class UsuarioServletCTRL extends HttpServlet {
 			
 			try {
 				
-				Usuario usuario = usuarioCTRL.pesquisarUsuario(us_id);
+				Usuario usuario = usuarioCTRL.pesquisarUsuarioId(us_id);
 				
 				request.setAttribute("usuario", usuario);
 				request.getRequestDispatcher("crudAlterar.jsp").forward(request, response);
@@ -131,7 +131,7 @@ public class UsuarioServletCTRL extends HttpServlet {
 		
 		try {
 			
-			usuario = usuarioCTRL.pesquisarUsuario(id);
+			usuario = usuarioCTRL.pesquisarUsuarioId(id);
 			usuario.setUs_nome(us_nome);
 			usuario.setUs_email(us_email);
 			usuario.setUs_cpf(us_cpf);

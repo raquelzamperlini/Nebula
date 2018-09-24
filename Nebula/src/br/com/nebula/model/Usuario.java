@@ -69,7 +69,7 @@ public class Usuario {
 		this.us_senha = usuario.getUs_senha();
 		this.us_permissao = usuario.getUs_permissao();
 		this.us_status = usuario.isUs_status();
-		this.us_licencas = usuario.getUs_Licencas();
+		this.us_licencas = usuario.getUs_licencas();
 	}
 	
 	public Usuario() {
@@ -156,11 +156,11 @@ public class Usuario {
 		this.us_status = us_status;
 	}
 
-	public Integer getUs_Licencas() {
+	public Integer getUs_licencas() {
 		return us_licencas;
 	}
 
-	public void setUs_Licencas(Integer us_licencas) {
+	public void setUs_licencas(Integer us_licencas) {
 		this.us_licencas = us_licencas;
 	}
 	

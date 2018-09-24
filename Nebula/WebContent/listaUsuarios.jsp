@@ -53,6 +53,8 @@
 				<th>Username</th>
 				<th>Senha</th>
 				<th>Permissão</th>
+				<th>Status</th>
+				<th>Licenças</th>
 				<th>Excluir</th>
 				<th>Alterar</th>
 			</tr>
@@ -73,6 +75,8 @@
 				<th><%= u.getUs_username() %></th>
 				<th><%= u.getUs_senha() %></th>
 				<th><%= u.getUs_permissao() %></th>
+				<th><%= u.isUs_status() %></th>
+				<th><%= u.getUs_licencas() %></th>
 				<th>
 					<button id="excluir" name="excluir">
 						<a href="UsuarioServletCTRL?acao=excluir&us_id=<%= u.getUs_id() %>">Excluir</a>

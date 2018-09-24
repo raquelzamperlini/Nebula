@@ -45,7 +45,7 @@ public class Pesquisar extends HttpServlet {
 		
 		try {
 			
-			Usuario usuario = usuarioCTRL.pesquisarUsuario(us_id);
+			Usuario usuario = usuarioCTRL.pesquisarUsuarioId(us_id);
 			
 			if ( usuario != null && usuario.getUs_email() != null )
 			{

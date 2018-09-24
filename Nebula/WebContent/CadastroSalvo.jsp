@@ -26,6 +26,7 @@
 		<jsp:include page="cabecalho.jsp"></jsp:include>
 		
 		<%
+			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 			Datas datas = new Datas();
 			
 			String nome = request.getParameter("crud_nome");
@@ -35,8 +36,11 @@
 			LocalDate nascimento = datas.stringParaLocalDate(request.getParameter("crud_nascimento"));
 			
 			String username = request.getParameter("crud_username");
-			String senha = request.getParameter("crud_senha");
+			//String senha = request.getParameter("crud_senha");
+			String senha = UsuarioCTRL.gerarSenha();
 			String permissao = request.getParameter("crud_permissao");
+			boolean status = true;
+			int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
 			
 			Criptografia criptografia = new Criptografia();
 			senha = criptografia.criptografar(senha);
@@ -50,8 +54,10 @@
 			usuario.setUs_username(username);
 			usuario.setUs_senha(senha);
 			usuario.setUs_permissao(permissao);
+			usuario.setUs_status(status);
+			usuario.setUs_licencas(licencas);
 			
-			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
+			//UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); --movido pra cima
 			usuarioCTRL.adicionarUsuario(usuario);
 		%>
 		

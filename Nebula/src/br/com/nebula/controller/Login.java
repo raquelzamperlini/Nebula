@@ -48,8 +48,9 @@ public class Login extends HttpServlet {
 		UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 		Usuario autenticado = usuarioCTRL.autenticarUsuario(usuario);
 		
-		if (autenticado.getUs_nome() != "Deu ruim aqui...")
+		if (autenticado.getUs_nome() != "Deu ruim aqui..." && autenticado.isUs_status() && autenticado.getUs_licencas() > 0)
 		{
+			usuarioCTRL.consumirLicenca(autenticado);
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("autenticado", autenticado);
 			//sessao.setMaxInactiveInterval(3000);

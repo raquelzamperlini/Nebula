@@ -64,7 +64,12 @@
 						<br/>
 						
 						<label>Senha: </label>
-						<input type="password" id="crud_senha" name="crud_senha" style="width:300px" maxlength="14" placeholder="Senha entre 6 e 14 caracteres"/> 
+						<input type="password" id="crud_senha" name="crud_senha" style="width:300px" maxlength="14" placeholder="Senha será gerada automaticamente" disabled/> 
+						
+						<br/>
+						
+						<label>Número de licenças: </label>
+						<input id="crud_licencas" name="crud_licencas" style="width:40px" maxlength="2" />
 						
 						<br />
 						<br />

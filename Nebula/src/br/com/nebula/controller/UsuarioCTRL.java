@@ -2,6 +2,7 @@ package br.com.nebula.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
 import br.com.nebula.dao.UsuarioDAO;
 import br.com.nebula.model.Usuario;
@@ -15,21 +16,39 @@ public class UsuarioCTRL {
 		
 	}
 	
-	public Usuario pesquisarUsuario(Integer id) throws SQLException {
-		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		Usuario us =  usuarioDAO.pesquisarUsuario(id);
-		
-		return us;
-		
-	}
-	
 	public List<Usuario> pesquisarTodosUsuarios() throws SQLException {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		List<Usuario> usuarios =  usuarioDAO.pesquisarTodosUsuarios();
 		
 		return usuarios;
+		
+	}
+	
+	public Usuario pesquisarUsuarioId(Integer id) throws SQLException {
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario us =  usuarioDAO.pesquisarUsuarioId(id);
+		
+		return us;
+		
+	}
+	
+	public Usuario pesquisarUsuarioUsername(String username) throws SQLException {
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario us =  usuarioDAO.pesquisarUsuarioUsername(username);
+		
+		return us;
+		
+	}
+	
+	public Usuario pesquisarUsuarioId(String email) throws SQLException {
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario us =  usuarioDAO.pesquisarUsuarioEmail(email);
+		
+		return us;
 		
 	}
 	
@@ -56,6 +75,17 @@ public class UsuarioCTRL {
 		
 		return us;
 		
+	}
+	
+	public void consumirLicenca(Usuario usuario) {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO.consumirLicenca(usuario);;
+	}
+	
+	public static String gerarSenha() {
+		Random rand = new Random();
+		String s = String.valueOf(rand.nextInt(99999999) + 10000000);
+		return s;
 	}
 	
 }
