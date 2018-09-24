@@ -71,8 +71,6 @@ public class UsuarioDAO {
 			ConnectionFactory.closeConnection(connection);
 		}
 		
-		int n = 1+1;
-		
 	}
 	
 	public List<Usuario> pesquisarTodosUsuarios() throws SQLException {
