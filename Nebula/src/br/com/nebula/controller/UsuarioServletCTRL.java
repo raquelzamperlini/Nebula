@@ -41,14 +41,14 @@ public class UsuarioServletCTRL extends HttpServlet {
 														
 														for (Usuario u:usuarios) {
 															System.out.println("ID: " 				+ u.getUs_id()				+
-																			   "Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
+																			   "Diretï¿½rio Raiz: "	+ u.getUs_diretorio_raiz()	+
 																			   "Nome: "				+ u.getUs_nome()			+
 																			   "E-mail: "			+ u.getUs_email()			+
 																			   "CPF: "				+ u.getUs_cpf()				+
 																			   "Nascimento: "		+ u.getUs_nascimento()		+
 																			   "Username: "			+ u.getUs_nascimento()		+
 																			   "Senha: "			+ u.getUs_senha()			+
-																			   "Permissão: "		+ u.getUs_permissao());
+																			   "Permissï¿½o: "		+ u.getUs_permissao());
 														}
 													} catch (SQLException e) {
 														e.printStackTrace();
@@ -81,7 +81,7 @@ public class UsuarioServletCTRL extends HttpServlet {
 			try {
 				
 				Usuario usuario = usuarioCTRL.pesquisarUsuarioId(us_id);
-				usuarioCTRL.remover(usuario);
+				usuarioCTRL.removerUsuario(usuario);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

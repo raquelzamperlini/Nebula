@@ -33,7 +33,7 @@
 		<br />
 		<br />
 		
-		<jsp:include page="cabecalho.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
 	</body>
 </html>

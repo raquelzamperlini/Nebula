@@ -29,7 +29,13 @@ public class Login extends HttpServlet {
 		HttpSession sessao = request.getSession(false);
 		
 		if (sessao != null)
+		{
+			Usuario usuario = (Usuario) sessao.getAttribute("autenticado");
+			usuario.setUs_licencas(usuario.getUs_licencas() + 1);
+			
 			sessao.invalidate();
+		}
+			
 		
 		response.sendRedirect("login.jsp");
 		
@@ -48,14 +54,21 @@ public class Login extends HttpServlet {
 		UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 		Usuario autenticado = usuarioCTRL.autenticarUsuario(usuario);
 		
-		if (autenticado.getUs_nome() != "Deu ruim aqui..." && autenticado.isUs_status() && autenticado.getUs_licencas() > 0)
+		if (autenticado.getUs_nome() != "Deu ruim aqui..." &&
+				autenticado.isUs_status() &&
+				autenticado.getUs_licencas() > 0 )
 		{
-			usuarioCTRL.consumirLicenca(autenticado);
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("autenticado", autenticado);
 			//sessao.setMaxInactiveInterval(3000);
 			
-			request.getRequestDispatcher("home.jsp").forward(request, response);;
+			usuarioCTRL.consumirLicenca(autenticado);
+			
+			if (autenticado.getUs_permissao().equals("administrador") )
+				request.getRequestDispatcher("home_f.jsp").forward(request, response);
+			
+			if (autenticado.getUs_permissao().equals("usuario") )
+				request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
 		}
 		
 		else
