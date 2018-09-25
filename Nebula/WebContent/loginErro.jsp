@@ -1,23 +1,22 @@
-<!--
-/*
- * @author Raquel Zamperlini
- * 
- */
- -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Não foi dessa vez...</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
+		<title>NÃ£o foi dessa vez...</title>
 	</head>
+	
 	<body>
 		<h1>No no no =)</h1>
+		
 		<%
-			out.print("Dados inválidos!");
+			out.print("Dados invÃ¡lidos!");
 		%>
+		
 		<a href="login.jsp" >Tente novamente</a>
 	</body>
 </html>

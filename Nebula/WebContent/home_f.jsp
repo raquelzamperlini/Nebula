@@ -1,19 +1,17 @@
-<!--
-/*
- * @author Raquel Zamperlini
- * 
- */
- -->
-
 <%@ page import="br.com.nebula.model.Usuario" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Nebula</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
+		<title>Nebula</title>
 	</head>
+	
 	<body>
 		<h1>Nebula</h1>
 		
@@ -33,7 +31,8 @@
 		<br />
 		<br />
 		
-		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalho_f.jsp"></jsp:include>
 		
+		<br />
 	</body>
 </html>

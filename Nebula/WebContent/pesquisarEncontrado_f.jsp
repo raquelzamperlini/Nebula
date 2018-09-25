@@ -1,14 +1,18 @@
-
 <%@ page import="br.com.nebula.model.Usuario" %>
 <%@ page import="br.com.nebula.controller.Datas" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Insert title here</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
+		<title>Pesquisar</title>
 	</head>
+	
 	<body>
 		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
@@ -32,7 +36,7 @@
 					
 				<label>Nome: </label>
 				<input type="text" id="crud_nome" name="crud_nome" style="width:300px" maxlength="100"
-				 placeholder="Entre com o nome completo do usuário"
+				 placeholder="Entre com o nome completo do usuÃ¡rio"
 				 	value="<%=usuario.getUs_nome() %>" readonly/>
 				
 				<br/>
@@ -46,7 +50,7 @@
 				
 				<label>CPF: </label>
 				<input type="text" id="crud_cpf" name="crud_cpf" style="width:300px" maxlength="11"
-				 placeholder="Somente números"
+				 placeholder="Somente nÃºmeros"
 				 	value="<%=usuario.getUs_cpf() %>" readonly />
 				
 				<br/>
@@ -59,7 +63,7 @@
 				
 				<br/>
 				
-				<label>Nome de Usuário: </label>
+				<label>Nome de UsuÃ¡rio: </label>
 				<input id="crud_username" name="crud_username" style="width:250px" maxlength="50"
 					value="<%=usuario.getUs_username() %>" readonly />
 				
@@ -75,7 +79,7 @@
 				<br />
 				<br />
 				
-				<label id="ativo">Tipo de Permissão: </label> <br />
+				<label id="ativo">Tipo de PermissÃ£o: </label> <br />
 				<input type="text" id="crud_permissao" name="crud_permissao"
 					value="<%=usuario.getUs_permissao() %>" readonly />
 				

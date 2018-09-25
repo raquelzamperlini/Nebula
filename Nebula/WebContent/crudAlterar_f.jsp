@@ -1,21 +1,17 @@
-<!--
-/*
- * @author Raquel Zamperlini
- * @author Vinícius Ernani
- * 
- */
- -->
-
 <%@ page import="br.com.nebula.model.Usuario" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head >
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
 		<title>Cadastro</title>
 	</head>
+	
 	<body>
 		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
@@ -29,8 +25,8 @@
 			<div id="corpo">
 				<div id="cadastro">
 					<div id="title">
-						<h1>Cadastro de Usuários</h1> <br />
-						<!-- <h3 class="description">Cadastre um novo usuário:</h3> -->
+						<h1>Cadastro de UsuÃ¡rios</h1> <br />
+						<!-- <h3 class="description">Cadastre um novo usuÃ¡rio:</h3> -->
 					</div>
 					
 					<div class="forms">
@@ -44,7 +40,7 @@
 							
 						<label>Nome: </label>
 						<input type="text" id="crud_nome" name="crud_nome" style="width:300px" maxlength="100"
-						 placeholder="Entre com o nome completo do usuário"
+						 placeholder="Entre com o nome completo do usuÃ¡rio"
 							value="<%=usuario.getUs_nome() %>" />
 						 <!-- pattern="[a-z,A-Z, ]" -->
 						
@@ -59,7 +55,7 @@
 						
 						<label>CPF: </label>
 						<input type="text" id="crud_cpf" name="crud_cpf" style="width:300px" maxlength="11"
-						 placeholder="Somente números" pattern="[0-9]+$"
+						 placeholder="Somente nÃºmeros" pattern="[0-9]+$"
 							value="<%=usuario.getUs_cpf() %>" />
 						
 						<br/>
@@ -72,7 +68,7 @@
 						
 						<br/>
 						
-						<label>Nome de Usuário: </label>
+						<label>Nome de UsuÃ¡rio: </label>
 						<input id="crud_username" name="crud_username" style="width:250px" maxlength="50"
 						 pattern="[a-z\s]+$"
 						 	value="<%=usuario.getUs_username() %>" />
@@ -89,9 +85,9 @@
 						<br />
 						
 						<!-- 
-						<label id="ativo">Tipo de Permissão: </label> <br />
+						<label id="ativo">Tipo de PermissÃ£o: </label> <br />
 						<input type="radio" id="crud_permissao" name="crud_permissao" value="administrador" />Administrador <br />
-						<input type="radio" id="crud_permissao" name="crud_permissao" value="usuario" />Usuário
+						<input type="radio" id="crud_permissao" name="crud_permissao" value="usuario" />UsuÃ¡rio
 						 -->
 						 
 						<br/>
@@ -112,7 +108,6 @@
 		<br />
 		<br />
 		
-		<a href="home.jsp">Voltar</a>
-		
+		<a href="home_f.jsp">Voltar</a>
 	</body>
 </html>

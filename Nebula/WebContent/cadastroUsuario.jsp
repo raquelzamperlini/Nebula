@@ -7,15 +7,13 @@
 <html lang="pt-br">
 	<head >
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="author" content="Vinícius Ernani">
+		<meta name="author" content="Raquel Zamperlini">
 		
 		<title>Cadastro</title>
 	</head>
 	
 	<body>
-		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
-		
-		<form id="crud_form" action="cadastroSalvo_f.jsp" method="post" >
+		<form id="crud_form" action="usuarioCadastrado.jsp" method="post" >
 			<div id="corpo">
 				<div id="cadastro">
 					<div id="title">
@@ -61,7 +59,7 @@
 						<br/>
 						
 						<label>Senha: </label>
-						<input type="password" id="crud_senha" name="crud_senha" style="width:300px" maxlength="14" placeholder="Senha será gerada automaticamente" disabled/> 
+						<input type="password" id="crud_senha" name="crud_senha" style="width:300px" maxlength="14" placeholder="Digite sua senha" /> 
 						
 						<br/>
 						
@@ -73,11 +71,13 @@
 						<br />
 						<br />
 						
+						<!-- 
 						<label id="ativo">Tipo de Permissão: </label> <br />
 						<input type="radio" id="crud_permissao" name="crud_permissao" value="administrador" />Administrador <br />
 						<input type="radio" id="crud_permissao" name="crud_permissao" value="usuario" />Usuário
 						
 						<br/>
+						 -->
 					</div>
 					
 					<br />

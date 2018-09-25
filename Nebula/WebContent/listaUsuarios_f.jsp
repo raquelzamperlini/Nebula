@@ -1,22 +1,20 @@
-<!--
-/*
- * @author Raquel Zamperlini
- * 
- */
- -->
-
 <%@ page import="br.com.nebula.model.Usuario" %>
 <%@ page import="br.com.nebula.controller.UsuarioCTRL" %>
 <%@ page import="br.com.nebula.controller.Datas" %>
 <%@ page import="java.util.List" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Lista de Usuários</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
+		<title>Lista de UsuÃ¡rios</title>
 	</head>
+	
 	<body>
 		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
@@ -30,14 +28,14 @@
 			/*
 			for (Usuario u:buscaUsuarios) {
 				out.println("ID: " 				+ u.getUs_id()				+
-							"Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
+							"DiretÃ³rio Raiz: "	+ u.getUs_diretorio_raiz()	+
 							"Nome: "			+ u.getUs_nome()			+
 							"E-mail: "			+ u.getUs_email()			+
 							"CPF: "				+ u.getUs_cpf()				+
 							"Nascimento: "		+ u.getUs_nascimento()		+
 							"Username: "		+ u.getUs_nascimento()		+
 							"Senha: "			+ u.getUs_senha()			+
-							"Permissão: "		+ u.getUs_permissao());
+							"PermissÃ£o: "		+ u.getUs_permissao());
 			}
 			*/
 		%>
@@ -45,16 +43,16 @@
 		<table border="1" >
 			<tr bgcolor="eaeaea">
 				<th>ID</th>
-				<th>Diretório Raiz</th>
+				<th>DiretÃ³rio Raiz</th>
 				<th>Nome</th>
 				<th>E-mail</th>
 				<th>CPF</th>
 				<th>Nascimento</th>
 				<th>Username</th>
 				<th>Senha</th>
-				<th>Permissão</th>
+				<th>PermissÃ£o</th>
 				<th>Status</th>
-				<th>Licenças</th>
+				<th>LicenÃ§as</th>
 				<th>Excluir</th>
 				<th>Alterar</th>
 			</tr>

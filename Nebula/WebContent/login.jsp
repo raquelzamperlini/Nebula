@@ -1,19 +1,15 @@
-<!--
-/*
- * @author Raquel Zamperlini
- * 
- */
- -->
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="author" content="Raquel Zamperlini">
+		
 		<title>Login</title>
 	</head>
+	
 	<body>
 		<form action="LoginServlet" method="post" >
 			<h1>Login</h1>
