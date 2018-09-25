@@ -59,7 +59,7 @@ public class UsuarioCTRL {
 		
 	}
 	
-	public void remover(Usuario usuario) {
+	public void removerUsuario(Usuario usuario) {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.removerUsuario(usuario);
@@ -79,7 +79,7 @@ public class UsuarioCTRL {
 	
 	public void consumirLicenca(Usuario usuario) {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.consumirLicenca(usuario);;
+		usuarioDAO.consumirLicenca(usuario);
 	}
 	
 	public static String gerarSenha() {

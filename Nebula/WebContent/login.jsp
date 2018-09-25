@@ -15,7 +15,7 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form action="Login" method="post" >
+		<form action="LoginServlet" method="post" >
 			<h1>Login</h1>
 			<label>E-mail: </label>
 			<input id="login_email" name="login_email" >
@@ -24,7 +24,9 @@
 			<input type="password" id="login_senha" name="login_senha" >
 			
 			<input type="submit" value="Entrar" id="login_entrar">
-			<!-- <input type="submit" value="Cadastrar" id="login_cadastrar"> -->
+			<button name="login_cadastrar" id="login_cadastrar">
+				<a href="cadastroUsuario.jsp">Cadastre-se</a>
+			</button>
 		</form>
 		
 		<%

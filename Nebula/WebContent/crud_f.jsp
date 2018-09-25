@@ -16,9 +16,9 @@
 		<title>Cadastro</title>
 	</head>
 	<body>
-		<jsp:include page="cabecalho.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
-		<form id="crud_form" action="CadastroSalvo.jsp" method="post" >
+		<form id="crud_form" action="cadastroSalvo_f.jsp" method="post" >
 			<div id="corpo">
 				<div id="cadastro">
 					<div id="title">
@@ -68,8 +68,10 @@
 						
 						<br/>
 						
+						<!-- 
 						<label>Número de licenças: </label>
-						<input id="crud_licencas" name="crud_licencas" style="width:40px" maxlength="2" />
+						<input id="crud_licencas" name="crud_licencas" style="width:40px" maxlength="1" />
+						-->
 						
 						<br />
 						<br />
@@ -96,7 +98,7 @@
 		<br />
 		<br />
 		
-		<a href="home.jsp">Voltar</a>
+		<a href="home_f.jsp">Voltar</a>
 		
 	</body>
 </html>

@@ -15,6 +15,10 @@
 </head>
 <body>
 	<h1>Logou =D</h1>
+<<<<<<< HEAD
 	<a href="Login">Logout</a>
+=======
+	<a href="LoginServlet">Logout</a>
+>>>>>>> refs/remotes/origin/raquel
 </body>
 </html>

@@ -23,8 +23,6 @@
 		<title>Salvar Cadastro</title>
 	</head>
 	<body>
-		<jsp:include page="cabecalho.jsp"></jsp:include>
-		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 			Datas datas = new Datas();
@@ -36,11 +34,12 @@
 			LocalDate nascimento = datas.stringParaLocalDate(request.getParameter("crud_nascimento"));
 			
 			String username = request.getParameter("crud_username");
-			//String senha = request.getParameter("crud_senha");
-			String senha = UsuarioCTRL.gerarSenha();
+			//String senha = UsuarioCTRL.gerarSenha();
+			String senha = request.getParameter("crud_senha");
 			String permissao = request.getParameter("crud_permissao");
 			boolean status = true;
-			int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
+			//int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
+			int licencas = 1;
 			
 			Criptografia criptografia = new Criptografia();
 			senha = criptografia.criptografar(senha);

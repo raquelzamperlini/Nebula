@@ -33,7 +33,11 @@
 		<br />
 		<br />
 		
+<<<<<<< HEAD
 		<jsp:include page="cabecalho.jsp"></jsp:include> <br />
+=======
+		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
+>>>>>>> refs/remotes/origin/raquel
 		
 	</body>
 </html>

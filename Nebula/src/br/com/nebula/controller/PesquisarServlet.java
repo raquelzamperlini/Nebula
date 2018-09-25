@@ -14,14 +14,14 @@ import br.com.nebula.model.Usuario;
 /**
  * Servlet implementation class Pesquisar
  */
-@WebServlet("/Pesquisar")
-public class Pesquisar extends HttpServlet {
+@WebServlet("/PesquisarServlet")
+public class PesquisarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Pesquisar() {
+    public PesquisarServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
