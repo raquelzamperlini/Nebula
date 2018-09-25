@@ -28,6 +28,7 @@
 		</form>
 		
 		<%
+			/*
 			String usuario = request.getParameter("login_email");
 			String senha = request.getParameter("login_senha");
 			
@@ -38,6 +39,8 @@
 				session.setAttribute("senha", senha);
 				
 			}
+			*/
 		%>
+		
 	</body>
 </html>

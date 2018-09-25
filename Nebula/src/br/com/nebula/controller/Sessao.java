@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * Servlet Filter implementation class Sessao
  * @author Raquel Zamperlini
  */
-@WebFilter("/*")
+@WebFilter("[!loginErro]")
 public class Sessao implements Filter {
 
     public Sessao() {
