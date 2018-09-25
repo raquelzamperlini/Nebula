@@ -64,7 +64,7 @@ public class UsuarioServletCTRL extends HttpServlet {
 				
 				request.setAttribute("usuarios", usuarios);
 				
-				RequestDispatcher saida = request.getRequestDispatcher("listaUsuarios.jsp");
+				RequestDispatcher saida = request.getRequestDispatcher("listaUsuarios_f.jsp");
 				
 				saida.forward(request, response);
 			} catch (SQLException e) {

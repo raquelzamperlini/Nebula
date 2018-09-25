@@ -17,11 +17,15 @@ import javax.servlet.http.HttpSession;
  * @author Raquel Zamperlini
  */
 @WebFilter("/*_f.jsp")
-public class Sessao implements Filter {
+public class SessaoFilter implements Filter {
 
-    public Sessao() {
+    public SessaoFilter() {
         
     }
+
+	public void init(FilterConfig fConfig) throws ServletException {
+		
+	}
     
 	public void destroy() {
 		
@@ -41,10 +45,6 @@ public class Sessao implements Filter {
 			chain.doFilter(request, response);
 		else
 			((HttpServletResponse) response).sendRedirect("login.jsp");
-		
-	}
-	
-	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}
 

@@ -15,6 +15,6 @@
 </head>
 <body>
 	<h1>Logou =D</h1>
-	<a href="Login">Logout</a>
+	<a href="LoginServlet">Logout</a>
 </body>
 </html>

@@ -23,7 +23,7 @@
 		<title>Salvar Cadastro</title>
 	</head>
 	<body>
-		<jsp:include page="cabecalho.jsp"></jsp:include>
+		<jsp:include page="cabecalho_f.jsp"></jsp:include>
 		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();

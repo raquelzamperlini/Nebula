@@ -1,5 +1,6 @@
 package br.com.nebula.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,19 +14,19 @@ public class Datas {
 	public LocalDate stringParaLocalDate(String string) {
 		
 		DateTimeFormatter formatadorBarra = 
-				  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				  DateTimeFormatter.ofPattern("dd/MM/[uuuu][uu]");
 		
 		DateTimeFormatter formatadorHifen = 
-				  DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				  DateTimeFormatter.ofPattern("[uuuu][uu]-MM-dd");
 		
 		LocalDate localDate = null;
 		
-		if (string.contains("/"))
+		if (string.contains("/") )
 		{
 			 localDate = LocalDate.parse(string, formatadorBarra);
 		}
 		
-		if (string.contains("-"))
+		if (string.contains("-") )
 		{
 			localDate = LocalDate.parse(string, formatadorHifen);
 		}
@@ -39,7 +40,7 @@ public class Datas {
 		DateTimeFormatter formatador = 
 		  DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
-		String string = localDate.format(formatador); //08/04/2014
+		String string = localDate.format(formatador);
 		
 		return string;
 		

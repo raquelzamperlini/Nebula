@@ -68,8 +68,10 @@
 						
 						<br/>
 						
+						<!-- 
 						<label>Número de licenças: </label>
-						<input id="crud_licencas" name="crud_licencas" style="width:40px" maxlength="2" />
+						<input id="crud_licencas" name="crud_licencas" style="width:40px" maxlength="1" />
+						-->
 						
 						<br />
 						<br />
