@@ -17,7 +17,7 @@ public class Criptografia {
 		
 	}
 	
-	public String criptografar(String senha) {
+	public static String criptografar(String senha) {
 		
 		MessageDigest md;
 		byte messageDigest[] = null;

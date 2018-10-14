@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
+import br.com.nebula.dao.Criptografia;
 import br.com.nebula.dao.UsuarioDAO;
 import br.com.nebula.model.Usuario;
 
@@ -43,7 +44,7 @@ public class UsuarioCTRL {
 		
 	}
 	
-	public Usuario pesquisarUsuarioId(String email) throws SQLException {
+	public Usuario pesquisarUsuarioEmail(String email) throws SQLException {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario us =  usuarioDAO.pesquisarUsuarioEmail(email);
@@ -54,6 +55,9 @@ public class UsuarioCTRL {
 	
 	public void alterarUsuario(Usuario usuario) {
 		
+		if(usuario.getUs_senha() != null) {
+			usuario.setUs_senha(Criptografia.criptografar(usuario.getUs_senha()));
+		}
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.alterarUsuario(usuario);
 		
