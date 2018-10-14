@@ -13,6 +13,6 @@
 	<body>
 		<h1>Logou =D</h1>
 		
-		<a href="Login">Logout</a>
+		<!--<a href="Login">Logout</a>-->
 	</body>
 </html>

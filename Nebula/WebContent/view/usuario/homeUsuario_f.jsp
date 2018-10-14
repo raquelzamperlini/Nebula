@@ -20,6 +20,9 @@
 			{
 				Usuario autenticado = (Usuario)session.getAttribute("autenticado");
 				out.println("Bem-vindo, " + autenticado.getUs_nome() + "! =)");
+				Integer id = autenticado.getUs_id();
+				
+				session.setAttribute("userid", String.valueOf(id));
 			}
 			else
 			{
@@ -30,9 +33,11 @@
 		
 		<br />
 		<br />
-		
-		<jsp:include page="/view/administrador/cabecalho_f.jsp"></jsp:include>
-		
+		<form id="crud_form" action="Pesquisar" method="post" >
+			
+			<input type="hidden" id="userid" name="userid" value="${userid}"/>
+			<input type="submit" id="minha_conta" name="minha_conta" value="Minha Conta" />
+		</form>
 		<br />
 	</body>
 </html>

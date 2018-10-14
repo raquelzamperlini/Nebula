@@ -15,7 +15,7 @@ import br.com.nebula.model.Usuario;
 /**
  * Servlet implementation class Pesquisar
  */
-@WebServlet("/Pesquisar")
+@WebServlet(name = "Pesquisar", urlPatterns = {"/view/administrador/Pesquisar","/view/usuario/Pesquisar"})
 public class Pesquisar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,23 +42,21 @@ public class Pesquisar extends HttpServlet {
 		
 		UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 		
-		Integer us_id = Integer.parseInt(request.getParameter("crud_id"));
-		
 		try {
 			
-			Usuario usuario = usuarioCTRL.pesquisarUsuarioId(us_id);
+			Usuario usuario = usuarioCTRL.pesquisarUsuarioId(Integer.parseInt(request.getParameter("userid")));
 			
 			if ( usuario != null && usuario.getUs_email() != null )
 			{
 				
 				request.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("pesquisarEncontrado.jsp").forward(request, response);;
+				request.getRequestDispatcher("pesquisarEncontrado_f.jsp").forward(request, response);;
 				
 			}
 			
 			else
 			{
-				response.sendRedirect("pesquisarNaoEncontrado.jsp");
+				response.sendRedirect("pesquisarNaoEncontrado_f.jsp");
 			}
 			
 		} catch (SQLException e) {

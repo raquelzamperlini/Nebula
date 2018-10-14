@@ -20,7 +20,7 @@ import br.com.nebula.controller.Datas;
 /**
  * Servlet implementation class UsuarioServletCTRL
  */
-@WebServlet("/UsuarioCRUD")
+@WebServlet(name = "UsuarioCRUD", urlPatterns = {"/view/administrador/UsuarioCRUD","/view/usuario/UsuarioCRUD"})
 public class UsuarioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -117,13 +117,15 @@ public class UsuarioCRUD extends HttpServlet {
 		
 		Datas datas = new Datas();
 		
-		Integer id = Integer.parseInt(request.getParameter("crud_id"));
+		String username = request.getParameter("username");
+		
+		//Integer id = Integer.parseInt(request.getParameter("crud_id"));
 		String us_nome = request.getParameter("crud_nome");
 		String us_email = request.getParameter("crud_email");
 		String us_cpf = request.getParameter("crud_cpf");
 		LocalDate us_nascimento = datas.stringParaLocalDate(request.getParameter("crud_nascimento"));
 		String us_username = request.getParameter("crud_username");
-		//String us_senha = request.getParameter("crud_senha");
+		String us_senha = request.getParameter("crud_senha");
 		//String us_permissao = request.getParameter("crud_permissao");
 		
 		Usuario usuario = new Usuario();
@@ -131,12 +133,13 @@ public class UsuarioCRUD extends HttpServlet {
 		
 		try {
 			
-			usuario = usuarioCTRL.pesquisarUsuarioId(id);
+			usuario = usuarioCTRL.pesquisarUsuarioUsername(username);
 			usuario.setUs_nome(us_nome);
 			usuario.setUs_email(us_email);
 			usuario.setUs_cpf(us_cpf);
 			usuario.setUs_nascimento(us_nascimento);
 			usuario.setUs_username(us_username);
+			usuario.setUs_senha(us_senha);
 			
 			usuarioCTRL.alterarUsuario(usuario);
 			
@@ -148,7 +151,7 @@ public class UsuarioCRUD extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("UsuarioCRUD?acao=listar");
+		//response.sendRedirect("UsuarioCRUD?acao=listar");
 		
 	}
 

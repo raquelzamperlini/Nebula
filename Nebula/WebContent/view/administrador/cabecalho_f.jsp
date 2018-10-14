@@ -11,12 +11,12 @@
 	</head>
 	
 	<body>
-		<jsp:include page="<%=request.getContextPath()%>/view/login/loginOk_f.jsp"></jsp:include> <br /> <br />
+		<jsp:include page="/view/login/loginOk_f.jsp"></jsp:include> <br /> <br />
 		
 		<a href="<%=request.getContextPath()%>/view/administrador/home_f.jsp">Início</a> <br /> <br />
 		<a href="<%=request.getContextPath()%>/view/administrador/usuarioCadastro_f.jsp">Cadastro</a> <br /> <br />
 		<a href="<%=request.getContextPath()%>/view/administrador/pesquisar_f.jsp">Pesquisar</a> <br /> <br />
 		
-		<a href="UsuarioServletCTRL?acao=listar">Lista de Usuários</a> <br />
+		<a href="usuarioLista_f.jsp">Lista de Usuários</a> <br />
 	</body>
 </html>

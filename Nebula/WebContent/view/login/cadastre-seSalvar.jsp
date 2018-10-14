@@ -38,7 +38,7 @@
 			int licencas = 1;
 			
 			Criptografia criptografia = new Criptografia();
-			senha = criptografia.criptografar(senha);
+			senha = Criptografia.criptografar(senha);
 			
 			Usuario usuario = new Usuario();
 			

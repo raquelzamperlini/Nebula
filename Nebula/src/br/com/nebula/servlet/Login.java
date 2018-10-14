@@ -1,6 +1,7 @@
 package br.com.nebula.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import br.com.nebula.model.Usuario;
  * Servlet implementation class Login
  * @author Raquel Zamperlini
  */
-@WebServlet("/Login")
+@WebServlet(name = "Login", urlPatterns = {"/view/login/Login"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -47,8 +48,7 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("login_email");
 		String senha = request.getParameter("login_senha");
 		
-		Criptografia criptografa = new Criptografia();
-		senha = criptografa.criptografar(senha);
+		senha = Criptografia.criptografar(senha);
 		
 		Usuario usuario = new Usuario(email, senha);
 		
@@ -56,20 +56,31 @@ public class Login extends HttpServlet {
 		Usuario autenticado = usuarioCTRL.autenticarUsuario(usuario);
 		
 		if (autenticado.getUs_nome() != "Deu ruim aqui..." &&
-				autenticado.isUs_status() &&
-				autenticado.getUs_licencas() > 0 )
+				autenticado.isUs_status() /*&&
+				autenticado.getUs_licencas() > 0*/ )
 		{
+			
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("autenticado", autenticado);
 			//sessao.setMaxInactiveInterval(3000);
 			
-			usuarioCTRL.consumirLicenca(autenticado);
+			//usuarioCTRL.consumirLicenca(autenticado);
 			
 			if (autenticado.getUs_permissao().equals("administrador") )
-				request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
+			{
+				//RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/view/login/loginErro.jsp");
+				response.sendRedirect(request.getContextPath() + "/view/administrador/home_f.jsp");
+				//rd.forward(request, response);;
+				
+			}
+				//request.getRequestDispatcher(request.getContextPath() + "/view/login/loginErro.jsp").forward(request, response);
+				//response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");				
+				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
 			
 			if (autenticado.getUs_permissao().equals("usuario") )
-				request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/view/usuario/homeUsuario_f.jsp");
+				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
+			
 		}
 		
 		else

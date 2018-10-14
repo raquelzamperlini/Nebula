@@ -11,7 +11,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="<%=request.getContextPath()%>/view/administrador/cabecalho_f.jsp"></jsp:include> <br />
+		<jsp:include page="/view/administrador/cabecalho_f.jsp"></jsp:include> <br />
 		
 		<form id="crud_form" action="Pesquisar" method="post" >
 			<input type="text" id="crud_id" name="crud_id" style="width:300px" maxlength="38"> 
