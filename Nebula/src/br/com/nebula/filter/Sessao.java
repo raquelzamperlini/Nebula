@@ -44,7 +44,7 @@ public class Sessao implements Filter {
 				url.lastIndexOf("Login") > -1 )
 			chain.doFilter(request, response);
 		else
-			((HttpServletResponse) response).sendRedirect("login.jsp");
+			((HttpServletResponse) response).sendRedirect("/view/login/login.jsp");
 		
 	}
 

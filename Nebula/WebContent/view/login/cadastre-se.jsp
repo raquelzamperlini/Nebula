@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<form id="crud_form" action="cadastre-seSalvar.jsp" method="post" >
+		<form id="crud_form" action="Cadastrese" method="post" >
 			<div id="corpo">
 				<div id="cadastro">
 					<div id="title">

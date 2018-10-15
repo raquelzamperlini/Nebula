@@ -20,7 +20,14 @@ import br.com.nebula.controller.Datas;
 /**
  * Servlet implementation class UsuarioServletCTRL
  */
-@WebServlet("/UsuarioCRUD")
+@WebServlet(name = "UsuarioCRUD",
+urlPatterns = {
+		"/UsuarioCRUD",
+		"/view/UsuarioCRUD",
+		"/view/login/UsuarioCRUD",
+		"/view/administrador/UsuarioCRUD",
+		"/view/usuario/UsuarioCRUD"
+})
 public class UsuarioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -41,14 +48,14 @@ public class UsuarioCRUD extends HttpServlet {
 														
 														for (Usuario u:usuarios) {
 															System.out.println("ID: " 				+ u.getUs_id()				+
-																			   "Diret�rio Raiz: "	+ u.getUs_diretorio_raiz()	+
+																			   "Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
 																			   "Nome: "				+ u.getUs_nome()			+
 																			   "E-mail: "			+ u.getUs_email()			+
 																			   "CPF: "				+ u.getUs_cpf()				+
 																			   "Nascimento: "		+ u.getUs_nascimento()		+
 																			   "Username: "			+ u.getUs_nascimento()		+
 																			   "Senha: "			+ u.getUs_senha()			+
-																			   "Permiss�o: "		+ u.getUs_permissao());
+																			   "Permissão: "		+ u.getUs_permissao());
 														}
 													} catch (SQLException e) {
 														e.printStackTrace();
@@ -65,6 +72,7 @@ public class UsuarioCRUD extends HttpServlet {
 				request.setAttribute("usuarios", usuarios);
 				
 				RequestDispatcher saida = request.getRequestDispatcher("usuarioLista_f.jsp");
+				//RequestDispatcher saida = request.getRequestDispatcher(request.getContextPath() + "/view/administrador/usuarioLista_f.jsp");
 				
 				saida.forward(request, response);
 			} catch (SQLException e) {
@@ -102,6 +110,7 @@ public class UsuarioCRUD extends HttpServlet {
 				
 				request.setAttribute("usuario", usuario);
 				request.getRequestDispatcher("usuarioAlterar_f.jsp").forward(request, response);
+				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/lusuarioAlterar_f.jsp").forward(request, response);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

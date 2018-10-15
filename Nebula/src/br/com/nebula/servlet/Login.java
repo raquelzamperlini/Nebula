@@ -16,7 +16,23 @@ import br.com.nebula.model.Usuario;
  * Servlet implementation class Login
  * @author Raquel Zamperlini
  */
-@WebServlet("/Login")
+@WebServlet(name = "Login",
+			urlPatterns = {
+					"/Login",
+					"/faces/Login",
+					
+					"/view/Login",
+					"/faces/view/Login",
+					
+					"/view/login/Login",
+					"/faces/view/login/Login",
+					
+					"/view/administrador/Login",
+					"/faces/view/administrador/Login",
+					
+					"/view/usuario/Login",
+					"/faces/view/usuario/Login",
+			})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -37,7 +53,7 @@ public class Login extends HttpServlet {
 			sessao.invalidate();
 		}
 			
-		
+		//response.sendRedirect("login.jsp");
 		response.sendRedirect(request.getContextPath() + "/view/login/login.jsp");
 		
 	}
@@ -63,18 +79,24 @@ public class Login extends HttpServlet {
 			sessao.setAttribute("autenticado", autenticado);
 			//sessao.setMaxInactiveInterval(3000);
 			
-			usuarioCTRL.consumirLicenca(autenticado);
+			//usuarioCTRL.consumirLicenca(autenticado);
 			
 			if (autenticado.getUs_permissao().equals("administrador") )
-				request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
+				//request.getRequestDispatcher("home_f.jsp").forward(request, response);
+				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
+				//request.getRequestDispatcher("../view/administrador/home_f.jsp").forward(request, response);
+				response.sendRedirect("../administrador/home_f.jsp");
 			
 			if (autenticado.getUs_permissao().equals("usuario") )
-				request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
+				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
+				response.sendRedirect("../usuario/home_f.jsp");
 		}
 		
 		else
 		{
-			response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+			//response.sendRedirect("loginErro.jsp");
+			//response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+			response.sendRedirect("/view/login/loginErro.jsp");
 		}
 	}
 

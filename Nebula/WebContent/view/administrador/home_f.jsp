@@ -9,11 +9,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="author" content="Raquel Zamperlini">
 		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+		
 		<title>Nebula</title>
 	</head>
 	
 	<body>
-		<h1>Nebula</h1>
+		<jsp:include page="cabecalho_f.jsp"></jsp:include>
 		
 		<%
 			if ((session.getAttribute("autenticado")) != null)
@@ -31,8 +34,9 @@
 		<br />
 		<br />
 		
-		<jsp:include page="<%=request.getContextPath()%>/view/administrador/cabecalho_f.jsp"></jsp:include>
-		
 		<br />
+		
+		<!-- Bootstrap core JavaScript -->
+    	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	</body>
 </html>
