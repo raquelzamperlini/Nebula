@@ -7,7 +7,7 @@ public class ConnectionFactory {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
             return DriverManager.getConnection(
-                    "jdbc:oracle:thin:@localhost:1521:NebulaBD", "nebulaADM", "fatec2016");
+                    "jdbc:oracle:thin:@nebulabd.c9bggy5ixvdd.us-west-2.rds.amazonaws.com:1521:NebulaBD", "root", "N3bul43135");
         } catch (SQLException | ClassNotFoundException e) {
 		//} catch (SQLException e) {
             throw new RuntimeException(e);
