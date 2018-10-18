@@ -4,17 +4,24 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 
+import br.com.nebula.aws.S3;
 import br.com.nebula.dao.Criptografia;
 import br.com.nebula.dao.UsuarioDAO;
 import br.com.nebula.model.Usuario;
 
 public class UsuarioCTRL {
 	
+	public void criarAmbienteUsuario(Usuario usuario) {
+		S3.createFolder(usuario.getUs_username());
+		//a fazer:
+		//criar metadados no DynamoDB
+	}
+	
 	public void adicionarUsuario(Usuario usuario) {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.adicionarUsuario(usuario);
-		
+		criarAmbienteUsuario(usuario);
 	}
 	
 	public List<Usuario> pesquisarTodosUsuarios() throws SQLException {

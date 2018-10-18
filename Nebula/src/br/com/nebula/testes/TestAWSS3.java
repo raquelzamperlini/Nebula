@@ -18,8 +18,12 @@ public class TestAWSS3 {
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		// TODO Auto-generated method stub
 		
-//		// TESTE DE UPLOAD //
-//		 
+//		// TESTE DE CRIAÇÃO DE PASTA //
+//		
+//		S3.createFolder("testePasta");
+		
+		// TESTE DE UPLOAD //
+		 
 //		JFileChooser chooser = new JFileChooser();
 //	    FileNameExtensionFilter filter = new FileNameExtensionFilter("mp3 audio files", "mp3");
 //	    chooser.setFileFilter(filter);
@@ -27,7 +31,7 @@ public class TestAWSS3 {
 //	    if(returnVal == JFileChooser.APPROVE_OPTION) {
 //	       System.out.println("You chose to open this file: " +
 //	            chooser.getSelectedFile().getName());
-//	       S3.uploadFile("teste",chooser.getSelectedFile());
+//	       S3.uploadFile("testePasta",chooser.getSelectedFile());
 //	    }
 		
 		
