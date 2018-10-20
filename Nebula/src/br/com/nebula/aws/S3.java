@@ -42,7 +42,6 @@ public class S3 {
 			System.exit(1);
 			return false;
 		}
-		System.out.println("sucesso!");
 		return true;
 	}
 
