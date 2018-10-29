@@ -36,7 +36,7 @@
 					<li class="nav-item"><a class="nav-link" href="usuarioCadastro_f.jsp">Cadastrar Usuários</a>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="UsuarioServletCTRL?acao=listar">Usuários</a>
+					<li class="nav-item"><a class="nav-link" href="UsuarioCRUD?acao=listar">Usuários</a>
 					</li>
 					
 					<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>

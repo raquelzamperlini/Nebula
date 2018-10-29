@@ -16,7 +16,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="<%=request.getContextPath()%>/view/administrador/cabecalho_f.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();

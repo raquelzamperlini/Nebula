@@ -16,22 +16,22 @@ import br.com.nebula.model.Usuario;
  * Servlet implementation class Pesquisar
  */
 @WebServlet(name = "Pesquisar",
-urlPatterns = {
-		"/Pesquisar",
-		"/faces/Pesquisar",
-		
-		"/view/Pesquisar",
-		"/faces/view/Pesquisar",
-		
-		"/view/login/Pesquisar",
-		"/faces/view/login/Pesquisar",
-		
-		"/view/administrador/Pesquisar",
-		"/faces/view/administrador/Pesquisar",
-		
-		"/view/usuario/Pesquisar",
-		"/faces/view/usuario/Pesquisar",
-})
+			urlPatterns = {
+					"/Pesquisar",
+					"/faces/Pesquisar",
+					
+					"/view/Pesquisar",
+					"/faces/view/Pesquisar",
+					
+					"/view/login/Pesquisar",
+					"/faces/view/login/Pesquisar",
+					
+					"/view/administrador/Pesquisar",
+					"/faces/view/administrador/Pesquisar",
+					
+					"/view/usuario/Pesquisar",
+					"/faces/view/usuario/Pesquisar",
+			})
 public class Pesquisar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

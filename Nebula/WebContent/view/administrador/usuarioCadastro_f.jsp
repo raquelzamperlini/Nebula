@@ -13,9 +13,9 @@
 	</head>
 	
 	<body>
-		<jsp:include page="<%=request.getContextPath()%>/view/administrador/cabecalho_f.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
 		
-		<form id="crud_form" action="<%=request.getContextPath()%>/view/administrador/usuarioCadastroSalvo_f.jsp" method="post" >
+		<form id="crud_form" action="usuarioCadastroSalvo_f.jsp" method="post" >
 			<div id="corpo">
 				<div id="cadastro">
 					<div id="title">
@@ -95,7 +95,7 @@
 		<br />
 		<br />
 		
-		<a href="<%=request.getContextPath()%>/view/administrador/home_f.jsp">Voltar</a>
+		<a href="home_f.jsp">Voltar</a>
 	</body>
 </html>
 

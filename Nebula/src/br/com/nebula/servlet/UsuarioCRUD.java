@@ -21,13 +21,22 @@ import br.com.nebula.controller.Datas;
  * Servlet implementation class UsuarioServletCTRL
  */
 @WebServlet(name = "UsuarioCRUD",
-urlPatterns = {
-		"/UsuarioCRUD",
-		"/view/UsuarioCRUD",
-		"/view/login/UsuarioCRUD",
-		"/view/administrador/UsuarioCRUD",
-		"/view/usuario/UsuarioCRUD"
-})
+			urlPatterns = {
+				"/UsuarioCRUD",
+				"/faces/UsuarioCRUD",
+				
+				"/view/UsuarioCRUD",
+				"/faces/view/UsuarioCRUD",
+				
+				"/view/login/UsuarioCRUD",
+				"/faces/view/login/UsuarioCRUD",
+				
+				"/view/administrador/UsuarioCRUD",
+				"/faces/view/administrador/UsuarioCRUD",
+				
+				"/view/usuario/UsuarioCRUD",
+				"/faces/view/usuario/UsuarioCRUD",
+		})
 public class UsuarioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
