@@ -44,6 +44,7 @@
 		    <input type="file" id="file" name="file"
 		          accept=".mp3"> <br/>
 			<input type="hidden" id="usuario" name="usuario" value="${username}" />
+			<input type="hidden" id="action" name="action" value="upload" />
 			<input type="submit" id="diretorio" name="diretorio" value="Upload" />
 		</form>
 		
