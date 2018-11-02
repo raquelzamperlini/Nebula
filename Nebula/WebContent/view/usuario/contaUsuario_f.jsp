@@ -75,20 +75,14 @@
 						
 						<br/>
 						
-						<!-- <label>Senha: </label>
+						<label>Senha: </label>
 						<input type="password" id="crud_senha" name="crud_senha" style="width:300px"
 						 maxlength="14" placeholder="Senha entre 6 e 14 caracteres"
 						 	 />
-						 -->
 						
 						<br />
 						<br />
 						
-						<!-- 
-						<label id="ativo">Tipo de Permissão: </label> <br />
-						<input type="radio" id="crud_permissao" name="crud_permissao" value="administrador" />Administrador <br />
-						<input type="radio" id="crud_permissao" name="crud_permissao" value="usuario" />Usuário
-						 -->
 						 
 						<br/>
 					</div>
@@ -108,6 +102,6 @@
 		<br />
 		<br />
 		
-		<a href="<%=request.getContextPath()%>/view/administrador/home_f.jsp">Voltar</a>
+		<a href="<%=request.getContextPath()%>/view/usuario/home_f.jsp">Voltar</a>
 	</body>
 </html>

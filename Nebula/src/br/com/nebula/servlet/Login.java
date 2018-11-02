@@ -1,6 +1,7 @@
 package br.com.nebula.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,8 +64,7 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("login_email");
 		String senha = request.getParameter("login_senha");
 		
-		Criptografia criptografa = new Criptografia();
-		senha = criptografa.criptografar(senha);
+		senha = Criptografia.criptografar(senha);
 		
 		Usuario usuario = new Usuario(email, senha);
 		
@@ -72,8 +72,8 @@ public class Login extends HttpServlet {
 		Usuario autenticado = usuarioCTRL.autenticarUsuario(usuario);
 		
 		if (autenticado.getUs_nome() != "Deu ruim aqui..." &&
-				autenticado.isUs_status() &&
-				autenticado.getUs_licencas() > 0 )
+				autenticado.isUs_status() /*&&
+				autenticado.getUs_licencas() > 0*/ )
 		{
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("autenticado", autenticado);
@@ -82,14 +82,18 @@ public class Login extends HttpServlet {
 			//usuarioCTRL.consumirLicenca(autenticado);
 			
 			if (autenticado.getUs_permissao().equals("administrador") )
+			{
 				//request.getRequestDispatcher("home_f.jsp").forward(request, response);
 				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
 				//request.getRequestDispatcher("../view/administrador/home_f.jsp").forward(request, response);
 				response.sendRedirect("../administrador/home_f.jsp");
-			
+			}
+
 			if (autenticado.getUs_permissao().equals("usuario") )
 				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
 				response.sendRedirect("../usuario/home_f.jsp");
+				//response.sendRedirect(request.getContextPath() + "/view/usuario/homeUsuario_f.jsp");
+				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
 		}
 		
 		else

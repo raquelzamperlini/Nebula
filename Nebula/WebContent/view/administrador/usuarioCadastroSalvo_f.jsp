@@ -18,7 +18,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="<%=request.getContextPath()%>/view/administrador/cabecalho_f.jsp"></jsp:include>
+		<jsp:include page="/view/administrador/cabecalho_f.jsp"></jsp:include>
 		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
@@ -35,7 +35,7 @@
 			String senha = UsuarioCTRL.gerarSenha();
 			String permissao = request.getParameter("crud_permissao");
 			boolean status = true;
-			int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
+			//int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
 			
 			Criptografia criptografia = new Criptografia();
 			senha = criptografia.criptografar(senha);
@@ -50,7 +50,7 @@
 			usuario.setUs_senha(senha);
 			usuario.setUs_permissao(permissao);
 			usuario.setUs_status(status);
-			usuario.setUs_licencas(licencas);
+			//usuario.setUs_licencas(licencas);
 			
 			//UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); --movido pra cima
 			usuarioCTRL.adicionarUsuario(usuario);

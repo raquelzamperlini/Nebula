@@ -33,7 +33,6 @@
 		
 		<br />
 		<br />
-		
 		<br />
 		
 		<!-- Bootstrap core JavaScript -->
