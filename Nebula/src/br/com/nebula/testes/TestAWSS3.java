@@ -46,7 +46,7 @@ public class TestAWSS3 {
 		
 //		// TESTE DE DOWNLOAD //
 //		
-//		S3.downloadFile("teste","02 - Driftwood.mp3");
+//		System.out.println("URL: " + S3.download("usuarios/jsilveira/02 - Driftwood.mp3"));
 		
 		
 //		// TESTE DE DOWNLOAD PASTA //

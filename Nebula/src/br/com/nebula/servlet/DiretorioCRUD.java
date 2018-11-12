@@ -27,39 +27,57 @@ import org.apache.commons.io.IOUtils;
 /**
  * Servlet implementation class UsuarioServletCTRL
  */
-@WebServlet(name = "DiretorioCRUD", urlPatterns = {"/view/usuario/DiretorioCRUD"})
+@WebServlet(name = "DiretorioCRUD", urlPatterns = { "/view/usuario/DiretorioCRUD" })
 @MultipartConfig
 public class DiretorioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public DiretorioCRUD() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String fazer = request.getParameter("diretorio");
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String fazer = request.getParameter("action");
 		String usuario = request.getParameter("usuario");
-		
+		String arquivo = request.getParameter("file");
+		String caminho = request.getParameter("caminho");
+
 		PrintWriter out = response.getWriter();
-		if (fazer.equals("Upload")) {
+		DiretorioCTRL dir = new DiretorioCTRL();
+		
+		switch (fazer) {
+		case "Upload":
+			out.println("Aguarde...");
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-		    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
-		    InputStream fileContent = filePart.getInputStream();
-		    
-		    File file = new File("C:\\temp\\" + fileName);
-    		OutputStream outputStream = new FileOutputStream(file);
-    		IOUtils.copy(fileContent, outputStream);
-    		outputStream.close();
-    		
-			DiretorioCTRL dir = new DiretorioCTRL();
+			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+			InputStream fileContent = filePart.getInputStream();
+			dir.upload(usuario, fileContent, fileName);
+
+			/*
+			File file = new File("C:\\temp\\" + fileName);
+			OutputStream outputStream = new FileOutputStream(file);
+			IOUtils.copy(fileContent, outputStream);
+			outputStream.close();
+
 			dir.upload(usuario, file);
-		}else {
+			*/
+			break;
+		case "copiar":
+			
+			dir.copiar(usuario, arquivo, caminho);
+			break;
+		case "mover":
+			break;
+		case "renomear":
+			break;
+		default:
 			out.println("Algo errado!");
 		}
 		
-		response.sendRedirect("homeUsuario_f.jsp");
-		
+		response.sendRedirect("diretorioArquivos_f.jsp");
+
 	}
 }

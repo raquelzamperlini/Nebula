@@ -21,7 +21,9 @@
 	<%
 		if ((session.getAttribute("autenticado")) != null) {
 			Usuario autenticado = (Usuario) session.getAttribute("autenticado");
-			out.println("Bem-vindo, " + autenticado.getUs_nome() + "!");
+			out.println("Escolha, " + autenticado.getUs_nome() + "!");
+			out.println("");
+			out.println(session.getAttribute("action"));
 			Integer id = autenticado.getUs_id();
 			String username = autenticado.getUs_username();
 
@@ -34,10 +36,12 @@
 
 	<br />
 	<br />
-	<form id="crud_form" action="Pesquisar" method="post">
+	
+	<form id="crud_diretorio" name="crud_diretorio" action="DiretorioCRUD" method="post">
 
-		<input type="hidden" id="userid" name="userid" value="${userid}" /> <input
-			type="submit" id="minha_conta" name="minha_conta" value="Minha Conta" />
+		<input type="hidden" id="userid" name="userid" value="${userid}" /> 
+		<input type="text" id="caminho" name="caminho" value="${file}" /> 
+		<input type="submit" id="minha_conta" name="minha_conta" value="Minha Conta" />
 
 	</form>
 
@@ -45,7 +49,7 @@
 	<br />
 	
 	<button id="diretorioArquivos" name="diretorioArquivos">
-		<a href="diretorioArquivos_f.jsp">Diretório</a>
+		<a href="diretorioArquivos_f.jsp">Voltar</a>
 	</button>
 
 	<br />
