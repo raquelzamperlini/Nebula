@@ -7,6 +7,7 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -55,7 +56,11 @@ public class S3 {
 
 	public static List<S3ObjectSummary> listFiles(String path) {
 		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion("us-west-2").build();
-		ObjectListing ol = s3.listObjects("nebulas3", String.format("usuarios/%s/", path));
+		ObjectListing ol = s3.listObjects(new ListObjectsRequest()
+		        .withBucketName("nebulas3")
+		        .withPrefix(String.format("usuarios/%s/", path)));
+		
+//		ObjectListing ol = s3.listObjects("nebulas3", String.format("usuarios/%s/", path));
 		List<S3ObjectSummary> objects = ol.getObjectSummaries();
 
 		return objects;
