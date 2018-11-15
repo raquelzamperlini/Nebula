@@ -1,12 +1,20 @@
 package br.com.nebula.servlet;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,8 +29,12 @@ import br.com.nebula.controller.DiretorioCTRL;
 import br.com.nebula.controller.UsuarioCTRL;
 import br.com.nebula.dao.Criptografia;
 import br.com.nebula.model.Usuario;
+import br.com.nebula.model.S3ListItem;
 
 import org.apache.commons.io.IOUtils;
+
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class UsuarioServletCTRL
@@ -44,40 +56,65 @@ public class DiretorioCRUD extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String arquivo = request.getParameter("file");
 		String caminho = request.getParameter("caminho");
-
+		
 		PrintWriter out = response.getWriter();
 		DiretorioCTRL dir = new DiretorioCTRL();
 		
 		switch (fazer) {
 		case "Upload":
-			out.println("Aguarde...");
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 			InputStream fileContent = filePart.getInputStream();
 			dir.upload(usuario, fileContent, fileName);
-
-			/*
-			File file = new File("C:\\temp\\" + fileName);
-			OutputStream outputStream = new FileOutputStream(file);
-			IOUtils.copy(fileContent, outputStream);
-			outputStream.close();
-
-			dir.upload(usuario, file);
-			*/
+			response.sendRedirect("diretorioArquivos_f.jsp");
 			break;
-		case "copiar":
-			
+		case "copiar":			
 			dir.copiar(usuario, arquivo, caminho);
 			break;
 		case "mover":
 			break;
 		case "renomear":
 			break;
+		case "listar":
+			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);
+			List<S3ListItem> arquivos = new ArrayList();
+			
+			for (S3ObjectSummary os: objects) {
+				String file = os.getKey();
+				//(depois do prefixo)
+				//se o objeto tem só mais uma / e é a última da string, exibir
+				//se o objeto não tem mais uma /, exibir
+				//se o objeto tem mais caracteres depois da /, não exibir
+				String result = file.toString().substring(caminho.length() + 10);
+				
+				if(result.contains("/") ) { 
+					if(result.lastIndexOf("/") == result.length() - 1) {
+						S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),caminho + "/" + file.trim().substring(caminho.length() + 10), true);
+						arquivos.add(item);
+					}
+				}else {
+					if(result.trim().isEmpty()) {
+						if(caminho.equals(usuario)) {
+							continue;
+						}
+						S3ListItem item = new S3ListItem("../",caminho.substring(0, caminho.lastIndexOf("/") + 1), true);
+						arquivos.add(item);
+						continue;
+					}
+					S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),dir.downloadLink(file), false);
+					arquivos.add(item);
+				}
+			}
+			String json = new Gson().toJson(arquivos);
+			response.setContentType("application/json");
+		    response.setCharacterEncoding("UTF-8");
+		    System.out.println(json);
+		    out.print(json);
+		    out.flush();
+			break;
 		default:
 			out.println("Algo errado!");
 		}
-		
-		response.sendRedirect("diretorioArquivos_f.jsp");
 
 	}
 }

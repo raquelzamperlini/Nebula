@@ -9,6 +9,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+<script>
+$(document).on("click", "#bot", function() {  
+		var params = {
+				"action": "listar", 
+	    		"caminho": document.getElementById("path").value,
+	    		"usuario": document.getElementById("usuario").value
+	    		};
+		$.post("/Nebula/view/usuario/DiretorioCRUD", 
+	    		$.param(params), 
+	    		function(responseJson) {
+	    			alert(JSON.stringify(responseJson));
+			        var table = document.getElementById("dir");
+			        var id = 1;
+			        table.innerHTML = '';
+			        var header = $("<tr bgcolor='eaeaea'>").appendTo(table);
+			        $("<th>").text("Arquivos").appendTo(header);
+			        $("<th>").text("Link de Download").appendTo(header);
+			        $.each(JSON.parse(JSON.stringify(responseJson)), function(index, item) { 
+			        	var row = $("<tr>").appendTo(table);
+			        	row.id = "row" + id.toString();
+			        	row.append($("<td>").text(item.key))
+			        	if(item.isDirectory){
+			        		var button = document.createElement("input");
+			        		button.id = "but" + id.toString();
+			        		button.className = "dirs";
+			        		button.type = "button";
+			        		button.value = "Abrir";
+			        		button.dataset.dir = item.downloadLink.slice(0,-1);
+			        		row.append($("<td>").append(button));
+			        	}else{
+			        		row.append($("<td>").html('<a href="'+ item.downloadLink + '">Download</a>'));
+			        	}
+			        	id = id + 1;
+			        });
+			        alert("OK response");
+			    }).fail(function(){
+			        console.log("error");});
+	});
+
+$(document).on("click", ".dirs", function() {
+	document.getElementById("path").value = this.dataset.dir;
+	document.getElementById("bot").click();
+});
+
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Raquel Zamperlini">
 
@@ -22,11 +70,6 @@
 		if ((session.getAttribute("autenticado")) != null) {
 			Usuario autenticado = (Usuario) session.getAttribute("autenticado");
 			out.println("Seu diretório, " + autenticado.getUs_nome() + ".");
-			// 				Integer id = autenticado.getUs_id();
-			// 				String username = autenticado.getUs_username();
-
-			// 				session.setAttribute("userid", String.valueOf(id));
-			// 				session.setAttribute("username", username);
 		} else {
 			response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
 		}
@@ -37,59 +80,30 @@
 
 	<form id="upload_form" action="DiretorioCRUD" method="post"
 		enctype="multipart/form-data">
+		
 		<label for="profile_pic">Escolha um arquivo para upload: </label> 
 		<input type="file" id="file" name="file" accept=".mp3"> <br /> 
 		<input type="hidden" id="usuario" name="usuario" value="${username}" /> 
 		<input type="submit" id="action" name="action" value="Upload" />
+		
 	</form>
 
 	<br />
 	<br />
 
-	<%
-		DiretorioCTRL dir = new DiretorioCTRL();
-		List<S3ObjectSummary> objects = dir.listarArquivos((String) session.getAttribute("username"));
-	%>
+	<input type="text" id="path" value="${username}" />
+	<button id="bot" >Carregar diretório</button>
 
 	<form id="diretorio_form" name="diretorio_form" action="diretorioAction_f.jsp"
 		method="post" enctype="multipart/form-data">
-		<table border="1">
-			<tr bgcolor="eaeaea">
-				<th>Arquivos</th>
-				<th>Link de Download</th>
-			</tr>
-
-			<%
-				for (S3ObjectSummary os : objects) {
-					if (os.getKey().substring(os.getKey().lastIndexOf("/") + 1).trim().isEmpty()) {
-						continue;
-					}
-			%>
-
-			<tr>
-				<th><%=os.getKey()%></th>
-				<th><a href="<%=dir.downloadLink(os.getKey()) %>" download="download.mp3">Download</a></th>
-				<!--  <th><input type="button" id="copiar" name="copiar"
-					value="Copiar" onclick="setAction('copiar', '<%=os.getKey()%>')"></th>
-				<th><input type="button" id="mover" name="mover" 
-					value="Mover" onclick="setAction('mover', '<%=os.getKey()%>')"></th>
-				<th><input type="button" id="renomear" name="renomear"
-					value="Renomear" onclick="setAction('renomear', '<%=os.getKey()%>')"></th>
-				<th><input type="button" id="excluir" name="excluir"
-					value="Excluir" onclick="setAction('excluir', '<%=os.getKey()%>')"></th>-->
-			</tr>
-
-			<%
-				}
-			%>
-
-		</table>
+		
 		<input type="hidden" id="action" name="action" /> 
 		<input type="hidden" id="file" name="file" />
 		<input type="submit" id="go" name="go" style="visibility:hidden;" />
+		<table id="dir" border="1">
+		</table>
 		<script>
 			function setAction(action, file) {
-				//formName is the name of your form, submitType is the name of the submit button.
 				document.forms["diretorio_form"].elements["action"].value = action;
 				document.forms["diretorio_form"].elements["file"].value = file;
 				document.forms["diretorio_form"].elements["go"].click();

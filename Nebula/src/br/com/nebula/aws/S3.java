@@ -60,7 +60,6 @@ public class S3 {
 		        .withBucketName("nebulas3")
 		        .withPrefix(String.format("usuarios/%s/", path)));
 		
-//		ObjectListing ol = s3.listObjects("nebulas3", String.format("usuarios/%s/", path));
 		List<S3ObjectSummary> objects = ol.getObjectSummaries();
 
 		return objects;
