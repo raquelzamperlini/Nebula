@@ -22,19 +22,29 @@ import br.com.nebula.model.Usuario;
 @WebServlet(name = "Cadastrese",
 			urlPatterns = {
 					"/Cadastrese",
+					"/Nebula/Cadastrese",
 					"/faces/Cadastrese",
+					"/Nebula/faces/Cadastrese",
 					
 					"/view/Cadastrese",
+					"/Nebula/view/Cadastrese",
 					"/faces/view/Cadastrese",
+					"/Nebula/faces/view/Cadastrese",
 					
 					"/view/login/Cadastrese",
+					"/Nebula/view/login/Cadastrese",
 					"/faces/view/login/Cadastrese",
+					"/Nebula/faces/view/login/Cadastrese",
 					
 					"/view/administrador/Cadastrese",
+					"/Nebula/view/administrador/Cadastrese",
 					"/faces/view/administrador/Cadastrese",
+					"/Nebula/faces/view/administrador/Cadastrese",
 					
 					"/view/usuario/Cadastrese",
+					"/Nebula/view/usuario/Cadastrese",
 					"/faces/view/usuario/Cadastrese",
+					"/Nebula/faces/view/usuario/Cadastrese"
 			})
 public class Cadastrese extends HttpServlet {
 	private static final long serialVersionUID = 1L;

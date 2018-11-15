@@ -27,7 +27,33 @@ import org.apache.commons.io.IOUtils;
 /**
  * Servlet implementation class UsuarioServletCTRL
  */
-@WebServlet(name = "DiretorioCRUD", urlPatterns = { "/view/usuario/DiretorioCRUD" })
+@WebServlet(name = "DiretorioCRUD",
+			urlPatterns = {
+					"/DiretorioCRUD",
+					"/Nebula/DiretorioCRUD",
+					"/faces/DiretorioCRUD",
+					"/Nebula/faces/DiretorioCRUD",
+					
+					"/view/DiretorioCRUD",
+					"/Nebula/view/DiretorioCRUD",
+					"/faces/view/DiretorioCRUD",
+					"/Nebula/faces/view/DiretorioCRUD",
+					
+					"/view/login/DiretorioCRUD",
+					"/Nebula/view/login/DiretorioCRUD",
+					"/faces/view/login/DiretorioCRUD",
+					"/Nebula/faces/view/login/DiretorioCRUD",
+					
+					"/view/administrador/DiretorioCRUD",
+					"/Nebula/view/administrador/DiretorioCRUD",
+					"/faces/view/administrador/DiretorioCRUD",
+					"/Nebula/faces/view/administrador/DiretorioCRUD",
+					
+					"/view/usuario/DiretorioCRUD",
+					"/Nebula/view/usuario/DiretorioCRUD",
+					"/faces/view/usuario/DiretorioCRUD",
+					"/Nebula/faces/view/usuario/DiretorioCRUD"
+			})
 @MultipartConfig
 public class DiretorioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;

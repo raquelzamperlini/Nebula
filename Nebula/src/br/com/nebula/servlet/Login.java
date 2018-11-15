@@ -20,19 +20,29 @@ import br.com.nebula.model.Usuario;
 @WebServlet(name = "Login",
 			urlPatterns = {
 					"/Login",
+					"/Nebula/Login",
 					"/faces/Login",
+					"/Nebula/faces/Login",
 					
 					"/view/Login",
+					"/Nebula/view/Login",
 					"/faces/view/Login",
+					"/Nebula/faces/view/Login",
 					
 					"/view/login/Login",
+					"/Nebula/view/login/Login",
 					"/faces/view/login/Login",
+					"/Nebula/faces/view/login/Login",
 					
 					"/view/administrador/Login",
+					"/Nebula/view/administrador/Login",
 					"/faces/view/administrador/Login",
+					"/Nebula/faces/view/administrador/Login",
 					
 					"/view/usuario/Login",
+					"/Nebula/view/usuario/Login",
 					"/faces/view/usuario/Login",
+					"/Nebula/faces/view/usuario/Login"
 			})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;

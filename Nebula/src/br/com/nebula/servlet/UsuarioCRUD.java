@@ -23,19 +23,29 @@ import br.com.nebula.controller.Datas;
 @WebServlet(name = "UsuarioCRUD",
 			urlPatterns = {
 				"/UsuarioCRUD",
+				"/Nebula/UsuarioCRUD",
 				"/faces/UsuarioCRUD",
+				"/Nebula/faces/UsuarioCRUD",
 				
 				"/view/UsuarioCRUD",
+				"/Nebula/view/UsuarioCRUD",
 				"/faces/view/UsuarioCRUD",
+				"/Nebula/faces/view/UsuarioCRUD",
 				
 				"/view/login/UsuarioCRUD",
+				"/Nebula/view/login/UsuarioCRUD",
 				"/faces/view/login/UsuarioCRUD",
+				"/Nebula/faces/view/login/UsuarioCRUD",
 				
 				"/view/administrador/UsuarioCRUD",
+				"/Nebula/view/administrador/UsuarioCRUD",
 				"/faces/view/administrador/UsuarioCRUD",
+				"/Nebula/faces/view/administrador/UsuarioCRUD",
 				
 				"/view/usuario/UsuarioCRUD",
+				"/Nebula/view/usuario/UsuarioCRUD",
 				"/faces/view/usuario/UsuarioCRUD",
+				"/Nebula/faces/view/usuario/UsuarioCRUD",
 		})
 public class UsuarioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
