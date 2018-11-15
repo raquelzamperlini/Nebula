@@ -34,13 +34,27 @@ public class TestAWSS3 {
 //	       S3.uploadFile("testePasta",chooser.getSelectedFile());
 //	    }
 		
+		String prefix = "jsilveira";
 		
 //		// TESTE DE LISTAGEM //
-//		 		
-//		List<S3ObjectSummary> objects = S3.listFiles("teste");
+//		String prefix = "jsilveira/Bridges"; 		
+//		List<S3ObjectSummary> objects = S3.listFiles(prefix);
 //		for (S3ObjectSummary os: objects) {
 //			String file = os.getKey();
-//		    System.out.println("* " + file.substring(file.lastIndexOf("/") + 1).trim());
+//			//(depois do prefixo)
+//			//se o objeto tem só mais uma / e é a última da string, exibir
+//			//se o objeto não tem mais uma /, exibir
+//			//se o objeto tem mais caracteres depois da /, não exibir
+//			String result = file.toString().substring(prefix.length() + 10);
+//			
+//			//System.out.println("*" + result);
+//			if(result.contains("/") ) { 
+//				if(result.lastIndexOf("/") == result.length() - 1) {
+//					System.out.println(file.toString().substring(prefix.length() + 10));
+//				}
+//			}else {
+//				System.out.println(file.toString().trim().substring(prefix.length() + 10));
+//			}
 //		}
 			
 		
