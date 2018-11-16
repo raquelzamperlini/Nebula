@@ -20,7 +20,33 @@ import br.com.nebula.controller.Datas;
 /**
  * Servlet implementation class UsuarioServletCTRL
  */
-@WebServlet(name = "UsuarioCRUD", urlPatterns = {"/view/administrador/UsuarioCRUD","/view/usuario/UsuarioCRUD"})
+@WebServlet(name = "UsuarioCRUD",
+			urlPatterns = {
+				"/UsuarioCRUD",
+				"/Nebula/UsuarioCRUD",
+				"/faces/UsuarioCRUD",
+				"/Nebula/faces/UsuarioCRUD",
+				
+				"/view/UsuarioCRUD",
+				"/Nebula/view/UsuarioCRUD",
+				"/faces/view/UsuarioCRUD",
+				"/Nebula/faces/view/UsuarioCRUD",
+				
+				"/view/login/UsuarioCRUD",
+				"/Nebula/view/login/UsuarioCRUD",
+				"/faces/view/login/UsuarioCRUD",
+				"/Nebula/faces/view/login/UsuarioCRUD",
+				
+				"/view/administrador/UsuarioCRUD",
+				"/Nebula/view/administrador/UsuarioCRUD",
+				"/faces/view/administrador/UsuarioCRUD",
+				"/Nebula/faces/view/administrador/UsuarioCRUD",
+				
+				"/view/usuario/UsuarioCRUD",
+				"/Nebula/view/usuario/UsuarioCRUD",
+				"/faces/view/usuario/UsuarioCRUD",
+				"/Nebula/faces/view/usuario/UsuarioCRUD",
+		})
 public class UsuarioCRUD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -41,14 +67,14 @@ public class UsuarioCRUD extends HttpServlet {
 														
 														for (Usuario u:usuarios) {
 															System.out.println("ID: " 				+ u.getUs_id()				+
-																			   "Diret�rio Raiz: "	+ u.getUs_diretorio_raiz()	+
+																			   "Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
 																			   "Nome: "				+ u.getUs_nome()			+
 																			   "E-mail: "			+ u.getUs_email()			+
 																			   "CPF: "				+ u.getUs_cpf()				+
 																			   "Nascimento: "		+ u.getUs_nascimento()		+
 																			   "Username: "			+ u.getUs_nascimento()		+
 																			   "Senha: "			+ u.getUs_senha()			+
-																			   "Permiss�o: "		+ u.getUs_permissao());
+																			   "Permissão: "		+ u.getUs_permissao());
 														}
 													} catch (SQLException e) {
 														e.printStackTrace();
@@ -65,6 +91,7 @@ public class UsuarioCRUD extends HttpServlet {
 				request.setAttribute("usuarios", usuarios);
 				
 				RequestDispatcher saida = request.getRequestDispatcher("usuarioLista_f.jsp");
+				//RequestDispatcher saida = request.getRequestDispatcher(request.getContextPath() + "/view/administrador/usuarioLista_f.jsp");
 				
 				saida.forward(request, response);
 			} catch (SQLException e) {
@@ -102,6 +129,7 @@ public class UsuarioCRUD extends HttpServlet {
 				
 				request.setAttribute("usuario", usuario);
 				request.getRequestDispatcher("usuarioAlterar_f.jsp").forward(request, response);
+				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/lusuarioAlterar_f.jsp").forward(request, response);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -117,9 +145,7 @@ public class UsuarioCRUD extends HttpServlet {
 		
 		Datas datas = new Datas();
 		
-		String username = request.getParameter("username");
-		
-		//Integer id = Integer.parseInt(request.getParameter("crud_id"));
+		Integer id = Integer.parseInt(request.getParameter("crud_id"));
 		String us_nome = request.getParameter("crud_nome");
 		String us_email = request.getParameter("crud_email");
 		String us_cpf = request.getParameter("crud_cpf");
@@ -133,7 +159,7 @@ public class UsuarioCRUD extends HttpServlet {
 		
 		try {
 			
-			usuario = usuarioCTRL.pesquisarUsuarioUsername(username);
+			usuario = usuarioCTRL.pesquisarUsuarioId(id);
 			usuario.setUs_nome(us_nome);
 			usuario.setUs_email(us_email);
 			usuario.setUs_cpf(us_cpf);

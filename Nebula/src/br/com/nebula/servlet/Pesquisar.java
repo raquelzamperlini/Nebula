@@ -15,7 +15,33 @@ import br.com.nebula.model.Usuario;
 /**
  * Servlet implementation class Pesquisar
  */
-@WebServlet(name = "Pesquisar", urlPatterns = {"/view/administrador/Pesquisar","/view/usuario/Pesquisar"})
+@WebServlet(name = "Pesquisar",
+			urlPatterns = {
+					"/Pesquisar",
+					"/Nebula/Pesquisar",
+					"/faces/Pesquisar",
+					"/Nebula/faces/Pesquisar",
+					
+					"/view/Pesquisar",
+					"/Nebula/view/Pesquisar",
+					"/faces/view/Pesquisar",
+					"/Nebula/faces/view/Pesquisar",
+					
+					"/view/login/Pesquisar",
+					"/Nebula/view/login/Pesquisar",
+					"/faces/view/login/Pesquisar",
+					"/Nebula/faces/view/login/Pesquisar",
+					
+					"/view/administrador/Pesquisar",
+					"/Nebula/view/administrador/Pesquisar",
+					"/faces/view/administrador/Pesquisar",
+					"/Nebula/faces/view/administrador/Pesquisar",
+					
+					"/view/usuario/Pesquisar",
+					"/Nebula/view/usuario/Pesquisar",
+					"/faces/view/usuario/Pesquisar",
+					"/Nebula/faces/view/usuario/Pesquisar"
+			})
 public class Pesquisar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,13 +76,15 @@ public class Pesquisar extends HttpServlet {
 			{
 				
 				request.setAttribute("usuario", usuario);
-				request.getRequestDispatcher("pesquisarEncontrado_f.jsp").forward(request, response);;
+				request.getRequestDispatcher("pesquisarEncontrado_f.jsp").forward(request, response);
+				//request.getRequestDispatcher(reqeust.getContextPath() + "/view/administrador/pesquisarEncontrado.jsp").forward(request, response);
 				
 			}
 			
 			else
 			{
 				response.sendRedirect("pesquisarNaoEncontrado_f.jsp");
+				//response.sendRedirect(reqeust.getContextPath() + "/view/administrador/pesquisarNaoEncontrado.jsp");
 			}
 			
 		} catch (SQLException e) {

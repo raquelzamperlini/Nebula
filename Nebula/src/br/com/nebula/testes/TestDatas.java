@@ -9,7 +9,7 @@ public class TestDatas {
 	
 	public static void main(String[] args) {
 		
-		LocalDate ld = datas.stringParaLocalDate("23/06/96");
+		LocalDate ld = datas.stringParaLocalDate("23/06/1996");
 		
 		System.out.println(ld);
 		

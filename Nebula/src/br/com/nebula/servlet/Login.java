@@ -17,7 +17,33 @@ import br.com.nebula.model.Usuario;
  * Servlet implementation class Login
  * @author Raquel Zamperlini
  */
-@WebServlet(name = "Login", urlPatterns = {"/view/login/Login"})
+@WebServlet(name = "Login",
+			urlPatterns = {
+					"/Login",
+					"/Nebula/Login",
+					"/faces/Login",
+					"/Nebula/faces/Login",
+					
+					"/view/Login",
+					"/Nebula/view/Login",
+					"/faces/view/Login",
+					"/Nebula/faces/view/Login",
+					
+					"/view/login/Login",
+					"/Nebula/view/login/Login",
+					"/faces/view/login/Login",
+					"/Nebula/faces/view/login/Login",
+					
+					"/view/administrador/Login",
+					"/Nebula/view/administrador/Login",
+					"/faces/view/administrador/Login",
+					"/Nebula/faces/view/administrador/Login",
+					
+					"/view/usuario/Login",
+					"/Nebula/view/usuario/Login",
+					"/faces/view/usuario/Login",
+					"/Nebula/faces/view/usuario/Login"
+			})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -38,7 +64,7 @@ public class Login extends HttpServlet {
 			sessao.invalidate();
 		}
 			
-		
+		//response.sendRedirect("login.jsp");
 		response.sendRedirect(request.getContextPath() + "/view/login/login.jsp");
 		
 	}
@@ -59,7 +85,6 @@ public class Login extends HttpServlet {
 				autenticado.isUs_status() /*&&
 				autenticado.getUs_licencas() > 0*/ )
 		{
-			
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("autenticado", autenticado);
 			//sessao.setMaxInactiveInterval(3000);
@@ -68,24 +93,24 @@ public class Login extends HttpServlet {
 			
 			if (autenticado.getUs_permissao().equals("administrador") )
 			{
-				//RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/view/login/loginErro.jsp");
-				response.sendRedirect(request.getContextPath() + "/view/administrador/home_f.jsp");
-				//rd.forward(request, response);;
-				
-			}
-				//request.getRequestDispatcher(request.getContextPath() + "/view/login/loginErro.jsp").forward(request, response);
-				//response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");				
+				//request.getRequestDispatcher("home_f.jsp").forward(request, response);
 				//request.getRequestDispatcher(request.getContextPath() + "/view/administrador/home_f.jsp").forward(request, response);
-			
+				//request.getRequestDispatcher("../view/administrador/home_f.jsp").forward(request, response);
+				response.sendRedirect("../administrador/home_f.jsp");
+			}
+
 			if (autenticado.getUs_permissao().equals("usuario") )
-				response.sendRedirect(request.getContextPath() + "/view/usuario/homeUsuario_f.jsp");
 				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
-			
+				response.sendRedirect("../usuario/home_f.jsp");
+				//response.sendRedirect(request.getContextPath() + "/view/usuario/homeUsuario_f.jsp");
+				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
 		}
 		
 		else
 		{
-			response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+			//response.sendRedirect("loginErro.jsp");
+			//response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+			response.sendRedirect("/view/login/loginErro.jsp");
 		}
 	}
 

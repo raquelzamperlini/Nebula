@@ -2,6 +2,8 @@ package br.com.nebula.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 /*
  * @author Raquel Zamperlini
@@ -11,6 +13,19 @@ import java.time.format.DateTimeFormatter;
 public class Datas {
 	
 	public LocalDate stringParaLocalDate(String string) {
+		
+		Locale locale = new Locale("pt", "br");
+		
+		/* LocalDateTime agora = LocalDateTime.now();
+		 * DateTimeFormatter formatador = DateTimeFormatter
+		 * 		.ofLocalizedDateTime(FormatStyle.SHORT)
+		 * 		.withLocale(new Locale("pt", "br"));
+		 * agora.format(formatador); //08/04/14 10:02
+		 */
+		
+		/*DateTimeFormatter formatadorBarra = 
+		DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+		  	.withLocale(locale);*/
 		
 		DateTimeFormatter formatadorBarra = 
 				  DateTimeFormatter.ofPattern("dd/MM/[uuuu][uu]");

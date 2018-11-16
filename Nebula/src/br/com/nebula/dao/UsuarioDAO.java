@@ -23,10 +23,28 @@ public class UsuarioDAO {
 	}
 
 	public void adicionarUsuario(Usuario usuario) {
-		String sql = "INSERT INTO usuario (us_id, " + "us_diretorio_raiz, " + "us_nome, " + "us_email, " + "us_cpf, "
-				+ "us_nascimento, " + "us_username, " + "us_senha, " + "us_permissao," + "us_status, " + "us_licencas) "
-				+ "VALUES (us_id_seq.nextval, " + "?, " + "?, " + "?, " + "?, " + "TO_DATE(?, 'DD/MM/YYYY'), " + "?, "
-				+ "?, " + "?," + "?," + "? )";
+		String sql = "INSERT INTO usuario (us_id, " 
+	                                    + "us_diretorio_raiz, " 
+				                        + "us_nome, " 
+	                                    + "us_email, " 
+				                        + "us_cpf, "
+	                                    + "us_nascimento, " 
+				                        + "us_username, " 
+	                                    + "us_senha, " 
+				                        + "us_permissao," 
+	                                    + "us_status, " 
+				                        + "us_licencas) "
+				   + "VALUES (us_id_seq.nextval, " 
+				            + "?, " 
+				            + "?, " 
+				            + "?, " 
+				            + "?, " 
+				            + "TO_DATE(?, 'DD/MM/YYYY'), " 
+				            + "?, "
+				            + "?, " 
+				            + "?," 
+				            + "?," 
+				            + "? )";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -86,7 +104,7 @@ public class UsuarioDAO {
 			us.setUs_status(rs.getBoolean("us_status"));
 			us.setUs_licencas(rs.getInt("us_licencas"));
 
-			// Adiciona instância à lista
+			// Adiciona instï¿½ncia ï¿½ lista
 			usuarios.add(us);
 
 		}
@@ -101,7 +119,8 @@ public class UsuarioDAO {
 
 	public Usuario pesquisarUsuarioId(Integer us_id) throws SQLException {
 
-		String sql = "SELECT * FROM usuario " + "WHERE us_id = ?";
+		String sql = "SELECT * FROM usuario " 
+		           + "WHERE us_id = ?";
 
 		PreparedStatement stmt = this.connection.prepareStatement(sql);
 		stmt.setInt(1, us_id);
@@ -141,7 +160,8 @@ public class UsuarioDAO {
 
 	public Usuario pesquisarUsuarioUsername(String us_username) throws SQLException {
 
-		String sql = "SELECT * FROM usuario " + "WHERE us_username = ?";
+		String sql = "SELECT * FROM usuario " 
+		           + "WHERE us_username = ?";
 
 		PreparedStatement stmt = this.connection.prepareStatement(sql);
 		stmt.setString(1, us_username);
@@ -181,7 +201,8 @@ public class UsuarioDAO {
 
 	public Usuario pesquisarUsuarioEmail(String us_email) throws SQLException {
 
-		String sql = "SELECT * FROM usuario " + "WHERE us_email = ?";
+		String sql = "SELECT * FROM usuario " 
+		           + "WHERE us_email = ?";
 
 		PreparedStatement stmt = this.connection.prepareStatement(sql);
 		stmt.setString(1, us_email);
@@ -220,9 +241,18 @@ public class UsuarioDAO {
 	}
 
 	public void alterarUsuario(Usuario usuario) {
-		String sql = "UPDATE usuario " + "SET us_diretorio_raiz = ?, " + "us_nome = ?, " + "us_email = ?, "
-				+ "us_cpf = ?, " + "us_nascimento = TO_DATE(?, 'DD/MM/YYYY'), " + "us_username = ?, " + "us_senha = ?, "
-				+ "us_permissao = ?, " + "us_status = ?, " + "us_licencas = ? " + "WHERE us_id = ?";
+		String sql = "UPDATE usuario "
+	               + "SET us_diretorio_raiz = ?, "
+				       + "us_nome = ?, "
+	                   + "us_email = ?, "
+				       + "us_cpf = ?, " 
+	                   + "us_nascimento = TO_DATE(?, 'DD/MM/YYYY'), " 
+				       + "us_username = ?, " 
+	                   + "us_senha = ?, "
+				       + "us_permissao = ?, " 
+	                   + "us_status = ?, " 
+				       + "us_licencas = ? " 
+	               + "WHERE us_id = ?";
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -258,7 +288,8 @@ public class UsuarioDAO {
 
 	public void removerUsuario(Usuario usuario) {
 
-		String sql = "DELETE FROM usuario " + "WHERE us_id = ?";
+		String sql = "DELETE FROM usuario " 
+		           + "WHERE us_id = ?";
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -280,7 +311,9 @@ public class UsuarioDAO {
 
 		Usuario us = new Usuario();
 
-		String sql = "SELECT * FROM usuario " + "WHERE us_email = ? " + "AND us_senha = ?";
+		String sql = "SELECT * FROM usuario " 
+		           + "WHERE us_email = ? " 
+				   + "AND us_senha = ?";
 
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -331,7 +364,9 @@ public class UsuarioDAO {
 	}
 
 	public void consumirLicenca(Usuario usuario) {
-		String sql = "UPDATE usuario " + "SET us_licencas = us_licencas - 1 " + "WHERE us_email = ?";
+		String sql = "UPDATE usuario " 
+				   + "SET us_licencas = us_licencas - 1 " 
+				   + "WHERE us_email = ?";
 
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);

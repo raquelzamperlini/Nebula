@@ -2,9 +2,6 @@
 <%@ page import="br.com.nebula.dao.Criptografia" %>
 <%@ page import="br.com.nebula.controller.UsuarioCTRL" %>
 <%@ page import="br.com.nebula.controller.Datas" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.util.Calendar" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDate" %>
 
@@ -21,6 +18,8 @@
 	</head>
 	
 	<body>
+		<jsp:include page="/view/administrador/cabecalho_f.jsp"></jsp:include>
+		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 			Datas datas = new Datas();
@@ -32,13 +31,14 @@
 			LocalDate nascimento = datas.stringParaLocalDate(request.getParameter("crud_nascimento"));
 			
 			String username = request.getParameter("crud_username");
-			String senha = request.getParameter("crud_senha");
-			String permissao = "usuario";
+			//String senha = request.getParameter("crud_senha");
+			String senha = UsuarioCTRL.gerarSenha();
+			String permissao = request.getParameter("crud_permissao");
 			boolean status = true;
-			int licencas = 1;
+			//int licencas = Integer.parseInt(request.getParameter("crud_licencas"));
 			
 			Criptografia criptografia = new Criptografia();
-			senha = Criptografia.criptografar(senha);
+			senha = criptografia.criptografar(senha);
 			
 			Usuario usuario = new Usuario();
 			
@@ -50,14 +50,12 @@
 			usuario.setUs_senha(senha);
 			usuario.setUs_permissao(permissao);
 			usuario.setUs_status(status);
-			usuario.setUs_licencas(licencas);
+			//usuario.setUs_licencas(licencas);
 			
-			//UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); -- movido para cima
+			//UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); --movido pra cima
 			usuarioCTRL.adicionarUsuario(usuario);
 		%>
 		
 		<h1>Salvo com Sucesso! =D</h1>
-		
-		<a href="login.jsp">Ok</a>
 	</body>
 </html>
