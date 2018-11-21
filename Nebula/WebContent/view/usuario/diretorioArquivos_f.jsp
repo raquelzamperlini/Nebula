@@ -12,6 +12,9 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
 <script>
+$( document ).ready(function() {
+    document.getElementById("bot").click();
+});
 $(document).on("click", "#bot", function() {  
 		var params = {
 				"action": "listar", 
@@ -21,13 +24,13 @@ $(document).on("click", "#bot", function() {
 		$.post("/Nebula/view/usuario/DiretorioCRUD", 
 	    		$.param(params), 
 	    		function(responseJson) {
-	    			alert(JSON.stringify(responseJson));
+	    			//alert(JSON.stringify(responseJson));
 			        var table = document.getElementById("dir");
 			        var id = 1;
 			        table.innerHTML = '';
 			        var header = $("<tr bgcolor='eaeaea'>").appendTo(table);
 			        $("<th>").text("Arquivos").appendTo(header);
-			        $("<th>").text("Link de Download").appendTo(header);
+			        $("<th>").text("Ação").appendTo(header);
 			        $.each(JSON.parse(JSON.stringify(responseJson)), function(index, item) { 
 			        	var row = $("<tr>").appendTo(table);
 			        	row.id = "row" + id.toString();
@@ -45,13 +48,14 @@ $(document).on("click", "#bot", function() {
 			        	}
 			        	id = id + 1;
 			        });
-			        alert("OK response");
+			        //alert("OK response");
 			    }).fail(function(){
 			        console.log("error");});
 	});
 
 $(document).on("click", ".dirs", function() {
 	document.getElementById("path").value = this.dataset.dir;
+	document.getElementById("usuario").value = this.dataset.dir;
 	document.getElementById("bot").click();
 });
 
@@ -91,8 +95,8 @@ $(document).on("click", ".dirs", function() {
 	<br />
 	<br />
 
-	<input type="text" id="path" value="${username}" />
-	<button id="bot" >Carregar diretório</button>
+	<input type="text" id="path" value="${username}" style="display: none;"/>
+	<button id="bot" style="display: none;">Carregar diretório</button>
 
 	<form id="diretorio_form" name="diretorio_form" action="diretorioAction_f.jsp"
 		method="post" enctype="multipart/form-data">

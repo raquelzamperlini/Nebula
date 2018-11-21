@@ -214,7 +214,7 @@ public class Tag {
 		f.renameTo(new File(oldPath));		
 	}
 
-	public Tag getTag(File f) throws UnsupportedTagException, InvalidDataException, IOException{
+	public static Tag getTag(File f) throws UnsupportedTagException, InvalidDataException, IOException{
 		//método que retorna um objeto Tag a partir de um arquivo File, sem alterar o arquivo
 		Tag t = new Tag();
 		t.setAlbumTitle(Tag.getAlbumTitle(f));

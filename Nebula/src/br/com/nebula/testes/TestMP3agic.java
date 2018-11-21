@@ -1,9 +1,13 @@
 package br.com.nebula.testes;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+
+import org.farng.mp3.TagException;
 
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.ID3v2;
@@ -13,6 +17,7 @@ import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
+import br.com.nebula.controller.DiretorioCTRL;
 import br.com.nebula.mp3.Tag;
 
 public class TestMP3agic {
@@ -224,7 +229,7 @@ public class TestMP3agic {
 		f.renameTo(new File(oldPath));
 	}
 
-	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, TagException {
 		// TODO Auto-generated method stub
 		File file;
 		file = new File("C:\\Users\\Vinicius\\Documents\\neb\\albuns_teste\\_teste\\06 - Convite.mp3");
@@ -236,9 +241,18 @@ public class TestMP3agic {
 		tags.put("year", "1984");
 		Tag t = new Tag(file, tags);
 		System.out.println(t.toString());
-//		
-//		escritaRemove(file, tags);		
 		
+		//escritaRemove(file, tags);		
+		
+//		DiretorioCTRL dir = new DiretorioCTRL();
+//		File file;
+//		file = new File("C:\\Users\\Vinicius\\Documents\\neb\\albuns_teste\\American Music Club\\1987 - Engine\\05 - Nightwatchman.mp3");
+//		String userName = "jsilveira/American Music Club";
+//		String keyName = "05 - Nightwatchman.mp3";		
+//		InputStream is = new FileInputStream(file);
+//		
+//		dir.upload(userName, is, keyName);
+//		System.out.println("Pronto");
 	}
 
 }

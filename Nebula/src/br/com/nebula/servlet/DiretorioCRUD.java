@@ -36,6 +36,9 @@ import org.farng.mp3.TagException;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.google.gson.Gson;
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.NotSupportedException;
+import com.mpatric.mp3agic.UnsupportedTagException;
 
 /**
  * Servlet implementation class UsuarioServletCTRL
@@ -95,6 +98,15 @@ public class DiretorioCRUD extends HttpServlet {
 			try {
 				dir.upload(usuario, fileContent, fileName);
 			} catch (TagException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedTagException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidDataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotSupportedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
