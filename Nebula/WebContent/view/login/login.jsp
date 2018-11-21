@@ -14,21 +14,36 @@
 	</head>
 	
 	<body>
-		<form action="Login" method="post" >
-			<h1>Login</h1>
-			<label>E-mail: </label>
-			<input id="login_email" name="login_email" >
-			
-			<label>Senha: </label>
-			<input type="password" id="login_senha" name="login_senha" >
-			
-			<input type="submit" value="Entrar" id="login_entrar">
-			
-			<button name="login_cadastrar" id="login_cadastrar">
-				<a href="cadastre-se.jsp">Cadastre-se</a>
-			</button>
-		</form>
+		<jsp:include page="cabecalhoLOGIN_f.jsp"></jsp:include>
 		
+		<br/>
+		<br/>
+		<br/>
+		
+		<div class="container w-25 p-3">
+			<form action="Login" method="post" >
+				<div class="form-group">
+					<label for="exampleInputEmail1" >Email address</label>
+					<input type="email" class="form-control" id="login_email" name="login_email"
+					 aria-describedby="emailHelp" placeholder="Enter email">
+					<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				</div>
+				
+				<div class="form-group">
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" id="login_senha" name="login_senha" placeholder="Senha">
+				</div>
+				
+				<div class="form-group align-self-center mr-3">
+					<button type="button" name="login_cadastrar" id="login_cadastrar"
+					 class="btn btn-secondary align-self-center mr-3"
+					 onclick="location.href = 'cadastre-se.jsp';"> Cadastre-se </button>
+						
+					<button type="submit" class="btn btn-primary align-self-center mr-3">Entrar</button>
+				</div>
+			</form>
+		</div>
+
 		<!-- 
 		<%
 			/*
@@ -48,5 +63,11 @@
 		
 		<!-- Bootstrap core JavaScript -->
 	    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	    
+	    <script type="text/javascript">
+		    document.getElementById("login_cadastrar").onclick = cadastre-se() {
+		        location.href = "cadastre-se.jsp";
+		    };
+		</script>
 	</body>
 </html>

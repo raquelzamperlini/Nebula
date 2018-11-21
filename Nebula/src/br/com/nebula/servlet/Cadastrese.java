@@ -65,20 +65,21 @@ public class Cadastrese extends HttpServlet {
 		UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 		Datas datas = new Datas();
 
-		String nome = request.getParameter("crud_nome");
-		String email = request.getParameter("crud_email");
-		String cpf = request.getParameter("crud_cpf");
+		String nome = request.getParameter("inputNome");
+		String email = request.getParameter("inputEmail");
+		String cpf = request.getParameter("inputCpf");
+		
+		cpf = cpf.replaceAll("[.-]", "");
 
-		LocalDate nascimento = datas.stringParaLocalDate(request.getParameter("crud_nascimento"));
+		LocalDate nascimento = datas.stringParaLocalDate(request.getParameter("inputNascimento"));
 
-		String username = request.getParameter("crud_username");
-		String senha = request.getParameter("crud_senha");
+		String username = request.getParameter("inputUsername");
+		String senha = request.getParameter("inputSenha");
 		String permissao = "usuario";
 		boolean status = true;
 		int licencas = 1;
 
-		Criptografia criptografia = new Criptografia();
-		senha = criptografia.criptografar(senha);
+		senha = Criptografia.criptografar(senha);
 
 		Usuario usuario = new Usuario();
 

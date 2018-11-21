@@ -23,7 +23,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			
-			<a class="navbar-brand" href="#"><h1>Nebula</h1></a>
+			<a class="navbar-brand" href="home_f.jsp"><h2>Nebula</h2></a>
 			
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">

@@ -18,7 +18,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="/view/administrador/cabecalho_f.jsp"></jsp:include>
+		<jsp:include page="/view/administrador/cabecalhoADM_f.jsp"></jsp:include>
 		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();

@@ -16,7 +16,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="cabecalhoADM_f.jsp"></jsp:include>
+		<jsp:include page="cabecalhoUSUARIO_f.jsp"></jsp:include>
 		
 		<%
 			if ((session.getAttribute("autenticado")) != null)
