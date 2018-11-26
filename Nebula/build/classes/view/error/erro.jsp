@@ -9,6 +9,6 @@
 	</head>
 	
 	<body>
-		<h1>Um erro ocorreu</h1>
+		<h1>Um erro ocorreu =(</h1>
 	</body>
 </html>

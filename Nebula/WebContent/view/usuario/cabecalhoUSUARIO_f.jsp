@@ -41,6 +41,9 @@
 					
 					<li class="nav-item"><a class="nav-link disabled" href="#">Músicas (Desabilitado)</a>
 					</li>
+					
+					<li class="nav-item"><a class="nav-link" href="Login">Sair</a>
+					</li>
 				</ul>
 				
 				<form class="form-inline my-2 my-lg-0" action="Pesquisar" method="post">
@@ -51,7 +54,10 @@
 				</form>
 			</div>
 		</nav>
-	
+		
+		<!-- Bootstrap's jQuery dependency -->
+		<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+		
 		<!-- Bootstrap core JavaScript -->
 	    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	</body>

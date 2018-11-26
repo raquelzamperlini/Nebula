@@ -1,3 +1,6 @@
+<%@ page import="br.com.nebula.model.Usuario" %>
+<%@ page import="br.com.nebula.controller.UsuarioCTRL" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -14,6 +17,46 @@
 	</head>
 	
 	<body>
+		<%
+			/*
+				* @author Raquel Zamperlini
+				* Codigo implementado para verificar necessidade de usuário realizar login
+				* Se houver usuário autenticado na sessao, a ideia é redireciona-lo para o
+				* sistema
+			*/
+			
+			HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+			String url = httpServletRequest.getRequestURI();
+			HttpSession sessao = httpServletRequest.getSession();
+			
+			if (sessao.getAttribute("autenticado") != null &&
+				url.lastIndexOf("login.jsp") > -1 ||
+				url.lastIndexOf("Login") > -1 )
+			{
+				Usuario usuario = (Usuario) sessao.getAttribute("autenticado");
+				
+				if (usuario.getUs_email() != null &&
+					usuario.getUs_senha() != null)
+				{
+					UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
+					Usuario verificador = usuarioCTRL.autenticarUsuario(usuario);
+					
+					if (verificador.getUs_nome() != "Deu ruim aqui..." &&
+							verificador.isUs_status() /*&&
+							autenticado.getUs_licencas() > 0*/ )
+					{
+						if (verificador.getUs_permissao().equals("administrador") )
+						{
+							response.sendRedirect("../administrador/home_f.jsp");
+						}
+	
+						if (verificador.getUs_permissao().equals("usuario") )
+							response.sendRedirect("../usuario/home_f.jsp");
+					}
+				}
+			}
+		%>
+		
 		<jsp:include page="cabecalhoLOGIN_f.jsp"></jsp:include>
 		
 		<br/>

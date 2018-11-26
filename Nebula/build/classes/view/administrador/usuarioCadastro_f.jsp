@@ -17,10 +17,10 @@
 		
 				<div class="container w-50 p-3">
 			<br />
-			<h1 class="text-center" >Cadastre-se</h1>
+			<h1 class="text-center" >Cadastrar Usuário</h1>
 			<br />
 			
-			<form action="Cadastrese" method="post" >
+			<form action="CadastrarUsuario" method="post" >
 				<div class="form-group row">
 					<label for="inputCpf">CPF</label>
 					<input type="number" class="form-control" id ="inputCpf" name="inputCpf"
@@ -51,9 +51,9 @@
 				<div class="form-group row">
 					<label for="inputSenha">Senha</label>
 					<input type="password" class="form-control" id ="inputSenha" name="inputSenha"
-					 placeholder="Senha" aria-describedby="inputSenhaHelp" >
-					<small id="inputSenhaHelp" class="form-text text-muted">Deixe sua senha segura; utilize letras maiúsculas,
-					 minúsculas, números e caracteres especiais. Apenas uma dica =)</small>
+					 placeholder="Senha" aria-describedby="inputSenhaHelp" disabled>
+					<small id="inputSenhaHelp" class="form-text text-muted">A senha será gerada automaticamente
+						e enviada para o e-mail cadastrado. Regras de segurança, viu?! =)</small>
 				</div>
 				
 				<fieldset class="form-group">
@@ -91,4 +91,17 @@
 		<br />
 		<br />
 	</body>
+	
+	<script>
+		function formatar(mascara, documento){
+		  var i = documento.value.length;
+		  var saida = mascara.substring(0,1);
+		  var texto = mascara.substring(i)
+		  
+		  if (texto.substring(0,1) != saida){
+		            documento.value += texto.substring(0,1);
+		  }
+		  
+		}
+	</script>
 </html>
