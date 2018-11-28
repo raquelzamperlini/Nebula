@@ -42,7 +42,8 @@ public class S3 {
 
 		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion("us-west-2").build();
 		ObjectMetadata om = new ObjectMetadata();
-		om.setContentType("application/octet-stream");
+		om.setContentType("binary/octet-stream");
+		//om.setContentLength(fileSize);
 		
 		try {
 			s3.putObject("nebulas3", String.format("usuarios/%s/%s", path, fileName), f, om);

@@ -1,24 +1,14 @@
 package br.com.nebula.testes;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import com.amazonaws.services.s3.model.S3ObjectSummary;
-
-import br.com.nebula.aws.*;
 
 public class TestAWSS3 {
 
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		// TODO Auto-generated method stub
 		
-//		// TESTE DE CRIAÇÃO DE PASTA //
+//		// TESTE DE CRIAï¿½ï¿½O DE PASTA //
 //		
 //		S3.createFolder("testePasta");
 		
@@ -34,7 +24,7 @@ public class TestAWSS3 {
 //	       S3.uploadFile("testePasta",chooser.getSelectedFile());
 //	    }
 		
-		String prefix = "jsilveira";
+		//String prefix = "jsilveira";
 		
 //		// TESTE DE LISTAGEM //
 //		String prefix = "jsilveira/Bridges"; 		
@@ -42,9 +32,9 @@ public class TestAWSS3 {
 //		for (S3ObjectSummary os: objects) {
 //			String file = os.getKey();
 //			//(depois do prefixo)
-//			//se o objeto tem só mais uma / e é a última da string, exibir
-//			//se o objeto não tem mais uma /, exibir
-//			//se o objeto tem mais caracteres depois da /, não exibir
+//			//se o objeto tem sï¿½ mais uma / e ï¿½ a ï¿½ltima da string, exibir
+//			//se o objeto nï¿½o tem mais uma /, exibir
+//			//se o objeto tem mais caracteres depois da /, nï¿½o exibir
 //			String result = file.toString().substring(prefix.length() + 10);
 //			
 //			//System.out.println("*" + result);

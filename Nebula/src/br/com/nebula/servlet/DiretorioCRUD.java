@@ -32,9 +32,13 @@ import br.com.nebula.model.Usuario;
 import br.com.nebula.model.S3ListItem;
 
 import org.apache.commons.io.IOUtils;
+import org.farng.mp3.TagException;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.google.gson.Gson;
+import com.mpatric.mp3agic.InvalidDataException;
+import com.mpatric.mp3agic.NotSupportedException;
+import com.mpatric.mp3agic.UnsupportedTagException;
 
 /**
  * Servlet implementation class UsuarioServletCTRL
@@ -91,7 +95,21 @@ public class DiretorioCRUD extends HttpServlet {
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 			InputStream fileContent = filePart.getInputStream();
-			dir.upload(usuario, fileContent, fileName);
+			try {
+				dir.upload(usuario, fileContent, fileName);
+			} catch (TagException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedTagException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidDataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			response.sendRedirect("diretorioArquivos_f.jsp");
 			break;
 		case "copiar":			
@@ -134,7 +152,7 @@ public class DiretorioCRUD extends HttpServlet {
 			String json = new Gson().toJson(arquivos);
 			response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
-		    System.out.println(json);
+		    
 		    out.print(json);
 		    out.flush();
 			break;
