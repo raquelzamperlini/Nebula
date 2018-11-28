@@ -232,13 +232,14 @@ public class TestMP3agic {
 	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, TagException {
 		// TODO Auto-generated method stub
 		File file;
-		file = new File("C:\\Users\\Vinicius\\Documents\\neb\\albuns_teste\\_teste\\06 - Convite.mp3");
+		file = new File("C:\\Users\\Vinicius\\Documents\\neb\\albuns_teste\\_teste\\05 - All The Planes That Come In On The Quiet.mp3");
 		HashMap<String, String> tags = new HashMap<String, String>();
-		tags.put("artist", "Solange Borges");
-		tags.put("album", "Bom Dia Universo");
-		tags.put("title", "Convite");
-		tags.put("track", "6");
-		tags.put("year", "1984");
+		tags.put("key","jsilveira/a-ha");
+		tags.put("artist", "Bridges");
+		tags.put("album", "Vakenatt");
+		tags.put("title", "All The Planes That Come In On The Quiet");
+		tags.put("track", "5");
+		tags.put("year", "2018");
 		Tag t = new Tag(file, tags);
 		System.out.println(t.toString());
 		

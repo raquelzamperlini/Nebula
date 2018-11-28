@@ -13,14 +13,17 @@
 
 <script>
 $( document ).ready(function() {
-    document.getElementById("bot").click();
+	document.getElementById("alarms").value = "Aguarde...";
+	document.getElementById("bot").click();
+	$(document.getElementById("alarms")).hide();
 });
-$(document).on("click", "#bot", function() {  
+$(document).on("click", "#bot", function() {
 		var params = {
 				"action": "listar", 
 	    		"caminho": document.getElementById("path").value,
 	    		"usuario": document.getElementById("usuario").value
 	    		};
+		$(document.getElementById("alarms")).show();
 		$.post("/Nebula/view/usuario/DiretorioCRUD", 
 	    		$.param(params), 
 	    		function(responseJson) {
@@ -29,13 +32,18 @@ $(document).on("click", "#bot", function() {
 			        var id = 1;
 			        table.innerHTML = '';
 			        var header = $("<tr bgcolor='eaeaea'>").appendTo(table);
-			        $("<th>").text("Arquivos").appendTo(header);
-			        $("<th>").text("Ação").appendTo(header);
+			        
+			        //cria linhas e campos da visualização para cada objeto retornado do servidor
 			        $.each(JSON.parse(JSON.stringify(responseJson)), function(index, item) { 
+			        	//cria linha 
 			        	var row = $("<tr>").appendTo(table);
 			        	row.id = "row" + id.toString();
+			        	
+			        	//cria campo com nome do arquivo/diretório
 			        	row.append($("<td>").text(item.key))
+			        	
 			        	if(item.isDirectory){
+			        		//se for diretório, cria um botão "Abrir"
 			        		var button = document.createElement("input");
 			        		button.id = "but" + id.toString();
 			        		button.className = "dirs";
@@ -44,21 +52,87 @@ $(document).on("click", "#bot", function() {
 			        		button.dataset.dir = item.downloadLink.slice(0,-1);
 			        		row.append($("<td>").append(button));
 			        	}else{
+			        		//se for arquivo, cria link de download
 			        		row.append($("<td>").html('<a href="'+ item.downloadLink + '">Download</a>'));
+			        		
+			        		//cria player simples de reprodução
+			        		var audio = document.createElement("audio");
+			        		audio.src = item.downloadLink;
+			        		audio.controls = 'controls';
+			        		audio.preload = 'metadata';
+			        		row.append($("<td>").append(audio));
 			        	}
+			        	
+			        	//cria botão de excluir
+			        	var del = document.createElement("input");
+			        	del.id = "del" + id.toString();
+			        	del.className = "dels";
+			        	del.type = "button";
+			        	del.value = "Excluir";
+			        	del.dataset.key = item.key;
+			        	row.append($("<td>").append(del));
 			        	id = id + 1;
 			        });
+			        $(document.getElementById("alarms")).hide();
 			        //alert("OK response");
 			    }).fail(function(){
-			        console.log("error");});
+			        console.log("error");
+			        $(document.getElementById("alarms")).hide();
+			        });
+		
 	});
-
+$(document).on("click", "#upload", function() {  
+	
+	
+	var fdata = new FormData();
+	document.getElementById("alarms").value = "Aguarde...";
+	$(document.getElementById("alarms")).show();
+	fdata.append("action","upload");
+	fdata.append("usuario",document.getElementById("usuario").value);
+	fdata.append("caminho",document.getElementById("path").value);
+	
+	if($("#file")[0].files.length>0){
+		fdata.append("file",$("#file")[0].files[0])
+		$.ajax({
+	        type: 'POST',
+	        url: '/Nebula/view/usuario/DiretorioCRUD',
+	        data:fdata,
+	        contentType: false,
+	        processData: false, 
+	        success: function(response)
+	        {
+	            alert("Sucesso!");
+	            document.getElementById("bot").click();
+	            $(document.getElementById("alarms")).hide();
+	        }
+	    })
+	}else{
+		alert("Não há arquivos a enviar!");
+	}	
+	$(document.getElementById("alarms")).hide();
+});
 $(document).on("click", ".dirs", function() {
 	document.getElementById("path").value = this.dataset.dir;
-	document.getElementById("usuario").value = this.dataset.dir;
 	document.getElementById("bot").click();
 });
-
+$(document).on("click", ".dels", function() {
+	var params = {
+			"action": "excluir",
+    		"caminho": document.getElementById("path").value,
+    		"chave": this.dataset.key
+    		};
+	$(document.getElementById("alarms")).show();
+	$.post("/Nebula/view/usuario/DiretorioCRUD", 
+    		$.param(params), 
+    		function(responseJson) {
+			document.getElementById("alarms").value = "Aguarde...";
+			$(document.getElementById("alarms")).hide();
+			document.getElementById("bot").click();
+		    }).fail(function(){
+		        console.log("error");
+		        $(document.getElementById("alarms")).hide();
+		        });
+});
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,9 +160,11 @@ $(document).on("click", ".dirs", function() {
 		enctype="multipart/form-data">
 		
 		<label for="profile_pic">Escolha um arquivo para upload: </label> 
-		<input type="file" id="file" name="file" accept=".mp3"> <br /> 
+		<input type="file" id="file" name="file" accept=".mp3"> <br /> <br />
+		<input type="hidden" id="pathUp" name="pathUp" />
 		<input type="hidden" id="usuario" name="usuario" value="${username}" /> 
-		<input type="submit" id="action" name="action" value="Upload" />
+		<input type="button" id="upload" name="action" value="upload" />
+		<input type="text" id="alarms" value="" />
 		
 	</form>
 
@@ -101,8 +177,7 @@ $(document).on("click", ".dirs", function() {
 	<form id="diretorio_form" name="diretorio_form" action="diretorioAction_f.jsp"
 		method="post" enctype="multipart/form-data">
 		
-		<input type="hidden" id="action" name="action" /> 
-		<input type="hidden" id="file" name="file" />
+		<input type="hidden" id="action" name="action" />		
 		<input type="submit" id="go" name="go" style="visibility:hidden;" />
 		<table id="dir" border="1">
 		</table>

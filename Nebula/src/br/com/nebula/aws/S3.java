@@ -177,5 +177,17 @@ public class S3 {
 		}
 	}
 	
+	public static void deleteFile(String filePath, String fileName) {
+		final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withRegion("us-west-2") 
+                .build();
+		try {
+		    s3.deleteObject("nebulas3", String.format("usuarios/%s/%s", filePath, fileName));
+		} catch (AmazonServiceException e) {
+		    System.err.println(e.getErrorMessage());
+		    System.exit(1);
+		}
+	}
+	
 	
 }

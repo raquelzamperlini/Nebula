@@ -33,7 +33,7 @@ public class DiretorioCTRL {
 		FileUtils.copyInputStreamToFile(file, f);
 		
 		//pega tags presentes no arquivo [medida temporária]
-		Tag t = Tag.getTag(f);
+		Tag t = Tag.getTag(f, usuario);
 		HashMap<String, String> tags = new HashMap<String, String>();
 		tags.put("album", t.getAlbumTitle());
 		tags.put("artist", t.getArtistName());
@@ -53,7 +53,6 @@ public class DiretorioCTRL {
 		//deleta origem
 		f = new File("C:\\TEMP\\" + fileName);
 		f.delete();
-		
 	}
 	
 	public void copiar(String usuario, String arquivo, String caminho) {
@@ -62,5 +61,9 @@ public class DiretorioCTRL {
 	
 	public String downloadLink(String file) throws IOException {
 		return (S3.download(file)).toString();
+	}
+	
+	public void excluir(String caminho, String arquivo) {
+		S3.deleteFile(caminho, arquivo);
 	}
 }

@@ -86,17 +86,18 @@ public class DiretorioCRUD extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String arquivo = request.getParameter("file");
 		String caminho = request.getParameter("caminho");
+		String chave = request.getParameter("chave");
 		
 		PrintWriter out = response.getWriter();
 		DiretorioCTRL dir = new DiretorioCTRL();
 		
 		switch (fazer) {
-		case "Upload":
+		case "upload":
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 			InputStream fileContent = filePart.getInputStream();
 			try {
-				dir.upload(usuario, fileContent, fileName);
+				dir.upload(caminho, fileContent, fileName);
 			} catch (TagException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,14 +111,16 @@ public class DiretorioCRUD extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.sendRedirect("diretorioArquivos_f.jsp");
 			break;
 		case "copiar":			
-			dir.copiar(usuario, arquivo, caminho);
+			dir.copiar(usuario, chave, caminho);
 			break;
 		case "mover":
 			break;
 		case "renomear":
+			break;
+		case "excluir":
+			dir.excluir(caminho, chave);
 			break;
 		case "listar":
 			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);

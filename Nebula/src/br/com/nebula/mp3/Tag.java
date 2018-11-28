@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
-import com.mpatric.mp3agic.ID3v1;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.ID3v23Tag;
 import com.mpatric.mp3agic.InvalidDataException;
@@ -13,6 +15,7 @@ import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
+@DynamoDBTable(tableName = "NebulaFiles")
 public class Tag {
 	private String fileKey;
 	private String songTitle;
@@ -23,6 +26,7 @@ public class Tag {
 	private String trackDuration;
 	private String trackQuality;
 	private String fileSize;
+	private String fileName;
 	
 	private static boolean save(Mp3File mp3, File f) throws NotSupportedException, IOException {
 		try {
@@ -39,12 +43,22 @@ public class Tag {
 		return true;
 	}
 	
+	@DynamoDBHashKey
 	public String getFileKey() {
 		return fileKey;
 	}
 	public void setFileKey(String fileKey) {
-		this.fileKey = fileKey;
+		this.fileKey = String.format("usuarios/%s/%s",fileKey,this.getFileName());
 	}
+	
+	private String getFileName() {
+		return fileName;
+	}
+	private void setFileName(String name) {
+		this.fileName = name;
+	}
+
+	@DynamoDBAttribute
 	public String getSongTitle() {
 		return songTitle;
 	}
@@ -62,6 +76,7 @@ public class Tag {
 		v2.setTitle(songTitle);
 		return save(mp3, f);
 	}
+	@DynamoDBAttribute
 	public String getArtistName() {
 		return artistName;
 	}
@@ -79,6 +94,7 @@ public class Tag {
 		v2.setArtist(artistName);
 		return save(mp3, f);
 	}
+	@DynamoDBAttribute
 	public String getAlbumTitle() {
 		return albumTitle;
 	}
@@ -96,6 +112,7 @@ public class Tag {
 		v2.setAlbum(albumTitle);
 		return save(mp3, f);
 	}
+	@DynamoDBAttribute
 	public String getAlbumYear() {
 		return albumYear;
 	}
@@ -113,6 +130,7 @@ public class Tag {
 		v2.setYear(albumYear);
 		return save(mp3, f);
 	}
+	@DynamoDBAttribute
 	public String getTrackNumber() {
 		return trackNumber;
 	}
@@ -130,6 +148,7 @@ public class Tag {
 		v2.setTrack(trackNumber);
 		return save(mp3, f);
 	}
+	@DynamoDBAttribute
 	public String getTrackDuration() {
 		return trackDuration;
 	}
@@ -143,6 +162,7 @@ public class Tag {
 		String trackDuration = df.format(secs);
 		return trackDuration;
 	}
+	@DynamoDBAttribute
 	public String getTrackQuality() {
 		return trackQuality;
 	}
@@ -153,6 +173,7 @@ public class Tag {
 		Mp3File mp3 = new Mp3File(f);
 		return mp3.getBitrate() + "kbps";
 	}
+	@DynamoDBAttribute
 	public String getFileSize() {
 		return fileSize;
 	}
@@ -162,9 +183,10 @@ public class Tag {
 	public Tag() {
 		super();
 	}
-	public Tag(String fileKey, String songTitle, String artistName, String albumTitle, String albumYear,
+	public Tag(String fileName, String fileKey, String songTitle, String artistName, String albumTitle, String albumYear,
 			String trackNumber, String trackDuration, String trackQuality, String fileSize) {
 		super();
+		this.fileName = fileName;
 		this.fileKey = fileKey;
 		this.songTitle = songTitle;
 		this.artistName = artistName;
@@ -178,8 +200,8 @@ public class Tag {
 	public Tag(File f, HashMap<String, String> tags) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
 		//construtor que monta um objeto Tag a partir de um arquivo File, reconstruindo o arquivo no padrão da aplicação
 		super();
+		String fileName = f.getName();
 		Mp3File mp3 = new Mp3File(f);
-		ID3v1 v1;
 		ID3v2 v2;
 		if(mp3.hasId3v1Tag()) {
 			mp3.removeId3v1Tag();
@@ -199,7 +221,8 @@ public class Tag {
 		this.setAlbumTitle(tags.get("album"));
 		this.setAlbumYear(tags.get("year"));
 		this.setArtistName(tags.get("artist"));
-		this.setFileKey("");
+		this.setFileName(fileName);
+		this.setFileKey(tags.get("key"));
 		this.setFileSize(String.format("%.2f MB", f.length() / (Math.pow(1024.0, 2.0))));
 		this.setSongTitle(tags.get("title"));
 		this.setTrackDuration(Tag.getTrackDuration(f));
@@ -214,13 +237,16 @@ public class Tag {
 		f.renameTo(new File(oldPath));		
 	}
 
-	public static Tag getTag(File f) throws UnsupportedTagException, InvalidDataException, IOException{
+	
+
+	public static Tag getTag(File f, String fileKey) throws UnsupportedTagException, InvalidDataException, IOException{
 		//método que retorna um objeto Tag a partir de um arquivo File, sem alterar o arquivo
 		Tag t = new Tag();
 		t.setAlbumTitle(Tag.getAlbumTitle(f));
 		t.setAlbumYear(Tag.getAlbumYear(f));
 		t.setArtistName(Tag.getArtistName(f));
-		t.setFileKey("");
+		t.setFileKey(fileKey);
+		t.setFileName(f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf("/")));
 		t.setFileSize(String.format("%.2f MB", f.length() / (Math.pow(1024.0, 2.0))));
 		t.setSongTitle(Tag.getSongTitle(f));
 		t.setTrackNumber(Tag.getTrackNumber(f));
