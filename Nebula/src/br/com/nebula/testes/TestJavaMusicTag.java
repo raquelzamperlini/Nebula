@@ -1,16 +1,8 @@
 package br.com.nebula.testes;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.farng.mp3.*;
-import org.farng.mp3.id3.*;
-
-import br.com.nebula.aws.S3;
-import br.com.nebula.controller.DiretorioCTRL;
-import br.com.nebula.jmt.Tag;
 
 public class TestJavaMusicTag {
 

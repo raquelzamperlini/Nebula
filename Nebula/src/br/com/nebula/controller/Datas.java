@@ -2,8 +2,6 @@ package br.com.nebula.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 
 /*
  * @author Raquel Zamperlini
@@ -14,7 +12,7 @@ public class Datas {
 	
 	public LocalDate stringParaLocalDate(String string) {
 		
-		Locale locale = new Locale("pt", "br");
+		//Locale locale = new Locale("pt", "br"); //Never used
 		
 		/* LocalDateTime agora = LocalDateTime.now();
 		 * DateTimeFormatter formatador = DateTimeFormatter

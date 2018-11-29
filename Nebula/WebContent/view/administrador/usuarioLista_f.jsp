@@ -12,11 +12,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="author" content="Raquel Zamperlini">
 		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+		
 		<title>Lista de Usuários</title>
 	</head>
 	
 	<body>
-		<jsp:include page="cabecalho_f.jsp"></jsp:include> <br />
+		<jsp:include page="cabecalhoADM_f.jsp"></jsp:include> <br />
 		
 		<%
 			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
@@ -40,21 +43,21 @@
 			*/
 		%>
 		
-		<table border="1" >
+		<table class="table" >
 			<tr bgcolor="eaeaea">
-				<th>ID</th>
-				<th>Diretório Raiz</th>
-				<th>Nome</th>
-				<th>E-mail</th>
-				<th>CPF</th>
-				<th>Nascimento</th>
-				<th>Username</th>
-				<th>Senha</th>
-				<th>Permissão</th>
-				<th>Status</th>
-				<th>Licenças</th>
-				<th>Excluir</th>
-				<th>Alterar</th>
+				<th scope="col">ID</th>
+				<th scope="col">Diretório Raiz</th>
+				<th scope="col">Nome</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">CPF</th>
+				<th scope="col">Nascimento</th>
+				<th scope="col">Username</th>
+				<!-- <th scope="col">Senha</th>  -->
+				<th scope="col">Permissão</th>
+				<th scope="col">Status</th>
+				<!-- <th scope="col">Licenças</th>  -->
+				<th scope="col">Excluir</th>
+				<th scope="col">Alterar</th>
 			</tr>
 			
 			<%
@@ -63,24 +66,24 @@
 					
 			%>
 				
-			<tr>
-				<th><%= u.getUs_id() %></th>
-				<th><%= u.getUs_diretorio_raiz() %></th>
-				<th><%= u.getUs_nome() %></th>
-				<th><%= u.getUs_email() %></th>
-				<th><%= u.getUs_cpf() %></th>
-				<th><%= datas.localDateParaString(u.getUs_nascimento()) %></th>
-				<th><%= u.getUs_username() %></th>
-				<th><%= u.getUs_senha() %></th>
-				<th><%= u.getUs_permissao() %></th>
-				<th><%= u.isUs_status() %></th>
-				<th><%= u.getUs_licencas() %></th>
-				<th>
+			<tr scope="row">
+				<th scope="col"><%= u.getUs_id() %></th>
+				<th scope="col"><%= u.getUs_diretorio_raiz() %></th>
+				<th scope="col"><%= u.getUs_nome() %></th>
+				<th scope="col"><%= u.getUs_email() %></th>
+				<th scope="col" OnLoad="formatar('###.###.###-##', this)"><%= u.getUs_cpf() %></th>
+				<th scope="col"><%= datas.localDateParaString(u.getUs_nascimento()) %></th>
+				<th scope="col"><%= u.getUs_username() %></th>
+				<!-- <th scope="col"><%//= u.getUs_senha() %></th>  -->
+				<th scope="col"><%= u.getUs_permissao() %></th>
+				<th scope="col"><%= u.isUs_status() %></th>
+				<!-- <th scope="col"><%= u.getUs_licencas() %></th>  -->
+				<th scope="col">
 					<button id="excluir" name="excluir">
 						<a href="UsuarioCRUD?acao=excluir&us_id=<%= u.getUs_id() %>">Excluir</a>
 					</button>
 				</th>
-				<th>
+				<th scope="col">
 					<button id="alterar" name="alterar">
 						<a href="UsuarioCRUD?acao=alterar&us_id=<%= u.getUs_id() %>">Alterar</a>
 					</button>
@@ -93,5 +96,20 @@
 			
 		</table>
 		
+		<!-- Bootstrap core JavaScript -->
+		<script src="/resources/css/bootstrap.min.js"></script>
 	</body>
+	
+	<script>
+		function formatar(mascara, documento){
+		  var i = documento.value.length;
+		  var saida = mascara.substring(0,1);
+		  var texto = mascara.substring(i)
+		  
+		  if (texto.substring(0,1) != saida){
+		            documento.value += texto.substring(0,1);
+		  }
+		  
+		}
+	</script>
 </html>

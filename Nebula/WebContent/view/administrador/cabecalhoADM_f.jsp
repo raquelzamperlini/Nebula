@@ -15,31 +15,39 @@
 	
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="home_f.jsp"><h2>Nebula</h2></a>
+			
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarTogglerDemo03"
-				aria-controls="navbarTogglerDemo03" aria-expanded="false"
-				aria-label="Toggle navigation">
-				
+			 data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+			 aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			
-			<a class="navbar-brand" href="#"><h1>Nebula</h1></a>
-			
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
 						<a class="nav-link" href="home_f.jsp">Home
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="usuarioCadastro_f.jsp">Cadastrar Usuários</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="UsuarioCRUD?acao=listar" id="navbarDropdown"
+						 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuários</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="usuarioCadastro_f.jsp">Cadastrar Usuários</a>
+							<a class="dropdown-item" href="UsuarioCRUD?acao=listar">Lista de Usuários</a>
+							<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Separated link</a>
+						</div>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="UsuarioCRUD?acao=listar">Usuários</a>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">Músicas (Desabilitado)</a>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link disabled" href="#">Músicas (Desabilitado)</a>
+					<li class="nav-item">
+						<a class="nav-link" href="Login">Sair</a>
 					</li>
 				</ul>
 				
@@ -51,7 +59,10 @@
 				</form>
 			</div>
 		</nav>
-	
+		
+		<!-- Bootstrap's jQuery dependency -->
+		<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+		
 		<!-- Bootstrap core JavaScript -->
 	    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	</body>

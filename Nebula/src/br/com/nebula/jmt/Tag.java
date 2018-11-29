@@ -362,15 +362,15 @@ public class Tag {
 	    HashMap<String, String> tags = readTags(f);
 	    
 		//declarando dados
-		String fileKey;
+		//String fileKey; //Never used
 		String songTitle = tags.get("song_title");
 		String artistName = tags.get("artist_name");
 		String albumTitle = tags.get("album_title");
 		String albumYear = tags.get("album_year");
 		String trackNumber = tags.get("track_number");
-		String trackDuration;
-		String trackQuality = String.valueOf(mp3.getBitRate());
-		String fileSize;	
+		//String trackDuration; //Never used
+		//String trackQuality = String.valueOf(mp3.getBitRate()); //Never used
+		//String fileSize; //Never used
 		
 		//pega tags v1
 		ID3v1 	tagv1_0 = null;
@@ -425,7 +425,7 @@ public class Tag {
 	    	
 	    }
 	    
-	    //deleta todas as tags para reconstruir no padrão da aplicação
+	    //deleta todas as tags para reconstruir no padrï¿½o da aplicaï¿½ï¿½o
 	    if(tagv1_0 != null) {
 	    	tagv1_0.delete(ram);
 	    }
@@ -458,26 +458,26 @@ public class Tag {
 	    //construindo tags//
 	    ////////////////////
 	    
-	    //GLOSSÁRIO:
-	    //TIT2 = Título da música
+	    //GLOSSARIO:
+	    //TIT2 = Tï¿½tulo da mï¿½sica
 	    //TPE1 = Artista
-	    //TALB = Título do álbum
+	    //TALB = Tï¿½tulo do ï¿½lbum
 	    //TDRC = Ano
-	    //TRCK = Número da faixa
+	    //TRCK = Nï¿½mero da faixa
 	    
 	    
 	    //declarando as frames das novas tags
 	    AbstractID3v2 id3v2 = mp3.getID3v2Tag();
 	    AbstractID3v2Frame frameTIT2; 
-	    AbstractID3v2FrameBody frameBodyTIT2;	//frame de título da música
+	    AbstractID3v2FrameBody frameBodyTIT2;	//frame de tï¿½tulo da mï¿½sica
 	    AbstractID3v2Frame frameTPE1;
 	    AbstractID3v2FrameBody frameBodyTPE1;	//frame de artista
 	    AbstractID3v2Frame frameTALB;
-	    AbstractID3v2FrameBody frameBodyTALB;	//frame de álbum
+	    AbstractID3v2FrameBody frameBodyTALB;	//frame de ï¿½lbum
 	    AbstractID3v2Frame frameTYER;
 	    AbstractID3v2FrameBody frameBodyTYER;	//frame de ano
 	    AbstractID3v2Frame frameTRCK;
-	    AbstractID3v2FrameBody frameBodyTRCK;	//frame de número da faixa
+	    AbstractID3v2FrameBody frameBodyTRCK;	//frame de nï¿½mero da faixa
 	    
 	    //atribuindo valores (em teste)
 	    frameBodyTIT2 = new FrameBodyTIT2((byte) 0, songTitle);
@@ -490,7 +490,8 @@ public class Tag {
 	    frameTIT2 = new ID3v2_4Frame(frameBodyTIT2);
 	    frameTPE1 = new ID3v2_4Frame(frameBodyTPE1);
 	    frameTALB = new ID3v2_4Frame(frameBodyTALB);
-	    frameTYER = new ID3v2_3Frame(frameBodyTYER);
+	    //frameTYER = new ID3v2_3Frame(frameBodyTYER); // Comentado por erro apontado pela IDE; corrigido abaixo
+	    frameTYER = new ID3v2_4Frame(frameBodyTYER);
 	    frameTRCK = new ID3v2_4Frame(frameBodyTRCK);
 	    
 	    id3v2.setFrame(frameTIT2);
@@ -544,15 +545,16 @@ public class Tag {
 		tags.put("file_size", fileSize);
 		
 		//pega tags v1
-		ID3v1 	tagv1_0 = null;
-		ID3v1_1 tagv1_1 = null;
-		ID3v2_2 tagv2_2 = null;
-		ID3v2_3 tagv2_3 = null;
-		ID3v2_4 tagv2_4 = null;
-		Lyrics3v1 tagL1 = null;
-		Lyrics3v2 tagL2 = null;
-				
-
+		/*  //Never used
+		 * ID3v1 	tagv1_0 = null;
+		 * ID3v1_1 tagv1_1 = null;
+		 * ID3v2_2 tagv2_2 = null;
+		 * ID3v2_3 tagv2_3 = null;
+		 * ID3v2_4 tagv2_4 = null;
+		 * Lyrics3v1 tagL1 = null;
+		 * Lyrics3v2 tagL2 = null;
+		 */
+		
 		//return tags;
 		return tags;
 	}

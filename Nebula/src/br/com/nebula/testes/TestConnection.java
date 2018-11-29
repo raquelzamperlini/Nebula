@@ -8,7 +8,7 @@ import br.com.nebula.dao.ConnectionFactory;
 public class TestConnection {
 	public static void main(String[] args) throws SQLException {
 		Connection connection = new ConnectionFactory().getConnection();
-        System.out.println("Conexão aberta!");
+        System.out.println("Conexao aberta!");
         connection.close();
 	}
 }
