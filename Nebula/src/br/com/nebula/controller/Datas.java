@@ -26,10 +26,10 @@ public class Datas {
 		  	.withLocale(locale);*/
 		
 		DateTimeFormatter formatadorBarra = 
-				  DateTimeFormatter.ofPattern("dd/MM/[uuuu][uu]");
+				  DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		
 		DateTimeFormatter formatadorHifen = 
-				  DateTimeFormatter.ofPattern("[uuuu][uu]-MM-dd");
+				  DateTimeFormatter.ofPattern("uuuu-MM-dd");
 		
 		LocalDate localDate = null;
 		

@@ -1,20 +1,11 @@
 package br.com.nebula.servlet;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,16 +13,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.nebula.controller.DiretorioCTRL;
-import br.com.nebula.controller.UsuarioCTRL;
-import br.com.nebula.dao.Criptografia;
-import br.com.nebula.model.Usuario;
 import br.com.nebula.model.S3ListItem;
 
-import org.apache.commons.io.IOUtils;
 import org.farng.mp3.TagException;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -126,9 +112,9 @@ public class DiretorioCRUD extends HttpServlet {
 			for (S3ObjectSummary os: objects) {
 				String file = os.getKey();
 				//(depois do prefixo)
-				//se o objeto tem só mais uma / e é a última da string, exibir
-				//se o objeto não tem mais uma /, exibir
-				//se o objeto tem mais caracteres depois da /, não exibir
+				//se o objeto tem sï¿½ mais uma / e ï¿½ a ï¿½ltima da string, exibir
+				//se o objeto nï¿½o tem mais uma /, exibir
+				//se o objeto tem mais caracteres depois da /, nï¿½o exibir
 				String result = file.toString().substring(caminho.length() + 10);
 				
 				if(result.contains("/") ) { 

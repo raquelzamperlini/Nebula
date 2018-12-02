@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
-import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.ID3v23Tag;
 import com.mpatric.mp3agic.InvalidDataException;
@@ -176,10 +175,10 @@ public class Tag {
 		this.fileSize = fileSize;
 	}
 	public Tag(File f, HashMap<String, String> tags) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
-		//construtor que monta um objeto Tag a partir de um arquivo File, reconstruindo o arquivo no padrão da aplicação
+		//construtor que monta um objeto Tag a partir de um arquivo File, reconstruindo o arquivo no padrï¿½o da aplicaï¿½ï¿½o
 		super();
 		Mp3File mp3 = new Mp3File(f);
-		ID3v1 v1;
+		//ID3v1 v1; //never used
 		ID3v2 v2;
 		if(mp3.hasId3v1Tag()) {
 			mp3.removeId3v1Tag();
@@ -215,7 +214,7 @@ public class Tag {
 	}
 
 	public static Tag getTag(File f) throws UnsupportedTagException, InvalidDataException, IOException{
-		//método que retorna um objeto Tag a partir de um arquivo File, sem alterar o arquivo
+		//mï¿½todo que retorna um objeto Tag a partir de um arquivo File, sem alterar o arquivo
 		Tag t = new Tag();
 		t.setAlbumTitle(Tag.getAlbumTitle(f));
 		t.setAlbumYear(Tag.getAlbumYear(f));

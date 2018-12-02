@@ -10,6 +10,9 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
 		
+		<link href="<%=request.getContextPath()%>/resources/images/branch/Favicon.ico"
+		 rel="icon" />
+		
 		<title>Nebula</title>
 	</head>
 	
@@ -20,7 +23,10 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			
-			<a class="navbar-brand" href="login.jsp"><h2>Nebula</h2></a>
+			<img src="<%=request.getContextPath()%>/resources/images/branch/nebula-favicon-transparent.png"
+			 height="45" width="45" alt="Nebula Icon" >
+			
+			<a class="navbar-brand" style="font-size: 26px" href="login.jsp">Nebula</a>
 		</nav>
 	
 		<!-- Bootstrap core JavaScript -->

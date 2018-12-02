@@ -7,9 +7,6 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import org.apache.commons.io.FileUtils;
 import org.farng.mp3.TagException;
 
@@ -28,11 +25,11 @@ public class DiretorioCTRL {
 	}
 	
 	public void upload(String usuario, InputStream file, String fileName) throws IOException, TagException, UnsupportedTagException, InvalidDataException, NotSupportedException {
-		//cria arquivo temporário
+		//cria arquivo temporï¿½rio
 		File f = new File("C:\\TEMP\\" + fileName);
 		FileUtils.copyInputStreamToFile(file, f);
 		
-		//pega tags presentes no arquivo [medida temporária]
+		//pega tags presentes no arquivo [medida temporï¿½ria]
 		Tag t = Tag.getTag(f);
 		HashMap<String, String> tags = new HashMap<String, String>();
 		tags.put("album", t.getAlbumTitle());
@@ -41,7 +38,7 @@ public class DiretorioCTRL {
 		tags.put("track", t.getTrackNumber());
 		tags.put("year", t.getAlbumYear());
 		
-		//constrói tags no padrão
+		//constrï¿½i tags no padrï¿½o
 		t = new Tag(f, tags);
 		
 		//atualiza objeto InputStream

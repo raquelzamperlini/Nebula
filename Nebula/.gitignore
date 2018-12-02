@@ -1,6 +1,8 @@
 /.settings/
 /.classpath
 /.project
+/build/
 /bin/
+/lib/
 TesteListagem.jsp
 web.xml

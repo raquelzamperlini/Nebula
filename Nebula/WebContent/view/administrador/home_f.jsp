@@ -15,21 +15,25 @@
 		<title>Nebula</title>
 	</head>
 	
-	<body>
+	<body class="bg-light">
 		<jsp:include page="cabecalhoADM_f.jsp"></jsp:include>
 		
-		<%
-			if ((session.getAttribute("autenticado")) != null)
-			{
-				Usuario autenticado = (Usuario)session.getAttribute("autenticado");
-				out.println("Bem-vindo, " + autenticado.getUs_nome() + "! =)");
-			}
-			else
-			{
-				response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
-			}
-			
-		%>
+		<br/>
+		
+		<div class="container p-2">
+			<%
+				if ((session.getAttribute("autenticado")) != null)
+				{
+					Usuario autenticado = (Usuario)session.getAttribute("autenticado");
+					out.println("Bem-vindo, " + autenticado.getUs_nome() + "! =)");
+				}
+				else
+				{
+					response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+				}
+				
+			%>
+		</div>
 		
 		<br />
 		<br />

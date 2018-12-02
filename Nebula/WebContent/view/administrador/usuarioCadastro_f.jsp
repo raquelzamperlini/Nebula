@@ -15,7 +15,7 @@
 	<body>
 		<jsp:include page="cabecalhoADM_f.jsp"></jsp:include> <br />
 		
-				<div class="container w-50 p-3">
+		<div class="container w-50 p-3">
 			<br />
 			<h1 class="text-center" >Cadastrar Usuário</h1>
 			<br />
@@ -40,7 +40,8 @@
 				
 				<div class="form-group row">
 					<label for="inputUsername">Nome de Usuário</label>
-					<input type="text" class="form-control" id ="inputUsername" name="inputUsername" placeholder="Nome de Usuário">
+					<input type="text" class="form-control" id ="inputUsername" name="inputUsername"
+					 placeholder="Nome de Usuário">
 				</div>
 				
 				<div class="form-group row">
@@ -82,7 +83,7 @@
 				
 				<div class="form-group row align-self-center mr-3">
 					<button type="button" name="voltar" id="voltar" class="btn btn-secondary align-self-center mr-3" 
-					 onclick="location.href = 'home_f.jsp';"> Cancelar </button>
+					 OnClick="location.href = 'home_f.jsp';"> Cancelar </button>
 					<button type="submit" class="btn btn-primary align-self-center mr-3">Cadastrar</button>
 				</div>
 			</form>

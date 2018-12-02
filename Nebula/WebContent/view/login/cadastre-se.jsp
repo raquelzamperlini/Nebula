@@ -24,7 +24,8 @@
 				<div class="form-group row">
 					<label for="inputCpf">CPF</label>
 					<input type="text" class="form-control" id ="inputCpf" name="inputCpf"
-					 maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" placeholder="XXX.XXX.XXX-XX">
+					 maxlength="14" OnKeyPress="Formatar('###.###.###-##', this)" placeholder="XXX.XXX.XXX-XX"
+					 OnBlur="ValidarCpf(this)">
 				</div>
 				
 				<div class="form-group row">
@@ -59,67 +60,62 @@
 				<div class="form-group row align-self-center mr-3">
 					<button type="button" name="voltar" id="voltar" class="btn btn-secondary align-self-center mr-3" 
 					 onclick="location.href = 'login.jsp';"> Cancelar </button>
-					<button type="submit" class="btn btn-primary align-self-center mr-3">Cadastrar</button>
+					<button type="submit" name="cadastrar" id="cadastrar" 
+					 class="btn btn-primary align-self-center mr-3" >Cadastrar</button>
 				</div>
 			</form>
 		</div>
 	</body>
 	
 	<script>
-		function formatar(mascara, documento){
-		  var i = documento.value.length;
-		  var saida = mascara.substring(0,1);
-		  var texto = mascara.substring(i)
-		  
-		  if (texto.substring(0,1) != saida){
-		            documento.value += texto.substring(0,1);
-		  }
-		  
+		function Formatar(mascara, objeto)
+		{
+			var i = objeto.value.length;
+			var saida = mascara.substring(0,1);
+			var texto = mascara.substring(i)
+			
+			if (texto.substring(0,1) != saida){
+				objeto.value += texto.substring(0,1);
+			}
 		}
 		
-		function validar() {
-		
-			//Código
-			if (crud_id.value.length < 13) {
-				alert("Informe o RA do aluno com 13 dígitos.");
-				nome.focus();
-				return false;
-			}
-		
-			if (isNaN(codigo.value)) {
-				alert("Informe somente números para o RA.");
-				nome.focus();
+		function Validar()
+		{
+			//CPF
+			if (inputCpf.value.length < 14 ||
+					inputCpf.value.indexOf(".") > 2 ||
+					inputCpf.value.indexOf("-") > 1 )
+			{
+				alert("Informe um CPF válido.");
+				inputCpf.focus();
 				return false;
 			}
 		
 			//Nome
-			if (nome.value.indexOf(" ") < 0) {
-				alert("Informe o nome e sobrenome do aluno.");
-				nome.focus();
+			if (inputNome.value.indexOf(" ") < 0) {
+				alert("Informe o nome e sobrenome.");
+				inputNome.focus();
 				return false;
 			}
+			
+			//Data de Nascimento
+			//Sem validação
+			
+			//Nome de Usuário
+			//Validação de caracteres especiais, com exceção de ponto final, underlinie e hífen
 		
-			//e-mail
-			if (email.value.length < 6 || email.value.indexOf("@") < 1
-					|| email.value.lastIndexOf(".") < email.value.indexOf("@")) {
+			//E-mail
+			if (inputEmail.value.length < 6 || inputEmail.value.indexOf("@") < 1 ||
+					inputEmail.value.lastIndexOf(".") < inputEmail.value.indexOf("@")) {
 				alert("Email invalido!");
-				email.focus();
+				inputEmail.focus();
 				return false;
 			}
 		
-			//senha	
-			if (senha.value.length < 6 || !isNaN(senha.value)) {
-				alert("Digite uma senha com ao menos 6 caracteres alfanuméricos!");
-				senha.focus();
-				return false;
-			}
-			if (confsenha.value != senha.value) {
-				alert("Senhas são diferentes ou inválidas!");
-				confsenha.focus();
-				return false;
-			}
+			//Senha	
+			//Sem validações específicas
 		
-			alert("Usuário cadastrado com sucesso!");
+			alert("Um sucesso!! =)");
 		}
 		
 		function limpar() {

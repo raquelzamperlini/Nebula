@@ -75,7 +75,7 @@ public class UsuarioDAO {
 
 	public List<Usuario> pesquisarTodosUsuarios() throws SQLException {
 
-		String sql = "SELECT * FROM usuario";
+		String sql = "SELECT * FROM usuario ORDER BY us_nome, us_username, ";
 
 		PreparedStatement stmt = this.connection.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
@@ -206,6 +206,47 @@ public class UsuarioDAO {
 
 		PreparedStatement stmt = this.connection.prepareStatement(sql);
 		stmt.setString(1, us_email);
+		ResultSet rs = stmt.executeQuery();
+
+		Usuario us = new Usuario();
+
+		if (rs.next()) {
+			// Instancia o objeto
+			us.setUs_id(rs.getInt("us_id"));
+			us.setUs_diretorio_raiz(rs.getString("us_diretorio_raiz"));
+			us.setUs_nome(rs.getString("us_nome"));
+			us.setUs_email(rs.getString("us_email"));
+			us.setUs_cpf(rs.getString("us_cpf"));
+
+			/*
+			 * Calendar data = Calendar.getInstance();
+			 * data.setTime(rs.getDate("us_nascimento")); us.setUs_nascimento(data);
+			 */
+			// us.setUs_nascimento(Date.valueOf(rs.getString("us_nascimento")));
+			us.setUs_nascimento(datas.stringParaLocalDate(rs.getDate("us_nascimento").toString()));
+
+			us.setUs_username(rs.getString("us_username"));
+			us.setUs_senha(rs.getString("us_senha"));
+			us.setUs_permissao(rs.getString("us_permissao"));
+			us.setUs_status(rs.getBoolean("us_status"));
+			us.setUs_licencas(rs.getInt("us_licencas"));
+		}
+
+		rs.close();
+		stmt.close();
+
+		ConnectionFactory.closeConnection(connection);
+
+		return us;
+	}
+	
+	public Usuario pesquisarUsuarioNome(String us_nome) throws SQLException {
+
+		String sql = "SELECT * FROM usuario " 
+		           + "WHERE us_nome = ?";
+
+		PreparedStatement stmt = this.connection.prepareStatement(sql);
+		stmt.setString(1, us_nome);
 		ResultSet rs = stmt.executeQuery();
 
 		Usuario us = new Usuario();

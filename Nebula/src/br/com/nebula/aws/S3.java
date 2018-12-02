@@ -3,7 +3,6 @@ package br.com.nebula.aws;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
@@ -136,7 +135,7 @@ public class S3 {
 			file = os.getKey();
 
 			if (file.substring(file.lastIndexOf("/") + 1).trim().isEmpty()) {
-				System.out.println("Arquivo inválido!");
+				System.out.println("Arquivo invï¿½lido!");
 				continue;
 			}
 

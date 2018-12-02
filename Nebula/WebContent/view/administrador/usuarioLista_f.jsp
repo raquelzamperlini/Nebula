@@ -21,80 +21,86 @@
 	<body>
 		<jsp:include page="cabecalhoADM_f.jsp"></jsp:include> <br />
 		
-		<%
-			UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
-			Datas datas = new Datas();
+		<div>
+			<h1 class="text-center" >Lista de Usuários</h1>
 			
-			//List<Usuario> usuarios = usuarioCTRL.retornarTodosUsuarios();
-			List<Usuario> buscaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
-			
-			/*
-			for (Usuario u:buscaUsuarios) {
-				out.println("ID: " 				+ u.getUs_id()				+
-							"Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
-							"Nome: "			+ u.getUs_nome()			+
-							"E-mail: "			+ u.getUs_email()			+
-							"CPF: "				+ u.getUs_cpf()				+
-							"Nascimento: "		+ u.getUs_nascimento()		+
-							"Username: "		+ u.getUs_nascimento()		+
-							"Senha: "			+ u.getUs_senha()			+
-							"Permissão: "		+ u.getUs_permissao());
-			}
-			*/
-		%>
-		
-		<table class="table" >
-			<tr bgcolor="eaeaea">
-				<th scope="col">ID</th>
-				<th scope="col">Diretório Raiz</th>
-				<th scope="col">Nome</th>
-				<th scope="col">E-mail</th>
-				<th scope="col">CPF</th>
-				<th scope="col">Nascimento</th>
-				<th scope="col">Username</th>
-				<!-- <th scope="col">Senha</th>  -->
-				<th scope="col">Permissão</th>
-				<th scope="col">Status</th>
-				<!-- <th scope="col">Licenças</th>  -->
-				<th scope="col">Excluir</th>
-				<th scope="col">Alterar</th>
-			</tr>
+			<br/>
+			<br/>
 			
 			<%
-				for (Usuario u:buscaUsuarios)
-				{
-					
-			%>
+				UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
+				Datas datas = new Datas();
 				
-			<tr scope="row">
-				<th scope="col"><%= u.getUs_id() %></th>
-				<th scope="col"><%= u.getUs_diretorio_raiz() %></th>
-				<th scope="col"><%= u.getUs_nome() %></th>
-				<th scope="col"><%= u.getUs_email() %></th>
-				<th scope="col" OnLoad="formatar('###.###.###-##', this)"><%= u.getUs_cpf() %></th>
-				<th scope="col"><%= datas.localDateParaString(u.getUs_nascimento()) %></th>
-				<th scope="col"><%= u.getUs_username() %></th>
-				<!-- <th scope="col"><%//= u.getUs_senha() %></th>  -->
-				<th scope="col"><%= u.getUs_permissao() %></th>
-				<th scope="col"><%= u.isUs_status() %></th>
-				<!-- <th scope="col"><%= u.getUs_licencas() %></th>  -->
-				<th scope="col">
-					<button id="excluir" name="excluir">
-						<a href="UsuarioCRUD?acao=excluir&us_id=<%= u.getUs_id() %>">Excluir</a>
-					</button>
-				</th>
-				<th scope="col">
-					<button id="alterar" name="alterar">
-						<a href="UsuarioCRUD?acao=alterar&us_id=<%= u.getUs_id() %>">Alterar</a>
-					</button>
-				</th>	
-			</tr>
-			
-			<%
+				//List<Usuario> usuarios = usuarioCTRL.retornarTodosUsuarios();
+				List<Usuario> buscaUsuarios = (List<Usuario>) request.getAttribute("usuarios");
+				
+				/*
+				for (Usuario u:buscaUsuarios) {
+					out.println("ID: " 				+ u.getUs_id()				+
+								"Diretório Raiz: "	+ u.getUs_diretorio_raiz()	+
+								"Nome: "			+ u.getUs_nome()			+
+								"E-mail: "			+ u.getUs_email()			+
+								"CPF: "				+ u.getUs_cpf()				+
+								"Nascimento: "		+ u.getUs_nascimento()		+
+								"Username: "		+ u.getUs_nascimento()		+
+								"Senha: "			+ u.getUs_senha()			+
+								"Permissão: "		+ u.getUs_permissao());
 				}
+				*/
 			%>
 			
-		</table>
+			<table class="table text-center">
+				<tr bgcolor="eaeaea">
+					<th scope="col">ID</th>
+					<th scope="col">Diretório Raiz</th>
+					<th scope="col">Nome</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">CPF</th>
+					<th scope="col">Nascimento</th>
+					<th scope="col">Username</th>
+					<!-- <th scope="col">Senha</th>  -->
+					<th scope="col">Permissão</th>
+					<th scope="col">Status</th>
+					<!-- <th scope="col">Licenças</th>  -->
+					<th scope="col">Alterar</th>
+					<th scope="col">Excluir</th>
+				</tr>
+				
+				<%
+					for (Usuario u:buscaUsuarios)
+					{
+						
+				%>
+					
+				<tr scope="row">
+					<th scope="col"><%= u.getUs_id() %></th>
+					<th scope="col"><%= u.getUs_diretorio_raiz() %></th>
+					<th scope="col"><%= u.getUs_nome() %></th>
+					<th scope="col"><%= u.getUs_email() %></th>
+					<th scope="col" onload="formatar('###.###.###-##', this)"><%= u.getUs_cpf() %></th>
+					<th scope="col"><%= datas.localDateParaString(u.getUs_nascimento()) %></th>
+					<th scope="col"><%= u.getUs_username() %></th>
+					<!-- <th scope="col"><%//= u.getUs_senha() %></th>  -->
+					<th scope="col"><%= u.getUs_permissao() %></th>
+					<th scope="col"><%= u.isUs_status() %></th>
+					<!-- <th scope="col"><//%= u.getUs_licencas() %></th>  -->
+					<th scope="col">
+						<button id="alterar" name="alterar" class="btn btn-primary"
+						 onclick="location.href='UsuarioCRUD?acao=alterar&us_id=<%= u.getUs_id() %>'">Alterar</button>
+					</th>
+					
+					<th scope="col">
+						<button id="excluir" name="excluir" class="btn btn-danger"
+						 onclick="location.href='UsuarioCRUD?acao=excluir&us_id=<%= u.getUs_id() %>'">Excluir</button>
+					</th>	
+				</tr>
+				
+				<%
+					}
+				%>
+				
+			</table>
+		</div>
 		
 		<!-- Bootstrap core JavaScript -->
 		<script src="/resources/css/bootstrap.min.js"></script>

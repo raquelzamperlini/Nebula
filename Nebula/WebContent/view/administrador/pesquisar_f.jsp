@@ -13,10 +13,10 @@
 	<body>
 		<jsp:include page="/view/administrador/cabecalhoADM_f.jsp"></jsp:include> <br />
 		
-		<form id="crud_form" action="Pesquisar" method="post" >
-			<input type="text" id="crud_id" name="crud_id" style="width:300px" maxlength="38"> 
+		<form id="crud_form" action="Pesquisar" method="post" style="width:300px" >
+			<input type="text" id="parametroBuscaUsuario" name="parametroBuscaUsuario"> 
 			
-			<input type="submit" id="crud_pesquisar" name="crud_pesquisar" value="Pesquisar"> <br/>
+			<input type="submit" id="pesquisar" name="pesquisar" value="Pesquisar"> <br/>
 		</form>
 	</body>
 </html>

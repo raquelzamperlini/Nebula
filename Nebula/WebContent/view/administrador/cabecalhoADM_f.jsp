@@ -15,13 +15,16 @@
 	
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="home_f.jsp"><h2>Nebula</h2></a>
-			
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 			 data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
 			 aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			
+			<img src="<%=request.getContextPath()%>/resources/images/branch/nebula-favicon-transparent.png"
+			 height="45" width="45" alt="Nebula Icon" >
+			
+			<a class="navbar-brand" style="font-size: 26px" href="home_f.jsp">Nebula</a>
 			
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto">
@@ -38,7 +41,7 @@
 							<a class="dropdown-item" href="usuarioCadastro_f.jsp">Cadastrar Usuários</a>
 							<a class="dropdown-item" href="UsuarioCRUD?acao=listar">Lista de Usuários</a>
 							<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Separated link</a>
+								<!-- <a class="dropdown-item" href="#">Separated link</a>  -->
 						</div>
 					</li>
 					
@@ -51,11 +54,11 @@
 					</li>
 				</ul>
 				
-				<form class="form-inline my-2 my-lg-0" action="Pesquisar" method="post">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Search" aria-label="Search">
-						
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+				<form class="form-inline my-2 my-lg-0" action="PesquisarUsuario" method="post">
+					<input class="form-control mr-sm-2" type="search" id="parametroBuscaUsuario" name="parametroBuscaUsuario"
+				     placeholder="Pesquisar" aria-label="Pesquisar">
+					
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
 				</form>
 			</div>
 		</nav>
