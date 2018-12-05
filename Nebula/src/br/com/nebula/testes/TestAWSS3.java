@@ -57,8 +57,9 @@ public class TestAWSS3 {
 //		
 //		S3.downloadFolder("teste","C:\\Users\\Vinicius\\");
 		
-		// TESTE DE COPIAR //
-		
+		// TESTE DE EXCLUIR //
+		//String key = "usuarios/jsilveira/American Music Club/08 - Mom's TV.mp3";
+		//S3.deleteFile("jsilveira/American Music Club", "08 - Mom's TV.mp3");
 	}
 
 }

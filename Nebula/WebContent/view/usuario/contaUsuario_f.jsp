@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="/view/administrador/cabecalhoADM_f.jsp"></jsp:include> <br />
+		<jsp:include page="/view/usuario/cabecalhoUSUARIO_f.jsp"></jsp:include> <br />
 		
 		<%
 			

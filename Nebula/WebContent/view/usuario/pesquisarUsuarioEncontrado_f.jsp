@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		<jsp:include page="/view/administrador/cabecalhoADM_f.jsp"></jsp:include> <br />
+		<jsp:include page="/view/usuario/cabecalhoUSUARIO_f.jsp"></jsp:include> <br />
 		
 		<%
 			Usuario usuario = (Usuario) request.getAttribute("usuarioPesquisado");
@@ -26,8 +26,11 @@
 		
 			<form id="crud_form" action="Pesquisar" method="post" >
 				<div class="form-group row">
+		 
+	 
 					<label for="inputId">ID: </label>
 					<input type="number" id="inputId" name="inputId" class="form-control" placeholder="ID"
+														
 						value="<%=usuario.getUs_id() %>" readonly />
 				</div>
 				
@@ -36,11 +39,17 @@
 				<div class="form-group row">	
 					<label for="inputNome">Nome: </label>
 					<input type="text" id="inputNome" name="inputNome" class="form-control" placeholder="Nome do Usuário"
+								  
 					 	value="<%=usuario.getUs_nome() %>" readonly/>
 				</div>
 				
 				<br/>
 				
+						
+																					   
+								   
+										   
+	
 				<div class="form-group row">
 					<label for="inputEmail">E-mail: </label>
 					<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email"
@@ -55,6 +64,7 @@
 					 maxlength="14" onclick="formatar('###.###.###-##, this)"
 					 	value="<%=usuario.getUs_cpf() %>" readonly />
 				</div>
+ 
 				
 				<br/>
 				
@@ -68,11 +78,14 @@
 					
 				<br/>
 				
+																														 
+	
 				<div class="form-group row">
 					<label for="inputUsername">Nome de Usuário: </label>
 					<input id="inputUsername" name="inputUsername" class="form-control"
 						value="<%=usuario.getUs_username() %>" readonly />
 				</div>
+	 
 				
 				<br/>
 					
@@ -93,6 +106,8 @@
 				</div>
 				
 				<br/>
+																								
+																													 
 			</form>
 		</div>
 	</body>

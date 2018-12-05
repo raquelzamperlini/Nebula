@@ -20,15 +20,17 @@
 		
 		<div class="container p-2">
 			<%
-				if ((session.getAttribute("autenticado")) != null)
-				{
-					Usuario autenticado = (Usuario)session.getAttribute("autenticado");
-					out.println("Bem-vindo, " + autenticado.getUs_nome() + "! =)");
-				}
-				else
-				{
-					response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
-				}
+			if ((session.getAttribute("autenticado")) != null) {
+				Usuario autenticado = (Usuario) session.getAttribute("autenticado");
+				out.println("Bem-vindo, " + autenticado.getUs_nome() + "!");
+				Integer id = autenticado.getUs_id();
+				String username = autenticado.getUs_username();
+
+				session.setAttribute("userid", String.valueOf(id));
+				session.setAttribute("username", username);
+			} else {
+				response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
+			}
 				
 		%>
 		</div>

@@ -24,15 +24,20 @@ import java.net.URL;
 import java.util.List;
 
 public class S3 {
-	public static void createFolder(String folderName) {
+	public static void createFolder(String path, String folderName) {
 		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion("us-west-2").build();
 		ObjectMetadata metadata = new ObjectMetadata();
 		metadata.setContentLength(0);
 
 		InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
-
-		PutObjectRequest putObjectRequest = new PutObjectRequest("nebulas3",
-				String.format("usuarios/%s/", folderName), emptyContent, metadata);
+		PutObjectRequest putObjectRequest;
+		if (folderName.isEmpty()) {
+			putObjectRequest = new PutObjectRequest("nebulas3",
+					String.format("usuarios/%s/", path), emptyContent, metadata);
+		}else {
+			putObjectRequest = new PutObjectRequest("nebulas3",
+					String.format("usuarios/%s/%s/", path, folderName), emptyContent, metadata);			
+		}
 
 		s3.putObject(putObjectRequest);
 	}
@@ -170,6 +175,18 @@ public class S3 {
                 .build();
 		try {
 		    s3.copyObject("nebulas3", filePath, "nebulas3", String.format("usuarios/%s", newPath));
+		} catch (AmazonServiceException e) {
+		    System.err.println(e.getErrorMessage());
+		    System.exit(1);
+		}
+	}
+	
+	public static void deleteFile(String filePath, String fileName) {
+		final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withRegion("us-west-2") 
+                .build();
+		try {
+		    s3.deleteObject("nebulas3", String.format("usuarios/%s/%s", filePath, fileName));
 		} catch (AmazonServiceException e) {
 		    System.err.println(e.getErrorMessage());
 		    System.exit(1);

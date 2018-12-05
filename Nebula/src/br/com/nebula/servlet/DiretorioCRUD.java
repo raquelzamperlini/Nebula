@@ -1,11 +1,20 @@
 package br.com.nebula.servlet;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,11 +22,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.nebula.controller.DiretorioCTRL;
+import br.com.nebula.controller.UsuarioCTRL;
+import br.com.nebula.dao.Criptografia;
+import br.com.nebula.model.Usuario;
 import br.com.nebula.model.S3ListItem;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.farng.mp3.TagException;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -72,17 +87,19 @@ public class DiretorioCRUD extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String arquivo = request.getParameter("file");
 		String caminho = request.getParameter("caminho");
+		String chave = request.getParameter("chave");
 		
 		PrintWriter out = response.getWriter();
 		DiretorioCTRL dir = new DiretorioCTRL();
 		
 		switch (fazer) {
-		case "Upload":
+		case "upload":
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 			InputStream fileContent = filePart.getInputStream();
+
 			try {
-				dir.upload(usuario, fileContent, fileName);
+				dir.upload(caminho, fileContent, fileName);
 			} catch (TagException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -96,14 +113,19 @@ public class DiretorioCRUD extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			response.sendRedirect("diretorioArquivos_f.jsp");
 			break;
 		case "copiar":			
-			dir.copiar(usuario, arquivo, caminho);
+			dir.copiar(usuario, chave, caminho);
 			break;
 		case "mover":
 			break;
 		case "renomear":
+			break;
+		case "excluir":
+			dir.excluir(caminho, chave);
+			break;
+		case "criar":
+			dir.criarPasta(caminho, chave);
 			break;
 		case "listar":
 			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);
@@ -112,15 +134,19 @@ public class DiretorioCRUD extends HttpServlet {
 			for (S3ObjectSummary os: objects) {
 				String file = os.getKey();
 				//(depois do prefixo)
-				//se o objeto tem sï¿½ mais uma / e ï¿½ a ï¿½ltima da string, exibir
-				//se o objeto nï¿½o tem mais uma /, exibir
-				//se o objeto tem mais caracteres depois da /, nï¿½o exibir
+				//se o objeto tem só mais uma / e é a última da string, exibir
+				//se o objeto não tem mais uma /, exibir
+				//se o objeto tem mais caracteres depois da /, não exibir
 				String result = file.toString().substring(caminho.length() + 10);
 				
 				if(result.contains("/") ) { 
-					if(result.lastIndexOf("/") == result.length() - 1) {
-						S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),caminho + "/" + file.trim().substring(caminho.length() + 10), true);
-						arquivos.add(item);
+					if(StringUtils.countMatches(result, "/") > 1) {
+						continue;
+					}else {
+						if(result.lastIndexOf("/") == result.length() - 1) {
+							S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),caminho + "/" + file.trim().substring(caminho.length() + 10), true);
+							arquivos.add(item);
+						}
 					}
 				}else {
 					if(result.trim().isEmpty()) {

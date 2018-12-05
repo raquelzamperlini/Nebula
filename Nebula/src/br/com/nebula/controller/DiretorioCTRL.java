@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.FileUtils;
 import org.farng.mp3.TagException;
@@ -15,6 +19,7 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
+import br.com.nebula.aws.DDB;
 import br.com.nebula.aws.S3;
 import br.com.nebula.mp3.Tag;
 
@@ -25,20 +30,21 @@ public class DiretorioCTRL {
 	}
 	
 	public void upload(String usuario, InputStream file, String fileName) throws IOException, TagException, UnsupportedTagException, InvalidDataException, NotSupportedException {
-		//cria arquivo temporï¿½rio
+		//cria arquivo temporário
 		File f = new File("C:\\TEMP\\" + fileName);
 		FileUtils.copyInputStreamToFile(file, f);
 		
-		//pega tags presentes no arquivo [medida temporï¿½ria]
-		Tag t = Tag.getTag(f);
+		//pega tags presentes no arquivo [medida temporária]
+		Tag t = Tag.getTag(f, usuario);
 		HashMap<String, String> tags = new HashMap<String, String>();
+		tags.put("key", usuario);
 		tags.put("album", t.getAlbumTitle());
 		tags.put("artist", t.getArtistName());
 		tags.put("title", t.getSongTitle());
 		tags.put("track", t.getTrackNumber());
 		tags.put("year", t.getAlbumYear());
 		
-		//constrï¿½i tags no padrï¿½o
+		//constrói tags no padrão
 		t = new Tag(f, tags);
 		
 		//atualiza objeto InputStream
@@ -51,6 +57,8 @@ public class DiretorioCTRL {
 		f = new File("C:\\TEMP\\" + fileName);
 		f.delete();
 		
+		//cria item no dynamo
+		DDB.putItem(t);
 	}
 	
 	public void copiar(String usuario, String arquivo, String caminho) {
@@ -59,5 +67,25 @@ public class DiretorioCTRL {
 	
 	public String downloadLink(String file) throws IOException {
 		return (S3.download(file)).toString();
+	}
+	
+	public void excluir(String caminho, String arquivo) {
+		S3.deleteFile(caminho, arquivo);
+		DDB.deleteItem(String.format("usuarios/%s/%s", caminho, arquivo));
+	}
+	
+	public void criarPasta(String caminho, String nome) {
+		S3.createFolder(caminho, nome);
+	}
+	
+	public void alterarTag(HashMap<String, String> tags) throws IOException, UnsupportedTagException, InvalidDataException, NotSupportedException {
+		File f = new File("C:\\TEMP" + tags.get("filename"));
+		URL url = new URL(tags.get("link"));
+		FileUtils.copyURLToFile(url, f);
+		Tag t = new Tag(f, tags);
+		DDB.putItem(t);
+		f = new File("C:\\TEMP" + tags.get("filename"));
+		InputStream file = new FileInputStream(f);
+		S3.uploadFile(tags.get("path"), file, tags.get("filename"));
 	}
 }

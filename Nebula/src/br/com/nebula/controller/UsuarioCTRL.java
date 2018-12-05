@@ -12,7 +12,7 @@ import br.com.nebula.model.Usuario;
 public class UsuarioCTRL {
 	
 	public void criarAmbienteUsuario(Usuario usuario) {
-		S3.createFolder(usuario.getUs_username());
+		S3.createFolder(usuario.getUs_username(), null);
 		//a fazer:
 		//criar metadados no DynamoDB
 	}
