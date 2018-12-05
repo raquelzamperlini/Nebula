@@ -40,12 +40,11 @@
 					
 					<%
 						Usuario usuario = (Usuario)session.getAttribute("autenticado");
-						Integer id = usuario.getUs_id();
-						String parametro = id.toString();
+						//Integer id = usuario.getUs_id();
+						//String parametro = id.toString();
 					%>
 					
-					<li class="nav-item"><a class="nav-link" href="PesquisarUsuario" method="post"
-					 name="parametroBuscaUsuario" value="<%=parametro %>">Minha Conta</a>
+					<li class="nav-item"><a class="nav-link" href="contaUsuario_f.jsp">Minha Conta</a>
 					</li>
 					
 					<li class="nav-item"><a class="nav-link" href="diretorioArquivos_f.jsp">Diretórios</a>
