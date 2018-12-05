@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import br.com.nebula.aws.DDB;
 import br.com.nebula.controller.DiretorioCTRL;
 import br.com.nebula.controller.UsuarioCTRL;
 import br.com.nebula.dao.Criptografia;
@@ -158,6 +160,14 @@ public class DiretorioCRUD extends HttpServlet {
 						continue;
 					}
 					S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),dir.downloadLink(file), false);
+					Map<String, String> tags = DDB.getItem(os.getKey(), null);
+					item.setAlbum(tags.get("albumTitle"));
+					item.setArtist(tags.get("artistName"));
+					item.setDuration(tags.get("trackDuration"));
+					item.setNumber(tags.get("trackNumber"));
+					item.setSize(tags.get("fileSize"));
+					item.setTitle(tags.get("songTitle"));
+					item.setYear(tags.get("albumYear"));
 					arquivos.add(item);
 				}
 			}

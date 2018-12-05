@@ -40,7 +40,7 @@
 		<br />
 		
 		<button id="diretorioArquivos" name="diretorioArquivos"
-		 onclick="location.href = 'diretorioArquivos_f.jsp'">Diretório</button>
+		 onclick="location.href = 'diretorioArquivos_f.jsp'" style="padding: 40;">Diretório</button>
 		
 		<!-- Bootstrap core JavaScript -->
     	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
