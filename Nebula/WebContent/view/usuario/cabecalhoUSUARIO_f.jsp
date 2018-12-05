@@ -1,3 +1,5 @@
+<%@ page import="br.com.nebula.model.Usuario" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -23,23 +25,30 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			
-			<a class="navbar-brand" href="home_f.jsp"><h2>Nebula</h2></a>
+			<img src="<%=request.getContextPath()%>/resources/images/branch/nebula-favicon-transparent.png"
+			 height="45" width="45" alt="Nebula Icon" >
+			
+			<a class="navbar-brand" style="font-size: 26px" href="home_f.jsp">Nebula</a>
 			
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="home_f.jsp">Home
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="#">Cadastrar Usuários</a>
+					<%
+						Usuario usuario = (Usuario)session.getAttribute("autenticado");
+						Integer id = usuario.getUs_id();
+						String parametro = id.toString();
+					%>
+					
+					<li class="nav-item"><a class="nav-link" href="PesquisarUsuario" method="post"
+					 name="parametroBuscaUsuario" value="<%=parametro %>">Minha Conta</a>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="#">Usuários</a>
-					</li>
-					
-					<li class="nav-item"><a class="nav-link disabled" href="#">Músicas (Desabilitado)</a>
+					<li class="nav-item"><a class="nav-link" href="diretorioArquivos_f.jsp">Diretórios</a>
 					</li>
 					
 					<li class="nav-item"><a class="nav-link" href="Login">Sair</a>

@@ -9,6 +9,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.document.DeleteItemOutcome;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.model.AttributeDefinition;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
@@ -51,10 +54,11 @@ public class DDB {
 		}
 	}
 
-	public static void getItem(String name, String projection_expression) {
+	public static Map<String, String> getItem(String name, String projection_expression) {
 		HashMap<String, AttributeValue> key_to_get = new HashMap<String, AttributeValue>();
-
-		key_to_get.put("FileKey", new AttributeValue(name));
+		HashMap<String, String> tags = new HashMap<String, String>();
+		
+		key_to_get.put("fileKey", new AttributeValue(name));
 
 		GetItemRequest request = null;
 		if (projection_expression != null) {
@@ -67,32 +71,39 @@ public class DDB {
 		final AmazonDynamoDB ddb = AmazonDynamoDBClientBuilder.standard().withRegion("us-west-2").build();
 
 		try {
-			Map<String, AttributeValue> returned_item = ddb.getItem(request).getItem();
-			if (returned_item != null) {
-				Set<String> keys = returned_item.keySet();
+			Map<String, AttributeValue> item = ddb.getItem(request).getItem();
+			if (item != null) {
+				Set<String> keys = item.keySet();
 				for (String key : keys) {
-					System.out.format("%s: %s\n", key, returned_item.get(key).toString());
+					tags.put(key, item.get(key).toString().substring(4, item.get(key).toString().length() - 2));
 				}
+				return tags;
 			} else {
-				System.out.format("No item found with the key %s!\n", name);
+				System.out.format("No item found with the key %s!\n", "usuarios...");
 			}
 		} catch (AmazonServiceException e) {
 			System.err.println(e.getErrorMessage());
 			System.exit(1);
 		}
+		return null;
 	}
 
 	public static void putItem(Tag t) {
 		final AmazonDynamoDB ddb = AmazonDynamoDBClientBuilder.standard().withRegion("us-west-2").build();
 		DynamoDBMapper mapper = new DynamoDBMapper(ddb);
-		
+
 		mapper.save(t);
 	}
-	
-	public static void deleteItem(Tag t) {
+
+	public static void deleteItem(String fileKey) {
 		final AmazonDynamoDB ddb = AmazonDynamoDBClientBuilder.standard().withRegion("us-west-2").build();
-		DynamoDBMapper mapper = new DynamoDBMapper(ddb);
-		
-		mapper.delete(t);
+		DynamoDB dynamoDB = new DynamoDB(ddb);
+
+		Table table = dynamoDB.getTable("NebulaFiles");
+
+		DeleteItemOutcome outcome = table.deleteItem("fileKey", fileKey);
+
+		// outcome.getDeleteItemResult();
 	}
+
 }

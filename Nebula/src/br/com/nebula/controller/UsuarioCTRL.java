@@ -12,16 +12,23 @@ import br.com.nebula.model.Usuario;
 public class UsuarioCTRL {
 	
 	public void criarAmbienteUsuario(Usuario usuario) {
-		S3.createFolder(usuario.getUs_username());
+		S3.createFolder(usuario.getUs_username(), null);
 		//a fazer:
 		//criar metadados no DynamoDB
 	}
 	
-	public void adicionarUsuario(Usuario usuario) {
+	public boolean adicionarUsuario(Usuario usuario) {
 		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.adicionarUsuario(usuario);
-		criarAmbienteUsuario(usuario);
+		try {
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			usuarioDAO.adicionarUsuario(usuario);
+			criarAmbienteUsuario(usuario);
+			
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
 	}
 	
 	public List<Usuario> pesquisarTodosUsuarios() throws SQLException {
@@ -55,6 +62,15 @@ public class UsuarioCTRL {
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario us =  usuarioDAO.pesquisarUsuarioEmail(email);
+		
+		return us;
+		
+	}
+	
+	public Usuario pesquisarUsuarioNome(String nome) throws SQLException {
+		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario us =  usuarioDAO.pesquisarUsuarioNome(nome);
 		
 		return us;
 		

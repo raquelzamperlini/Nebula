@@ -246,7 +246,7 @@ public class Tag {
 		t.setAlbumYear(Tag.getAlbumYear(f));
 		t.setArtistName(Tag.getArtistName(f));
 		t.setFileKey(fileKey);
-		t.setFileName(f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf("/")));
+		t.setFileName(f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf("\\")));
 		t.setFileSize(String.format("%.2f MB", f.length() / (Math.pow(1024.0, 2.0))));
 		t.setSongTitle(Tag.getSongTitle(f));
 		t.setTrackNumber(Tag.getTrackNumber(f));

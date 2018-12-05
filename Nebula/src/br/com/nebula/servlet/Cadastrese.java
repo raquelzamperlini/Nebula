@@ -94,27 +94,54 @@ public class Cadastrese extends HttpServlet {
 		usuario.setUs_licencas(licencas);
 
 		// UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); -- movido para cima
-		usuarioCTRL.adicionarUsuario(usuario);
+		boolean v1 = usuarioCTRL.adicionarUsuario(usuario);
+		
+		if (v1)
+		{
+			response.setContentType("text/html");
 
-		response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Mensagem</title>");
+			out.println("</head>");
+			out.println("<body OnLoad='cadastroSalvo()'>");
+			out.println("<jsp:include page='cabecalhoLOGIN_f.jsp'></jsp:include>");
+			out.println("<br><font face='arial' size='20' >=) (⌐■_■)</font>");
+			out.println("</body>");
+			out.println("</html>");
+			out.println("<script language = 'JavaScript'>"
+					+ "function cadastroSalvo() { "
+					+ 	"decisao = confirm('Cadastro salvo com sucesso!'); "
+					+ 	"if (decisao) { "
+					+ 		"window.location='login.jsp'; "
+					+	 "} "
+					+ "} "
+					+ "</SCRIPT>");
+		}
+		
+		else
+		{
+			response.setContentType("text/html");
 
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Mensagem</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("<br><font face=\"arial\" size=\"20\" OnLoad=\"cadastroSalvo()\">=)</font>");
-		out.println("</body>");
-		out.println("</html>");
-		out.println("<script language = 'JavaScript'>"
-				+ "$cadastroSalvo() { "
-				+ 	"decisao = confirm(\"Cadastro salvo com sucesso!\"); "
-				+ 	"if (decisao) { "
-				+ 		"window.location=\"login.jsp\"; "
-				+	 "} "
-				+ "} "
-				+ "</SCRIPT>");
+			PrintWriter out = response.getWriter();
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Mensagem</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<br><font face=\"arial\" size=\"20\" OnLoad=\"cadastroSalvo()\">=)</font>");
+			out.println("</body>");
+			out.println("</html>");
+			out.println("<script language = 'JavaScript'>"
+					+ "$cadastroSalvo() { "
+					+ 	"decisao = confirm(\"Um erro ocorreu! Por favor, tente novamente.\"); "
+					+ 	"if (decisao) { "
+					+ 		"window.location=\"login.jsp\"; "
+					+	 "} "
+					+ "} "
+					+ "</SCRIPT>");
+		}
 	}
 
 }

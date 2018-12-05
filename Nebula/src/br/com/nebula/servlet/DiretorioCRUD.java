@@ -32,6 +32,7 @@ import br.com.nebula.model.Usuario;
 import br.com.nebula.model.S3ListItem;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.farng.mp3.TagException;
 
 import com.amazonaws.services.s3.model.S3ObjectSummary;
@@ -96,6 +97,7 @@ public class DiretorioCRUD extends HttpServlet {
 			Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 			InputStream fileContent = filePart.getInputStream();
+
 			try {
 				dir.upload(caminho, fileContent, fileName);
 			} catch (TagException e) {
@@ -122,6 +124,9 @@ public class DiretorioCRUD extends HttpServlet {
 		case "excluir":
 			dir.excluir(caminho, chave);
 			break;
+		case "criar":
+			dir.criarPasta(caminho, chave);
+			break;
 		case "listar":
 			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);
 			List<S3ListItem> arquivos = new ArrayList();
@@ -135,9 +140,13 @@ public class DiretorioCRUD extends HttpServlet {
 				String result = file.toString().substring(caminho.length() + 10);
 				
 				if(result.contains("/") ) { 
-					if(result.lastIndexOf("/") == result.length() - 1) {
-						S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),caminho + "/" + file.trim().substring(caminho.length() + 10), true);
-						arquivos.add(item);
+					if(StringUtils.countMatches(result, "/") > 1) {
+						continue;
+					}else {
+						if(result.lastIndexOf("/") == result.length() - 1) {
+							S3ListItem item = new S3ListItem(file.trim().substring(caminho.length() + 10),caminho + "/" + file.trim().substring(caminho.length() + 10), true);
+							arquivos.add(item);
+						}
 					}
 				}else {
 					if(result.trim().isEmpty()) {

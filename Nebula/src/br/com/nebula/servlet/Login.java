@@ -101,7 +101,7 @@ public class Login extends HttpServlet {
 
 			if (autenticado.getUs_permissao().equals("usuario") )
 				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
-				response.sendRedirect("../usuario/homeUsuario_f.jsp");
+				response.sendRedirect("../usuario/home_f.jsp");
 				//response.sendRedirect(request.getContextPath() + "/view/usuario/homeUsuario_f.jsp");
 				//request.getRequestDispatcher("PAGINADOUSUARIO.jsp").forward(request, response);
 		}
@@ -110,7 +110,7 @@ public class Login extends HttpServlet {
 		{
 			//response.sendRedirect("loginErro.jsp");
 			//response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
-			response.sendRedirect("/view/login/loginErro.jsp");
+			response.sendRedirect(request.getContextPath() + "/view/login/loginErro.jsp");
 		}
 	}
 
