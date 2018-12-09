@@ -1,21 +1,12 @@
 package br.com.nebula.servlet;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -23,17 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import br.com.nebula.aws.DDB;
 import br.com.nebula.controller.DiretorioCTRL;
-import br.com.nebula.controller.UsuarioCTRL;
-import br.com.nebula.dao.Criptografia;
-import br.com.nebula.model.Usuario;
 import br.com.nebula.model.S3ListItem;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.farng.mp3.TagException;
 
@@ -87,7 +73,6 @@ public class DiretorioCRUD extends HttpServlet {
 
 		String fazer = request.getParameter("action");
 		String usuario = request.getParameter("usuario");
-		String arquivo = request.getParameter("file");
 		String caminho = request.getParameter("caminho");
 		String chave = request.getParameter("chave");
 		
@@ -131,7 +116,7 @@ public class DiretorioCRUD extends HttpServlet {
 			break;
 		case "listar":
 			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);
-			List<S3ListItem> arquivos = new ArrayList();
+			List<S3ListItem> arquivos = new ArrayList<S3ListItem>();
 			
 			for (S3ObjectSummary os: objects) {
 				String file = os.getKey();

@@ -8,9 +8,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import org.apache.commons.io.FileUtils;
 import org.farng.mp3.TagException;
 
