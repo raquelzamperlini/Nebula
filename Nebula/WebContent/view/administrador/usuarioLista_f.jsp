@@ -79,14 +79,12 @@
 				<th scope="col"><%= u.isUs_status() %></th>
 				<!-- <th scope="col"><%= u.getUs_licencas() %></th>  -->
 				<th scope="col">
-					<button id="excluir" name="excluir">
-						<a href="UsuarioCRUD?acao=excluir&us_id=<%= u.getUs_id() %>">Excluir</a>
-					</button>
+					<button id="excluir" name="excluir"
+					onclick="location.href = 'UsuarioCRUD?acao=excluir&us_id=<%= u.getUs_id() %>';">Excluir</button>
 				</th>
 				<th scope="col">
-					<button id="alterar" name="alterar">
-						<a href="UsuarioCRUD?acao=alterar&us_id=<%= u.getUs_id() %>">Alterar</a>
-					</button>
+					<button id="alterar" name="alterar"
+					onclick="location.href = 'UsuarioCRUD?acao=alterar&us_id=<%= u.getUs_id() %>';">Alterar</button>
 				</th>	
 			</tr>
 			

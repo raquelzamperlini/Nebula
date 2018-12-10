@@ -1,13 +1,9 @@
 package br.com.nebula.testes;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-
-import org.farng.mp3.TagException;
 
 import com.mpatric.mp3agic.ID3v1;
 import com.mpatric.mp3agic.ID3v2;
@@ -17,7 +13,6 @@ import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.NotSupportedException;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-import br.com.nebula.controller.DiretorioCTRL;
 import br.com.nebula.mp3.Tag;
 
 public class TestMP3agic {
@@ -204,7 +199,6 @@ public class TestMP3agic {
 	
 	public static void escritaRemove(File f, HashMap<String, String> tags) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
 		Mp3File mp3 = new Mp3File(f);
-		ID3v1 v1;
 		ID3v2 v2;
 		if(mp3.hasId3v1Tag()) {
 			mp3.removeId3v1Tag();
@@ -229,7 +223,7 @@ public class TestMP3agic {
 		f.renameTo(new File(oldPath));
 	}
 
-	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException, TagException {
+	public static void main(String[] args) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
 		// TODO Auto-generated method stub
 		File file;
 		file = new File("C:\\Users\\Vinicius\\Documents\\neb\\albuns_teste\\_teste\\05 - All The Planes That Come In On The Quiet.mp3");

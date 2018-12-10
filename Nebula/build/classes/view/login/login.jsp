@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<<<<<<< HEAD
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Raquel Zamperlini">
@@ -27,16 +27,14 @@
 			name="login_senha"> <input type="submit" value="Entrar"
 			id="login_entrar">
 
-		<button name="login_cadastrar" id="login_cadastrar">
-			<a href="cadastre-se.jsp">Cadastre-se</a>
-		</button>
+		<button name="login_cadastrar" id="login_cadastrar"
+		onclick="location.href = 'cadastre-se.jsp';">Cadastre-se</button>
 	</form>
 
 	<!-- Bootstrap core JavaScript -->
 	<script
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 </body>
-=======
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="author" content="Raquel Zamperlini">

@@ -69,7 +69,7 @@
 	
 			<input type="hidden" id="action" name="action" /> 
 			<input type="submit" id="go" name="go" style="visibility: hidden;" />
-			<table id="dir" class="table"> </table>
+			<table id="dir" class="table"></table>
 	  
 			<script>
 				function setAction(action, file) {

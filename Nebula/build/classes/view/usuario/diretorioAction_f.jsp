@@ -48,9 +48,8 @@
 	<br />
 	<br />
 	
-	<button id="diretorioArquivos" name="diretorioArquivos">
-		<a href="diretorioArquivos_f.jsp">Voltar</a>
-	</button>
+	<button id="diretorioArquivos" name="diretorioArquivos" 
+	onclick="location.href = 'diretorioArquivos_f.jsp';">Voltar</button>
 
 	<br />
 </body>

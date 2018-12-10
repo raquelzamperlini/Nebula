@@ -2,11 +2,9 @@ package br.com.nebula.testes;
 
 import java.io.IOException;
 
-import org.farng.mp3.*;
-
 public class TestJavaMusicTag {
 
-	public static void main(String[] args) throws IOException, TagException {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
 		////////////LEITURA//////////////
