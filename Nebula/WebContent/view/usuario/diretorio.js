@@ -82,10 +82,27 @@ $(document).on("click","#bot",function() {
 						button.dataset.song = item.downloadLink;
 						row.append($("<td>").append(button));
 						
+						//cria botão de alteração de tag
+						var button2 = document.createElement("input");
+						button2.id = "tags" + id.toString();
+						button2.className = "tags btn";
+						button2.type = "button";
+						button2.value = "Alterar";
+						button2.dataset.title = item.title;
+						button2.dataset.artist = item.artist;
+						button2.dataset.album = item.album;
+						button2.dataset.number = item.number;
+						button2.dataset.year = item.year;
+						button2.dataset.key = item.keyLong;
+						button2.dataset.link = item.downloadLink;
+						button2.dataset.toggle = "modal";
+						button2.dataset.target = "#myModal";
+						row.append($("<td>").append(button2));
+						
 						//mostra propriedades
-						row.append($("<td>").text(item.title).width("30%"));
+						row.append($("<td>").text(item.title));
 						row.append($("<td>").text(item.artist));
-						row.append($("<td>").text(item.album).width("30%"));
+						row.append($("<td>").text(item.album));
 						row.append($("<td>").text(item.number));
 						row.append($("<td>").text(item.duration));
 						row.append($("<td>").text(item.year));

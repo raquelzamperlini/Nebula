@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
@@ -197,7 +198,7 @@ public class Tag {
 		this.trackQuality = trackQuality;
 		this.fileSize = fileSize;
 	}
-	public Tag(File f, HashMap<String, String> tags) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
+	public Tag(File f, Map<String, String> tags) throws UnsupportedTagException, InvalidDataException, IOException, NotSupportedException {
 		//construtor que monta um objeto Tag a partir de um arquivo File, reconstruindo o arquivo no padrão da aplicação
 		super();
 		String fileName = f.getName();

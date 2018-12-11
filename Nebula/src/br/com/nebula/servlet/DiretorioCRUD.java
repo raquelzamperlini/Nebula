@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +80,7 @@ public class DiretorioCRUD extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		DiretorioCTRL dir = new DiretorioCTRL();
+		HashMap<String, String> infos = new HashMap<String,String>();
 		
 		switch (fazer) {
 		case "upload":
@@ -107,6 +111,27 @@ public class DiretorioCRUD extends HttpServlet {
 		case "excluir":
 			dir.excluir(caminho, chave);
 			break;
+		case "tags":
+			System.out.println("Começou!");
+			System.out.println(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
+			infos.put("key", caminho);
+			infos.put("path", caminho);
+			infos.put("filename", chave.substring(chave.lastIndexOf("/") + 1));
+			infos.put("link", request.getParameter("link"));
+			infos.put("album", request.getParameter("album"));
+			infos.put("artist", request.getParameter("artist"));
+			infos.put("title", request.getParameter("title"));
+			infos.put("track", request.getParameter("track"));
+			infos.put("year", request.getParameter("year"));
+			System.out.println(infos.toString());
+			
+			try {
+				dir.alterarTag(infos);
+			} catch (UnsupportedTagException | InvalidDataException | NotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		case "criar":
 			dir.criarPasta(caminho, chave);
 			break;
@@ -145,6 +170,7 @@ public class DiretorioCRUD extends HttpServlet {
 					item.setAlbum(tags.get("albumTitle"));
 					item.setArtist(tags.get("artistName"));
 					item.setDuration(tags.get("trackDuration"));
+					item.setKeyLong(file);
 					item.setNumber(tags.get("trackNumber"));
 					item.setSize(tags.get("fileSize"));
 					item.setTitle(tags.get("songTitle"));

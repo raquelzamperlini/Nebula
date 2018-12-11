@@ -59,9 +59,55 @@
 		
 		<br/>
 		<br/>
-		<audio id="player" controls="controls" ></audio> <br/><br/>
-		<button id="refresh" class="btn" style="margin-top:25px; margin-left:80%;" >Recarregar</button>
+		<div style="text-align:center;width:100%;padding:auto;"><audio id="player" controls="controls" style="margin:auto;"></audio></div> <br/><br/>
+		
 		<ul id="playlist" style="display: none;"></ul>
+		
+		<div style="text-align:center;">
+			<button id="refresh" class="btn" style="margin:auto;">Recarregar</button>
+		</div>
+		
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog modal-lg">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title">Alterar música</h4>
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		      <div class="modal-body">
+		        <label>Informações da música:</label>
+				<br/>
+				<label id="lbltrack" class="alt_tag" style="width:7%; float:left; padding:5px; text-align:center;" >Faixa:</label>
+				<input type="text" id="track" class="alt_tag" style="width:5%; float:left;" />
+				<label id="lbltitle" class="alt_tag" style="width:7%; float:left; padding:5px; text-align:center;" >Título:</label>
+				<input type="text" id="title" class="alt_tag" style="width:43%; float:left;" />
+				<label id="lblartist" class="alt_tag" style="width:8%; float:left; padding:5px; text-align:center;" >Artista:</label>
+				<input type="text" id="artist" class="alt_tag" style="width:29%; float:left;" />
+				<br/>
+				<br/>
+				<label id="lblalbum" class="alt_tag" style="width:8%; float:left; padding:5px; text-align:center;" >Álbum:</label>
+				<input type="text" id="album" class="alt_tag" style="width:75%; float:left;" />
+				<label id="lblyear" class="alt_tag" style="width:6%; float:left; padding:5px; text-align:center;" >Ano:</label>
+				<input type="text" id="year" class="alt_tag" style="width:10%; float:left;" />
+				<input type="hidden" id="key" />
+				<input type="hidden" id="link" />
+				<br/>
+				<div style="margin-left:33%;width:50%;justify-content:space-between;">
+					<div style="width:50%;float:left"><input type="button" id="btnalterar" class="btn" value="Alterar" /></div>
+					
+					<div style="width:50%;float:right"><input type="button" id="btnlimpar" class="btn" value="Limpar" /></div>								
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="btncancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		      </div>
+		    </div>
+		
+		  </div>
+		</div>
 	
 		<form id="diretorio_form" name="diretorio_form"
 			action="diretorioAction_f.jsp" method="post"
@@ -87,4 +133,5 @@
 </body>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script src="diretorio.js"></script>
+<script src="tags.js"></script>
 </html>

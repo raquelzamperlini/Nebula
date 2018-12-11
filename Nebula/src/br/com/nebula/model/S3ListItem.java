@@ -3,6 +3,7 @@ package br.com.nebula.model;
 public class S3ListItem {
 	
 	private String key;
+	private String keyLong;
 	private String downloadLink;
 	private String title;
 	private String artist;
@@ -31,6 +32,14 @@ public class S3ListItem {
 	public void setKey(String key) {
 		this.key = key;
 	}
+	
+	public String getKeyLong() {
+		return keyLong;
+	}
+	public void setKeyLong(String keyLong) {
+		this.keyLong = keyLong;
+	}
+	
 	public String getDownloadLink() {
 		return downloadLink;
 	}

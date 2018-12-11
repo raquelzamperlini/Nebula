@@ -5,8 +5,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
@@ -74,14 +77,18 @@ public class DiretorioCTRL {
 		S3.createFolder(caminho, nome);
 	}
 	
-	public void alterarTag(HashMap<String, String> tags) throws IOException, UnsupportedTagException, InvalidDataException, NotSupportedException {
-		File f = new File("C:\\TEMP" + tags.get("filename"));
+	public void alterarTag(Map<String, String> tags) throws IOException, UnsupportedTagException, InvalidDataException, NotSupportedException {
+		File f = new File("C:\\TEMP\\" + tags.get("filename"));
 		URL url = new URL(tags.get("link"));
 		FileUtils.copyURLToFile(url, f);
+		//System.out.println(tags.toString());
 		Tag t = new Tag(f, tags);
+		//System.out.println(t.toString());
 		DDB.putItem(t);
-		f = new File("C:\\TEMP" + tags.get("filename"));
+		f = new File("C:\\TEMP\\" + tags.get("filename"));
 		InputStream file = new FileInputStream(f);
 		S3.uploadFile(tags.get("path"), file, tags.get("filename"));
+		System.out.println("Pronto");
+		System.out.println(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
 	}
 }
