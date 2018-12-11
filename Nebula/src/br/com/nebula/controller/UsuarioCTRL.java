@@ -23,10 +23,10 @@ public class UsuarioCTRL {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarioDAO.adicionarUsuario(usuario);
 			criarAmbienteUsuario(usuario);
-			
 			return true;
 		}
 		catch(Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}

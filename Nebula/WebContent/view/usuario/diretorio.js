@@ -1,6 +1,7 @@
 $(document).ready(function() {
-	$(document.getElementById("alarms")).hide();
+	//$(document.getElementById("alarms")).hide();
 	document.getElementById("bot").click();
+	//$('#pleaseWaitDialog').modal('toggle');
 });
 
 $(document).on("click", "#folder", function(){
@@ -38,6 +39,7 @@ $(document).on("click","#bot",function() {
 		"caminho" : document.getElementById("path").value,
 		"usuario" : document.getElementById("usuario").value
 	};
+	$('#pleaseWaitDir').modal('toggle');
 	document.getElementById("alarms").value = "Aguarde, carregando diretório...";
 	$(document.getElementById("alarms")).show();
 	$.post("/Nebula/view/usuario/DiretorioCRUD",$.param(params),
@@ -122,19 +124,21 @@ $(document).on("click","#bot",function() {
 					
 					id = id + 1;
 				});
+			$('#pleaseWaitDir').modal('hide');
 			$(document.getElementById("alarms")).hide();
 			//alert("OK response");
 		})
 	.fail(function() {
 		console.log("error");
+		$('#pleaseWaitDir').modal('hide');
 		$(document.getElementById("alarms")).hide();
 	});
 });
 
 $(document).on("click", "#upload", function() {
 	
-	document.getElementById("alarms").value = "Enviando arquivos";
-	$(document.getElementById("alarms")).show();
+	//document.getElementById("alarms").value = "Enviando arquivos";
+	//$(document.getElementById("alarms")).show();
 	var ind = 0;
 	var res = 0;
 	var musicas = document.getElementById("file");
@@ -142,15 +146,16 @@ $(document).on("click", "#upload", function() {
 
 	if (total == 0){
 		alert("Não há arquivos a enviar!");
-		$(document.getElementById("alarms")).hide();
+		$('#pleaseWaitUp').modal('hide');
+		//$(document.getElementById("alarms")).hide();
 		return;
 	}
-	$(document.getElementById("alarms")).show();
-	document.getElementById("alarms").value = "Enviando arquivos";
-	document.getElementById("alarms").value = "Enviando arquivo 1 de " + total + "...";
+	//$(document.getElementById("alarms")).show();
+	//document.getElementById("alarms").value = "Enviando arquivos";
+	//document.getElementById("alarms").value = "Enviando arquivo 1 de " + total + "...";
 	for (ind = 0; ind < total; ind++) {
 		
-		$(document.getElementById("alarms")).show();
+		//$(document.getElementById("alarms")).show();
 		var fdata = new FormData();
 		fdata.append("action", "upload");
 		fdata.append("usuario", document.getElementById("usuario").value);
@@ -158,7 +163,7 @@ $(document).on("click", "#upload", function() {
 		//fdata.append("file", $("#file")[ind].files[ind])
 		//alert(ind);
 		fdata.append("file", musicas.files[ind]);
-		$(document.getElementById("alarms")).show();
+		//$(document.getElementById("alarms")).show();
 		$.ajax({
 			type : 'POST',
 			url : '/Nebula/view/usuario/DiretorioCRUD',
@@ -166,15 +171,18 @@ $(document).on("click", "#upload", function() {
 			contentType : false,
 			processData : false,
 			success : function(response) {
-				document.getElementById("alarms").value = "Enviando arquivo " + ind + " de " + total + "...";
+				//document.getElementById("alarms").value = "Enviando arquivo " + ind + " de " + total + "...";
 				res = res + 1;
-				alert("Arquivo " + res + " enviado!");
+				//alert(JSON.stringify(response));
+				alert("Arquivo " + response + " enviado!");
+			},
+			error : function(){
+				alert("Arquivo " + response + " não enviado!");
 			}
 		});
-		document.getElementById("alarms").value = "Enviando arquivos...";
-		$(document.getElementById("alarms")).show();
 	}
-	$(document.getElementById("alarms")).hide();
+	musicas.value = "";
+	alert("Arquivos serão enviados, continue navegando, você será avisado quando o processamento terminar.");
 });
 
 $(document).on("click", ".dirs", function() {

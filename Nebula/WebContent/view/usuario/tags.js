@@ -30,11 +30,13 @@ $(document).on("click", "#btnalterar", function(){
 		"link" : document.getElementById("link").value
 	};
 	//alert(JSON.stringify(params));
+	document.getElementById("btncancelar").click();
+	$('#pleaseWaitAlt').modal('toggle');
 	$.post("/Nebula/view/usuario/DiretorioCRUD",$.param(params),
 			function(responseJson){
 		alert("Alterado com sucesso!");
-		//alert(JSON.stringify(responseJson));
-		document.getElementById("btncancelar").click();
+		//alert(JSON.stringify(responseJson));		
+		$('#pleaseWaitAlt').modal('hide');
 		document.getElementById("bot").click();
 	});
 });

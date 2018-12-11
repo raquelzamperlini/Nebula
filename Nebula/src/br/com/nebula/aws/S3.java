@@ -26,20 +26,27 @@ import java.util.List;
 public class S3 {
 	public static void createFolder(String path, String folderName) {
 		final AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion("us-west-2").build();
+		
 		ObjectMetadata metadata = new ObjectMetadata();
 		metadata.setContentLength(0);
 
-		InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
-		PutObjectRequest putObjectRequest;
-		if (folderName.isEmpty()) {
-			putObjectRequest = new PutObjectRequest("nebulas3",
-					String.format("usuarios/%s/", path), emptyContent, metadata);
-		}else {
-			putObjectRequest = new PutObjectRequest("nebulas3",
-					String.format("usuarios/%s/%s/", path, folderName), emptyContent, metadata);			
-		}
-
-		s3.putObject(putObjectRequest);
+		try {
+			InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
+			PutObjectRequest putObjectRequest;
+			if (folderName.isEmpty()) {
+				putObjectRequest = new PutObjectRequest("nebulas3",
+						String.format("usuarios/%s/", path), emptyContent, metadata);
+			}else {
+				putObjectRequest = new PutObjectRequest("nebulas3",
+						String.format("usuarios/%s/%s/", path, folderName), emptyContent, metadata);			
+			}
+			
+			s3.putObject(putObjectRequest);
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}		
+		
 	}
 
 	public static boolean uploadFile(String path, InputStream f, String fileName) {
@@ -50,7 +57,9 @@ public class S3 {
 		//om.setContentLength(fileSize);
 		
 		try {
+			System.out.println("STATUS: Enviando " + String.format("usuarios/%s/%s", path, fileName) + "...");
 			s3.putObject("nebulas3", String.format("usuarios/%s/%s", path, fileName), f, om);
+			System.out.println("STATUS: " + String.format("usuarios/%s/%s", path, fileName) + " enviado!");
 		} catch (AmazonServiceException e) {
 			System.err.println(e.getErrorMessage());
 			System.exit(1);

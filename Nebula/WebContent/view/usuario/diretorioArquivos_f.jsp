@@ -18,7 +18,11 @@
 	
 	<title>Nebula</title>
 </head>
-
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="diretorio.js"></script>
+<script type="text/javascript" src="tags.js"></script>
 <body>
 	<jsp:include page="cabecalhoUSUARIO_f.jsp"></jsp:include>
 		
@@ -37,6 +41,52 @@
 	</div>
 
 	<div class="container w-75">
+	
+		<div class="modal hide" id="pleaseWaitDir" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        <h3>Carregando diretório...</h3>
+				    </div>
+				    <div class="modal-body">
+				        <div id="ajax_loader">
+				            <img src="ajax-loader.gif" style="display: block; margin-left: auto; margin-right: auto;">
+				        </div>
+				    </div>
+			    </div>
+		    </div>
+		</div>
+		
+		<div class="modal hide" id="pleaseWaitUp" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        <h3>Carregando arquivos...</h3>
+				    </div>
+				    <div class="modal-body">
+				        <div id="ajax_loader">
+				            <img src="ajax-loader.gif" style="display: block; margin-left: auto; margin-right: auto;">
+				        </div>
+				    </div>
+			    </div>
+		    </div>
+		</div>
+		
+		<div class="modal hide" id="pleaseWaitAlt" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        <h3>Aplicando alterações...</h3>
+				    </div>
+				    <div class="modal-body">
+				        <div id="ajax_loader">
+				            <img src="ajax-loader.gif" style="display: block; margin-left: auto; margin-right: auto;">
+				        </div>
+				    </div>
+			    </div>
+		    </div>
+		</div>
+	
 		<br />
 		<form id="upload_form" action="DiretorioCRUD" method="post"
 			enctype="multipart/form-data">
@@ -128,10 +178,7 @@
 	</div>
 
 	<br />
-	<!-- Bootstrap core JavaScript -->
-	<script src="/resources/js/bootstrap.min.js"></script>
 </body>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-<script src="diretorio.js"></script>
-<script src="tags.js"></script>
+
+
 </html>

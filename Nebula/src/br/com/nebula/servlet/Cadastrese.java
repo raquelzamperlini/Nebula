@@ -64,7 +64,7 @@ public class Cadastrese extends HttpServlet {
 			throws ServletException, IOException {
 		UsuarioCTRL usuarioCTRL = new UsuarioCTRL();
 		Datas datas = new Datas();
-
+		
 		String nome = request.getParameter("inputNome");
 		String email = request.getParameter("inputEmail");
 		String cpf = request.getParameter("inputCpf");
@@ -76,6 +76,7 @@ public class Cadastrese extends HttpServlet {
 		String username = request.getParameter("inputUsername");
 		String senha = request.getParameter("inputSenha");
 		String permissao = "usuario";
+		
 		boolean status = true;
 		int licencas = 1;
 
@@ -92,7 +93,7 @@ public class Cadastrese extends HttpServlet {
 		usuario.setUs_permissao(permissao);
 		usuario.setUs_status(status);
 		usuario.setUs_licencas(licencas);
-
+		
 		// UsuarioCTRL usuarioCTRL = new UsuarioCTRL(); -- movido para cima
 		boolean v1 = usuarioCTRL.adicionarUsuario(usuario);
 		

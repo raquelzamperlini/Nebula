@@ -90,6 +90,12 @@ public class DiretorioCRUD extends HttpServlet {
 
 			try {
 				dir.upload(caminho, fileContent, fileName);
+				//String jsonUp = new Gson().toJson(fileName);
+				response.setContentType("text/html");
+			    response.setCharacterEncoding("UTF-8");
+			    
+			    out.print(fileName);
+			    out.flush();
 			} catch (UnsupportedTagException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,8 +118,8 @@ public class DiretorioCRUD extends HttpServlet {
 			dir.excluir(caminho, chave);
 			break;
 		case "tags":
-			System.out.println("Começou!");
-			System.out.println(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
+			//System.out.println("Começou!");
+			//System.out.println(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
 			infos.put("key", caminho);
 			infos.put("path", caminho);
 			infos.put("filename", chave.substring(chave.lastIndexOf("/") + 1));
@@ -123,7 +129,7 @@ public class DiretorioCRUD extends HttpServlet {
 			infos.put("title", request.getParameter("title"));
 			infos.put("track", request.getParameter("track"));
 			infos.put("year", request.getParameter("year"));
-			System.out.println(infos.toString());
+			//System.out.println(infos.toString());
 			
 			try {
 				dir.alterarTag(infos);
@@ -136,6 +142,7 @@ public class DiretorioCRUD extends HttpServlet {
 			dir.criarPasta(caminho, chave);
 			break;
 		case "listar":
+			//out.println ("<html><body><script>alert('Listando!');</script></body></html>");
 			List<S3ObjectSummary> objects = dir.listarArquivos(caminho);
 			List<S3ListItem> arquivos = new ArrayList<S3ListItem>();
 			
